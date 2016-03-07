@@ -103,6 +103,57 @@
             //Assert
             $this->assertEquals(0, $result);
         }
+        function testPlayGameP1Wins()
+        {
+            //Arrange
+            $player_one_id = 1;
+            $player_one_choice = "rock";
+            $player_two_id = 2;
+            $player_two_choice = "scissors";
+            $winner = 1;
+            $id = 0;
+            $test_game = new Game ($player_one_id, $player_one_choice, $player_two_id, $player_two_choice, $winner, $id);
+
+            //Act
+            $result = $test_game->playGame($player_one_id, $player_one_choice, $player_two_id, $player_two_choice);
+
+            //Assert
+            $this->assertEquals("Player 1", $result);
+        }
+        function testPlayGameP2Wins()
+        {
+            //Arrange
+            $player_one_id = 1;
+            $player_one_choice = "water";
+            $player_two_id = 2;
+            $player_two_choice = "paper";
+            $winner = 1;
+            $id = 0;
+            $test_game = new Game ($player_one_id, $player_one_choice, $player_two_id, $player_two_choice, $winner, $id);
+
+            //Act
+            $result = $test_game->playGame($player_one_id, $player_one_choice, $player_two_id, $player_two_choice);
+
+            //Assert
+            $this->assertEquals("Player 2", $result);
+        }
+        function testPlayGameTie()
+        {
+            //Arrange
+            $player_one_id = 1;
+            $player_one_choice = "water";
+            $player_two_id = 2;
+            $player_two_choice = "water";
+            $winner = 1;
+            $id = 0;
+            $test_game = new Game ($player_one_id, $player_one_choice, $player_two_id, $player_two_choice, $winner, $id);
+
+            //Act
+            $result = $test_game->playGame($player_one_id, $player_one_choice, $player_two_id, $player_two_choice);
+
+            //Assert
+            $this->assertEquals("Tie", $result);
+        }
 
     }
 ?>
