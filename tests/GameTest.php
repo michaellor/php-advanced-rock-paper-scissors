@@ -149,7 +149,7 @@
             $test_game = new Game ($player_one_id, $player_one_choice, $player_two_id, $player_two_choice, $winner, $id);
 
             //Act
-            $result = $test_game->playGame($player_one_id, $player_one_choice, $player_two_id, $player_two_choice);
+            $result = $test_game->playGame();
 
             //Assert
             $this->assertEquals("Tie", $result);

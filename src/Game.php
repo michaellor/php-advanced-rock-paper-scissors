@@ -65,40 +65,47 @@
             $this->id = $id;
         }
 
-        function playGame($player_one_id, $player_one_choice, $player_two_id, $player_two_choice)
+        function playGame()
         {
-            if ($player_one_choice == "rock" && ($player_two_choice == "fire" ||
-            $player_two_choice== "scissors" || $player_two_choice == "sponge") ||
+            if ($this->getPlayerOneChoice() == "rock" && ($this->getPlayerTwoChoice() == "fire" ||
+            $this->getPlayerTwoChoice()== "scissors" || $this->getPlayerTwoChoice() == "sponge") ||
 //Fire beats
-            $player_one_choice == "fire" && ($player_two_choice == "scissors" ||
-            $player_two_choice== "sponge" || $player_two_choice == "paper") ||
+            $this->getPlayerOneChoice() == "fire" && ($this->getPlayerTwoChoice() == "scissors" ||
+            $this->getPlayerTwoChoice()== "sponge" || $this->getPlayerTwoChoice() == "paper") ||
 //scissors beats
-            $player_one_choice == "scissors" && ($player_two_choice == "sponge" ||
-            $player_two_choice== "paper" || $player_two_choice == "air") ||
+            $this->getPlayerOneChoice() == "scissors" && ($this->getPlayerTwoChoice() == "sponge" ||
+            $this->getPlayerTwoChoice()== "paper" || $this->getPlayerTwoChoice() == "air") ||
 //sponge beats
-            $player_one_choice == "sponge" && ($player_two_choice == "paper" ||
-            $player_two_choice== "air" || $player_two_choice == "water") ||
+            $this->getPlayerOneChoice() == "sponge" && ($this->getPlayerTwoChoice() == "paper" ||
+            $this->getPlayerTwoChoice()== "air" || $this->getPlayerTwoChoice() == "water") ||
 //paper beats
-            $player_one_choice == "paper" && ($player_two_choice == "air" ||
-            $player_two_choice== "water" || $player_two_choice == "rock") ||
+            $this->getPlayerOneChoice() == "paper" && ($this->getPlayerTwoChoice() == "air" ||
+            $this->getPlayerTwoChoice()== "water" || $this->getPlayerTwoChoice() == "rock") ||
 //air beats
-            $player_one_choice == "air" && ($player_two_choice == "water" ||
-            $player_two_choice== "rock" || $player_two_choice == "fire") ||
+            $this->getPlayerOneChoice() == "air" && ($this->getPlayerTwoChoice() == "water" ||
+            $this->getPlayerTwoChoice()== "rock" || $this->getPlayerTwoChoice() == "fire") ||
 //water beats
-            $player_one_choice == "water" && ($player_two_choice == "rock" ||
-            $player_two_choice== "fire" || $player_two_choice == "scissors"))
+            $this->getPlayerOneChoice() == "water" && ($this->getPlayerTwoChoice() == "rock" ||
+            $this->getPlayerTwoChoice()== "fire" || $this->getPlayerTwoChoice() == "scissors"))
  			{
- 				return "Player 1";
+                //$this->setWinner($this->player_one_id)
+                return "Player 1";
  			}
-			elseif ($player_one_choice == $player_two_choice)
+			elseif ($this->getPlayerOneChoice() == $this->getPlayerTwoChoice())
 			{
-				return "Tie";
+                //$this->setWinner(0);
+                return "Tie";
 			}
 			else
 			{
+                //$this->setWinner($this->player_two_id)
 				return "Player 2";
 			}
+        }
 
-      }
+        function save()
+        {
+            $GLOBALS['DB']->exec("INSERT INTO rounds (player_one_id, player_one_choice, player_two_id, player_two_choice, winner_id)");
+        }
     }
 ?>
