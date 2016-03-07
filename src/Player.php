@@ -33,12 +33,10 @@
 				return $this->password;
 			}
 
-			function addPoint()
+			function getId()
 			{
-					$this->score = $this->score + 1;
-
+				return $this->id;
 			}
-
 
 	}
  ?>
