@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
+        <link rel="stylesheet" href="/css/bootstrap-theme.min.css" type="text/css">
+        <link rel="stylesheet" href="/css/styles.css" type="text/css">
+        <meta charset="utf-8">
+        <title>Super Rock Paper Scissors Fight!</title>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Welcome to Super Rock Paper Scissors Fight!</h1>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 container">
+
+            </div>
+            <div class="col-sm-4 container">
+                <form action="/new_player" method="post">
+                    <label for="new_name">New Player Name</label>
+                    <input name="new_name" type="text" required>
+                    <label for="new_password">Password*</label>
+                    <input name="new_password" type="text">
+                    <button type='submit' class="btn btn-info">Add Player</button>
+                </form>
+                <br>
+                <br>
+                {% if players is not empty %}
+                <form action="/start_game" method="post">
+                    <h3>Select Player 1</h3>
+                    <select name="selected_player_one">
+                        {% for player in players %}
+                            <option value="{{player.getId}}">{{player.getName}}</option>
+                        {% endfor %}
+                    </select>
+                        <h3>Select Player 2</h3>
+                    <select name="selected_player_two">
+                        <option value="-1" selected>Computer</option>
+                        {% for player in players %}
+                            <option value="100000">Bill</option>
+                        {% endfor %}
+                    </select>
+                    <button>Go Play</button>
+                </form>
+                {% endif %}
+            </div>
+            <div class="col-sm 4 container">
+
+            </div>
+        </div>
+    </body>
+</html>

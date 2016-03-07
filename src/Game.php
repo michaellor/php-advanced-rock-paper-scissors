@@ -55,7 +55,7 @@
         {
           return $this->id;
         }
-        function __construct($player_one_id, $player_one_choice,  $player_two_id, $player_two_choice, $winner, $id=null)
+        function __construct($player_one_id, $player_one_choice,  $player_two_id, $player_two_choice, $winner = null, $id = null)
         {
             $this->player_one_id = $player_one_id;
             $this->player_one_choice = $player_one_choice;
@@ -67,6 +67,19 @@
 
         function playGame()
         {
+            if($this->getPlayerOneId() == $this->getPlayerTwoId())
+            {
+                return "Don't Play With Yourself";
+            }
+
+            if ($this->getPlayerTwoId() == -1) {
+                $choices = array("rock", "paper", "scissors", "fire","sponge", "water", "air");
+                // $choices = array("rock", "paper");
+                $random_key = array_rand($choices);
+                $randomchoice = $choices[$random_key];
+                $this->setPlayerTwoChoice($randomchoice);
+            }
+
             if ($this->getPlayerOneChoice() == "rock" && ($this->getPlayerTwoChoice() == "fire" ||
             $this->getPlayerTwoChoice()== "scissors" || $this->getPlayerTwoChoice() == "sponge") ||
 //Fire beats
@@ -88,17 +101,20 @@
             $this->getPlayerOneChoice() == "water" && ($this->getPlayerTwoChoice() == "rock" ||
             $this->getPlayerTwoChoice()== "fire" || $this->getPlayerTwoChoice() == "scissors"))
  			{
-                //$this->setWinner($this->player_one_id)
+                $this->setWinner($this->player_one_id);
+                $this->saveRound();
                 return "Player 1";
  			}
 			elseif ($this->getPlayerOneChoice() == $this->getPlayerTwoChoice())
 			{
-                //$this->setWinner(0);
+                $this->setWinner(0);
+                $this->saveRound();
                 return "Tie";
 			}
 			else
 			{
-                //$this->setWinner($this->player_two_id)
+                $this->setWinner($this->player_two_id);
+                $this->saveRound();
 				return "Player 2";
 			}
         }
