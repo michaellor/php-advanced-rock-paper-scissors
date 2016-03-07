@@ -159,6 +159,24 @@
             $this->assertEquals("Tie", $result);
         }
 
+        function testPlayGameRandom()
+        {
+            //Arrange
+            $player_one_id = 1;
+            $player_one_choice = "scissors";
+            $player_two_id = -1;
+            $player_two_choice = null;
+            $winner = 1;
+            $id = 0;
+            $test_game = new Game ($player_one_id, $player_one_choice, $player_two_id, $player_two_choice, $winner, $id);
+
+            //Act
+            $result = $test_game->playGame();
+
+            //Assert
+            $this->assertEquals("Player 1", $result);
+        }
+
         function testSaveRound()
         {
             //Arrange

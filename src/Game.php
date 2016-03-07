@@ -67,10 +67,13 @@
 
         function playGame()
         {
-            // //if ($this->getPlayerTwoId == -1) {
-            //     $randomchoice = write a roandomizer;
-            //     $this->setPlayerTwoChoice($randomchoice);
-            // }
+            if ($this->getPlayerTwoId() == -1) {
+                $choices = array("rock", "paper", "scissors", "fire","sponge", "water", "air");
+                // $choices = array("rock", "paper");
+                $random_key = array_rand($choices);
+                $randomchoice = $choices[$random_key];
+                $this->setPlayerTwoChoice($randomchoice);
+            }
 
             if ($this->getPlayerOneChoice() == "rock" && ($this->getPlayerTwoChoice() == "fire" ||
             $this->getPlayerTwoChoice()== "scissors" || $this->getPlayerTwoChoice() == "sponge") ||
