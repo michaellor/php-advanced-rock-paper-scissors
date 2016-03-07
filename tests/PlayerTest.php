@@ -215,6 +215,35 @@
             $this->assertEquals(2, $result);
             $this->assertEquals(0, $result2);
         }
+        function test_getTotalLosses()
+        {
+            //Arrange
+            $test_name = "Aundra";
+            $test_password = '1234';
+            $test_player = new Player($test_name, $test_password);
+            $test_player->save();
+            $test_player_id = $test_player->getId();
+
+            $test_name2 = "Joseph";
+            $test_password2 = '1234';
+            $test_player2 = new Player($test_name2, $test_password2);
+            $test_player2->save();
+            $test_player_id2 = $test_player2->getId();
+
+            $GLOBALS['DB']->exec("INSERT INTO rounds (player_one_id, player_one_choice, player_two_id, player_two_choice, winner_id) VALUES ({$test_player_id}, 'rock', {$test_player_id2}, 'scissors', {$test_player_id});");
+
+            $GLOBALS['DB']->exec("INSERT INTO rounds (player_one_id, player_one_choice, player_two_id, player_two_choice, winner_id) VALUES ({$test_player_id}, 'rock', {$test_player_id2}, 'scissors', {$test_player_id});");
+
+            $GLOBALS['DB']->exec("INSERT INTO rounds (player_one_id, player_one_choice, player_two_id, player_two_choice, winner_id) VALUES ({$test_player_id}, 'rock', {$test_player_id2}, 'scissors', {$test_player_id2});");
+
+            //Act
+            $result = $test_player->getTotalLosses();
+            $result2 = $test_player2->getTotalLosses();
+
+            //Assert
+            $this->assertEquals(1, $result);
+            $this->assertEquals(2, $result2);
+        }
 
     }
 ?>

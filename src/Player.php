@@ -60,6 +60,11 @@
 				return count($wins);
 			}
 
+			function getTotalLosses()
+			{
+				return $this->getTotalGames() - $this->getTotalWins();
+			}
+
 			static function getAll()
 			{
 				$returned_players = $GLOBALS['DB']->query("SELECT * FROM players;");
