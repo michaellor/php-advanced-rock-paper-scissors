@@ -103,9 +103,35 @@
 			}
         }
 
-        function save()
+        function saveRound()
         {
-            $GLOBALS['DB']->exec("INSERT INTO rounds (player_one_id, player_one_choice, player_two_id, player_two_choice, winner_id)");
+            $GLOBALS['DB']->exec("INSERT INTO rounds (player_one_id, player_one_choice, player_two_id, player_two_choice, winner_id) VALUES ({$this->getPlayerOneId()}, '{$this->getPlayerOneChoice()}',{$this->getPlayerTwoId()}, '{$this->getPlayerTwoChoice()}', {$this->getWinner()});");
+
+            $this->id = $GLOBALS['DB']->lastInsertId();
+        }
+
+        static function getAll()
+        {
+            $matching_games = $GLOBALS['DB']->query("SELECT * FROM rounds");
+            $games = array();
+
+            foreach($matching_games as $game)
+            {
+                $p_1_id = $game['player_one_id'];
+                $p_1_choice = $game['player_one_choice'];
+                $p_2_id = $game['player_two_id'];
+                $p_2_choice = $game ['player_two_choice'];
+                $winner = $game['winner_id'];
+                $id = $game['id'];
+                $new_game = new Game($p_1_id, $p_1_choice, $p_2_id, $p_2_choice, $winner, $id);
+                array_push($games, $new_game);
+            }
+            return $games;
+        }
+
+        static function deleteAll()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM rounds");
         }
     }
 ?>

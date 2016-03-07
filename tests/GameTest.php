@@ -18,6 +18,10 @@
 
     class  GameTest  extends PHPUnit_Framework_TestCase
     {
+        protected function tearDown()
+        {
+            Game::deleteAll();
+        }
         function testGetPlayerOneId()
         {
             //Arrange
@@ -155,5 +159,51 @@
             $this->assertEquals("Tie", $result);
         }
 
+        function testSaveRound()
+        {
+            //Arrange
+            $player_one_id = 1;
+            $player_one_choice = "water";
+            $player_two_id = 2;
+            $player_two_choice = "water";
+            $winner = 1;
+            $id = 0;
+            $test_game = new Game ($player_one_id, $player_one_choice, $player_two_id, $player_two_choice, $winner, $id);
+
+            //Act
+            $test_game->saveRound();
+            $result = Game::getAll();
+
+            //Assert
+            $this->assertEquals([$test_game], $result);
+        }
+
+        function testGetAll()
+        {
+            //Arrange
+            $player_one_id = 1;
+            $player_one_choice = "water";
+            $player_two_id = 2;
+            $player_two_choice = "water";
+            $winner = 0;
+            $id = 0;
+            $test_game = new Game ($player_one_id, $player_one_choice, $player_two_id, $player_two_choice, $winner, $id);
+            $test_game->saveRound();
+
+            $player_one_id2 = 1;
+            $player_one_choice2 = "rock";
+            $player_two_id2 = 2;
+            $player_two_choice2 = "scissors";
+            $winner2 = 1;
+            $id2 = 0;
+            $test_game2 = new Game ($player_one_id2, $player_one_choice2, $player_two_id2, $player_two_choice2, $winner2, $id2);
+            $test_game2->saveRound();
+            //Act
+
+            $result = Game::getAll();
+
+            //Assert
+            $this->assertEquals([$test_game, $test_game2], $result);
+        }
     }
 ?>
