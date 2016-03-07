@@ -44,6 +44,15 @@
 				$this->id = $GLOBALS['DB']->lastInsertId();
 			}
 
+			function getTotalGames()
+			{
+				$query = $GLOBALS['DB']->query("SELECT * FROM rounds WHERE player_one_id = {$this->getId()};");
+				$rounds = $query->fetchAll(PDO::FETCH_ASSOC);
+				$query = $GLOBALS['DB']->query("SELECT * FROM rounds WHERE player_two_id = {$this->getId()};");
+				$rounds2 = $query->fetchAll(PDO::FETCH_ASSOC);
+				return count($rounds) + count($rounds2);
+			}
+
 			static function getAll()
 			{
 				$returned_players = $GLOBALS['DB']->query("SELECT * FROM players;");
