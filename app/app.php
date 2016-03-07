@@ -27,12 +27,21 @@
         $new_player->save();
       return $app['twig']->render('index.html.twig', array('players'=>Player::getAll()));
     });
-    
+
     $app->post("/start_game", function() use ($app){
         $player1_id = $_POST['selected_player_one'];
         $player2_id = $_POST['selected_player_two'];
         $player1 = Player::findById($player1_id);
-        $player2 = Player::findById($player2_id);
+        if($player2_id == -1)
+        {
+            $computer = "Computer (HAL)";
+            $password = null;
+            $player2 = new Player($computer, $password, $player2_id);
+        }
+        else
+        {
+            $player2 = Player::findById($player2_id);
+        }
         return $app['twig']->render('game.html.twig', array('player1' => $player1, 'player2' => $player2));
     });
 
