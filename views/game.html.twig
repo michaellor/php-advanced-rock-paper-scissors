@@ -16,13 +16,42 @@
                 </div>
 
                 <div class="col-sm-4">
-
+                    {% if result is empty %}
+                    <form  action="/play" method="post">
+                        <h3>Player 1 Chooses:</h3>
+                        <select name="player_one_select">
+                            <option value="rock">Rock</option>
+                            <option value="fire">Fire</option>
+                            <option value="scissors">Scissors</option>
+                            <option value="sponge">sponge</option>
+                            <option value="paper">Paper</option>
+                            <option value="air">Air</option>
+                            <option value="water">water</option>
+                        </select>
+                        <input type="hidden" name="player_one_id" value="{{player1.getId}}">
+                        <h3>Player 2 Chooses:</h3>
+                        <select name="player_two_select">
+                            <option value="rock">Rock</option>
+                            <option value="fire">Fire</option>
+                            <option value="scissors">Scissors</option>
+                            <option value="sponge">sponge</option>
+                            <option value="paper">Paper</option>
+                            <option value="air">Air</option>
+                            <option value="water">water</option>
+                        </select>
+                        <input type="hidden" name="player_two_id" value="{{player2.getId}}">
+                        <button type="submit" class="btn btn-primary">Shoot!</button>
+                    </form>
+                    {% endif %}
+                    {% if result is not empty %}
+                        <h1>{{result}}</h1>
+                    {% endif %}
                 </div>
 
                 <div class="col-sm-4">
                     <h2>
                     {{player2.getName}}
-                </h2>
+                    </h2>
                 </div>
 
             </div>

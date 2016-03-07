@@ -45,5 +45,17 @@
         return $app['twig']->render('game.html.twig', array('player1' => $player1, 'player2' => $player2));
     });
 
+    $app->post("/play", function() use ($app){
+        $player_one_id = $_POST['player_one_id'];
+        $player_one_choice = $_POST['player_one_select'];
+        $player_two_id = $_POST['player_two_id'];
+        $player_two_choice = $_POST['player_two_select'];
+
+        $new_game = new Game ($player_one_id, $player_one_choice, $player_two_id, $player_two_choice);
+
+        $result = $new_game->playGame();
+
+      return $app['twig']->render("game.html.twig", array('result'=> $result));
+    });
     return $app;
  ?>
