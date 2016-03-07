@@ -53,6 +53,13 @@
 				return count($rounds) + count($rounds2);
 			}
 
+			function getTotalWins()
+			{
+				$query = $GLOBALS['DB']->query("SELECT * FROM rounds WHERE winner_id = {$this->getId()};");
+				$wins = $query->fetchAll(PDO::FETCH_ASSOC);
+				return count($wins);
+			}
+
 			static function getAll()
 			{
 				$returned_players = $GLOBALS['DB']->query("SELECT * FROM players;");
