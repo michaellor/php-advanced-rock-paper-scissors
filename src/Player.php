@@ -92,6 +92,29 @@
 				return $results;
 			}
 
+			function getWinningHands($types = ['rock', 'paper', 'scissors', 'fire', 'air', 'water', 'sponge'])
+			{
+				$query = $GLOBALS['DB']->query("SELECT *
+						FROM rounds
+						WHERE player_one_id = {$this->getId()}
+						OR player_two_id = {$this->getId()};");
+				$player_rounds = $query->fetchAll(PDO::FETCH_ASSOC);
+				$results = array();
+				foreach($types as $type) {
+					$count = 0;
+					foreach($player_rounds as $player_round) {
+						if ($player_round['player_one_id'] == $this->getId() && $player_round['player_one_choice'] == $type && $player_round['winner_id'] == $this->getId()) {
+							$count++;
+						}
+						if ($player_round['player_two_id'] == $this->getId() && $player_round['player_two_choice'] == $type && $player_round['winner_id'] == $this->getId()) {
+							$count++;
+						}
+					}
+					$results[$type] = $count;
+				}
+				return $results;
+			}
+
 			static function getAll()
 			{
 				$returned_players = $GLOBALS['DB']->query("SELECT * FROM players;");
