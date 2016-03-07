@@ -177,6 +177,24 @@
             $this->assertEquals("Player 1", $result);
         }
 
+        function testPlayGameSameIds()
+        {
+            //Arrange
+            $player_one_id = 1;
+            $player_one_choice = "scissors";
+            $player_two_id = 1;
+            $player_two_choice = "paper";
+            $winner = 1;
+            $id = 0;
+            $test_game = new Game ($player_one_id, $player_one_choice, $player_two_id, $player_two_choice, $winner, $id);
+
+            //Act
+            $result = $test_game->playGame();
+
+            //Assert
+            $this->assertEquals("Don't Play With Yourself", $result);
+        }
+
         function testSaveRound()
         {
             //Arrange

@@ -67,6 +67,11 @@
 
         function playGame()
         {
+            if($this->getPlayerOneId() == $this->getPlayerTwoId())
+            {
+                return "Don't Play With Yourself";
+            }
+
             if ($this->getPlayerTwoId() == -1) {
                 $choices = array("rock", "paper", "scissors", "fire","sponge", "water", "air");
                 // $choices = array("rock", "paper");
