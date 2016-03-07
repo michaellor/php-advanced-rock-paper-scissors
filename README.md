@@ -1,8 +1,8 @@
-# _{Application Name}_
+# _Rock Paper Scissors Advanced_
 
-#### _{Brief description of application}, {Date of current version}_
+#### _Advanced version of Paper Rock Scissors , {Date of current version}_
 
-#### By _**{List of contributors}**_
+#### By _** **_
 
 ## Description
 
