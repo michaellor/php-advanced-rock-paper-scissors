@@ -5,9 +5,8 @@
     </head>
     <body>
         <div class="container">
-            <h1>Welcome to Super Rock Paper Scissors Fight!</h1>
+            <h1>Advanced RPS-7</h1>
         </div>
-
 
             <div class="container">
                 <form action="/new_player" method="post">
@@ -20,31 +19,35 @@
                 <br>
                 <br>
                 {% if players is not empty %}
-                <form action="/start_game" method="post">
-                    <h3>Select Player 1</h3>
-                    <select name="selected_player_one">
-                        {% for player in players %}
-                            <option value="{{player.getId}}">{{player.getName}}</option>
-                        {% endfor %}
-                    </select>
-                        <h3>Select Player 2</h3>
-                    <select name="selected_player_two">
-                        <option value=-1 selected>Computer</option>
-                        {% for player in players %}
-                            <option value="{{player.getId}}">{{player.getName}}</option>
-                        {% endfor %}
-                    </select>
+                <div class="input-field col s12">
+                    <form action="/start_game" method="post">
+                        <h3>Select Player 1</h3>
+                        <select name="selected_player_one">
+                            {% for player in players %}
+                                <option value="{{player.getId}}">{{player.getName}}</option>
+                            {% endfor %}
+                        </select>
+                            <h3>Select Player 2</h3>
+                        <select name="selected_player_two">
+                            <option value=-1 selected>Computer</option>
+                            {% for player in players %}
+                                <option value="{{player.getId}}">{{player.getName}}</option>
+                            {% endfor %}
+                        </select>
 
-                    <h3>Choose your Format</h3>
-                    <select>
-                        <option value=null> Free Play - non Match</option>
-                        <option value=1>Match: All or Nothing!</option>
-                        <option value=2>Match: Best of 3</option>
-                        <option value=3>Match: Best of 5</option>
-                        <option value=4>Match: Best of 7</option>
-                    </select>
-                    <button type="submit">Go Play</button>
-                </form>
+                        <h3>Choose your Format</h3>
+                        <div class="input-field col s12">
+                            <select>
+                                <option value=null> Free Play - non Match</option>
+                                <option value=1>Match: All or Nothing!</option>
+                                <option value=2>Match: Best of 3</option>
+                                <option value=3>Match: Best of 5</option>
+                                <option value=4>Match: Best of 7</option>
+                            </select>
+                        <button type="submit">Go Play</button>
+                        </div>
+                    </form>
+                </div>
                 {% endif %}
             </div>
     </body>
