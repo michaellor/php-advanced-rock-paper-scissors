@@ -31,7 +31,7 @@
             $player_two_choice = "scissors";
             $winner = 1;
             $id = 0;
-            $test_game = new Game ($player_one_id, $player_one_choice, $player_two_id, $player_two_choice, $winner, $id);
+            $test_game = new Game ($player_one_id, $player_one_choice, $player_two_id, $player_two_choice, $winner, $id, $match_id = null);
 
             //Act
             $result = $test_game->getPlayerOneId();
@@ -48,7 +48,7 @@
             $player_two_choice = "scissors";
             $winner = 1;
             $id = 0;
-            $test_game = new Game ($player_one_id, $player_one_choice, $player_two_id, $player_two_choice, $winner, $id);
+            $test_game = new Game ($player_one_id, $player_one_choice, $player_two_id, $player_two_choice, $winner, $id, $match_id = null);
 
             //Act
             $result = $test_game->getPlayerTwoId();
@@ -65,7 +65,7 @@
             $player_two_choice = "scissors";
             $winner = 1;
             $id = 0;
-            $test_game = new Game ($player_one_id, $player_one_choice, $player_two_id, $player_two_choice, $winner, $id);
+            $test_game = new Game ($player_one_id, $player_one_choice, $player_two_id, $player_two_choice, $winner, $id, $match_id = null);
 
             //Act
             $result = $test_game->getPlayerOneChoice();
@@ -82,7 +82,7 @@
             $player_two_choice = "scissors";
             $winner = 1;
             $id = 0;
-            $test_game = new Game ($player_one_id, $player_one_choice, $player_two_id, $player_two_choice, $winner, $id);
+            $test_game = new Game ($player_one_id, $player_one_choice, $player_two_id, $player_two_choice, $winner, $id, $match_id = null);
 
             //Act
             $result = $test_game->getPlayerTwoChoice();
@@ -99,7 +99,7 @@
             $player_two_choice = "scissors";
             $winner = 1;
             $id = 0;
-            $test_game = new Game ($player_one_id, $player_one_choice, $player_two_id, $player_two_choice, $winner, $id);
+            $test_game = new Game ($player_one_id, $player_one_choice, $player_two_id, $player_two_choice, $winner, $id, $match_id = null);
 
             //Act
             $result = $test_game->getId();
@@ -116,7 +116,7 @@
             $player_two_choice = "scissors";
             $winner = 1;
             $id = 0;
-            $test_game = new Game ($player_one_id, $player_one_choice, $player_two_id, $player_two_choice, $winner, $id);
+            $test_game = new Game ($player_one_id, $player_one_choice, $player_two_id, $player_two_choice, $winner, $id, $match_id = null);
 
             //Act
             $result = $test_game->playGame($player_one_id, $player_one_choice, $player_two_id, $player_two_choice);
@@ -133,7 +133,7 @@
             $player_two_choice = "paper";
             $winner = 1;
             $id = 0;
-            $test_game = new Game ($player_one_id, $player_one_choice, $player_two_id, $player_two_choice, $winner, $id);
+            $test_game = new Game ($player_one_id, $player_one_choice, $player_two_id, $player_two_choice, $winner, $id, $match_id = null);
 
             //Act
             $result = $test_game->playGame($player_one_id, $player_one_choice, $player_two_id, $player_two_choice);
@@ -150,7 +150,7 @@
             $player_two_choice = "water";
             $winner = 1;
             $id = 0;
-            $test_game = new Game ($player_one_id, $player_one_choice, $player_two_id, $player_two_choice, $winner, $id);
+            $test_game = new Game ($player_one_id, $player_one_choice, $player_two_id, $player_two_choice, $winner, $id, $match_id = null);
 
             //Act
             $result = $test_game->playGame();
@@ -168,7 +168,7 @@
             $player_two_choice = null;
             $winner = 1;
             $id = 0;
-            $test_game = new Game ($player_one_id, $player_one_choice, $player_two_id, $player_two_choice, $winner, $id);
+            $test_game = new Game ($player_one_id, $player_one_choice, $player_two_id, $player_two_choice, $winner, $id, $match_id = null);
 
             //Act
             $result = $test_game->playGame();
@@ -186,7 +186,7 @@
             $player_two_choice = "paper";
             $winner = 1;
             $id = 0;
-            $test_game = new Game ($player_one_id, $player_one_choice, $player_two_id, $player_two_choice, $winner, $id);
+            $test_game = new Game ($player_one_id, $player_one_choice, $player_two_id, $player_two_choice, $winner, $id, $match_id = null);
 
             //Act
             $result = $test_game->playGame();
@@ -204,7 +204,7 @@
             $player_two_choice = "water";
             $winner = 1;
             $id = 0;
-            $test_game = new Game ($player_one_id, $player_one_choice, $player_two_id, $player_two_choice, $winner, $id);
+            $test_game = new Game ($player_one_id, $player_one_choice, $player_two_id, $player_two_choice, $winner, $id, $match_id = null);
 
             //Act
             $test_game->saveRound();
@@ -223,7 +223,7 @@
             $player_two_choice = "water";
             $winner = 0;
             $id = 0;
-            $test_game = new Game ($player_one_id, $player_one_choice, $player_two_id, $player_two_choice, $winner, $id);
+            $test_game = new Game ($player_one_id, $player_one_choice, $player_two_id, $player_two_choice, $winner, $id, $match_id = null);
             $test_game->saveRound();
 
             $player_one_id2 = 1;
@@ -232,7 +232,7 @@
             $player_two_choice2 = "scissors";
             $winner2 = 1;
             $id2 = 0;
-            $test_game2 = new Game ($player_one_id2, $player_one_choice2, $player_two_id2, $player_two_choice2, $winner2, $id2);
+            $test_game2 = new Game ($player_one_id2, $player_one_choice2, $player_two_id2, $player_two_choice2, $winner2, $id2, $match_id2 = null);
             $test_game2->saveRound();
             //Act
 
@@ -240,6 +240,34 @@
 
             //Assert
             $this->assertEquals([$test_game, $test_game2], $result);
+        }
+
+        function testFindById()
+        {
+            //Arrange
+            $player_one_id = 1;
+            $player_one_choice = "water";
+            $player_two_id = 2;
+            $player_two_choice = "water";
+            $winner = 0;
+            $id = 0;
+            $test_game = new Game ($player_one_id, $player_one_choice, $player_two_id, $player_two_choice, $winner, $id, $match_id = null);
+            $test_game->saveRound();
+
+            $player_one_id2 = 1;
+            $player_one_choice2 = "rock";
+            $player_two_id2 = 2;
+            $player_two_choice2 = "scissors";
+            $winner2 = 1;
+            $id2 = 0;
+            $test_game2 = new Game ($player_one_id2, $player_one_choice2, $player_two_id2, $player_two_choice2, $winner2, $id2, $match_id2 = null);
+            $test_game2->saveRound();
+
+            //Act
+            $found_game = Game::findById($test_game2->getId());
+
+            //Assert
+            $this->assertEquals($found_game, $test_game2);
         }
     }
 ?>

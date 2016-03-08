@@ -1,8 +1,8 @@
 <?php
     require_once __DIR__."/../vendor/autoload.php";
     require_once __DIR__."/../src/Game.php";
-    require_once __DIR__."/../src/Computer.php";
     require_once __DIR__."/../src/Player.php";
+    require_once __DIR__."/../src/Match.php";
 
     session_start();
     if(empty($_SESSION['player_one']))
@@ -88,7 +88,7 @@
         else {
             $null = null;
         }
-        
+
       return $app['twig']->render("game.html.twig", array('result'=> $result, 'player1'=>$_SESSION['player_one'], 'player2'=>$_SESSION['player_two'], 'format'=>$_SESSION['match_type']));
     });
     return $app;

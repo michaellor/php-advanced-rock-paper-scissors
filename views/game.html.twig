@@ -58,15 +58,16 @@
 
                         {% if player1['score'] == format %}
                             <h3>{{player1['name']}} Wins  {{player1['score']}} - {{player2['score']}}</h3>
-                            <button><a hRegister Match</button>
+                            <button><a href="/match_results">Register Match</a></button>
                         {% endif %}
                         {% if player2['score'] == format %}
                             <h3>{{player2['name']}} Wins  {{player2['score']}} - {{player1['score']}}</h3>
-                            <button>Register Match</button>
+                            <button><a href="/match_results">Register Match</a></button>
                         {% endif %}
                     </div>
                     <div class="container">
                         <h4>End this match and start a new one</h4>
+                        <p> The match will not be registered, but all rounds will be recorded</p>
                         <button><a href="/">Start Over</a></button>
                     </div>
                 </div>
