@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
-    {% include './includes/header.html.twig' %}
+    <head>
+        {% include './includes/header.html.twig' %}
+    </head>
     <body>
         <div class="container">
             <h1>Welcome to Super Rock Paper Scissors Fight!</h1>
         </div>
-        <div class="row">
-            <div class="col-sm-4 container">
 
-            </div>
-            <div class="col-sm-4 container">
+
+            <div class="container">
                 <form action="/new_player" method="post">
                     <label for="new_name">New Player Name</label>
                     <input name="new_name" type="text" required>
@@ -36,20 +36,16 @@
                     </select>
 
                     <h3>Choose your Format</h3>
-                    <select name="format" required>
-                        <option value=null selected> Free Play - non Match</option>
+                    <select>
+                        <option value=null> Free Play - non Match</option>
                         <option value=1>Match: All or Nothing!</option>
                         <option value=2>Match: Best of 3</option>
                         <option value=3>Match: Best of 5</option>
                         <option value=4>Match: Best of 7</option>
                     </select>
-                    <button>Go Play</button>
+                    <button type="submit">Go Play</button>
                 </form>
                 {% endif %}
             </div>
-            <div class="col-sm 4 container">
-
-            </div>
-        </div>
     </body>
 </html>
