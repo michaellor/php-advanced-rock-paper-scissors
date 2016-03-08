@@ -18,6 +18,7 @@
         protected function tearDown()
         {
             Player::deleteAll();
+            Player::deleteAllRounds();
         }
 
         function test_getNamePasswordId()

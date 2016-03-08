@@ -112,6 +112,7 @@
 					}
 					$results[$type] = $count;
 				}
+				var_dump($results);
 				return $results;
 			}
 
@@ -158,6 +159,11 @@
 			static function deleteAll()
 	        {
 	            $GLOBALS['DB']->exec('DELETE FROM players;');
+	        }
+
+			static function deleteAllRounds()
+	        {
+	            $GLOBALS['DB']->exec('DELETE FROM rounds;');
 	        }
 
 	}

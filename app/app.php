@@ -17,7 +17,8 @@
     ));
 
     $app->get("/", function() use ($app){
-        return $app['twig']->render('index.html.twig', array('players' => Player::getAll()));
+        // return $app['twig']->render('index.html.twig', array('players' => Player::getAll()));
+        return $app['twig']->render('stats.html.twig');
     });
 
     $app->post("/new_player", function() use ($app){
@@ -27,7 +28,7 @@
         $new_player->save();
       return $app['twig']->render('index.html.twig', array('players'=>Player::getAll()));
     });
-    
+
     $app->post("/start_game", function() use ($app){
         $player1_id = $_POST['selected_player_one'];
         $player2_id = $_POST['selected_player_two'];
