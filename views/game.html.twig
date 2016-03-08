@@ -18,7 +18,8 @@
 
                 <div class="col-sm-4">
                     {% if result is not empty %}
-                    <h1>{{result}}</h1>
+                        <h2>This round goes to...</h2>
+                        <h1>{{result}}</h1>
                     {% endif %}
 
 
@@ -50,27 +51,16 @@
                             {% endif %}
                                 <input type="hidden" name="player_two_id" value="{{player2['id']}}">
 
-                            <br><br><button type="submit" class="btn btn-primary">Shoot!</button>
+                                <br><br><button type="submit" class="btn btn-primary">Shoot!</button>
 
                         </form>
 
 
                     <div class="container">
-                        {% if result is not empty %}
-                            <h2>This round goes to...</h2>
-                            <h1>{{result}}</h1>
-                        {% endif %}
-
-
                         {% if player1['score'] == match['match_type'] %}
-
                             <h3>{{player1['name']}} Wins  {{player1['score']}} - {{player2['score']}}</h3>
-                            <button><a href="/match_results">Register Match</a></button>
-                        {% endif %}
-                        {% if player2['score'] == match['match_type'] %}
-                            
+                        {% elseif player2['score'] == match['match_type'] %}
                             <h3>{{player2['name']}} Wins  {{player2['score']}} - {{player1['score']}}</h3>
-                            <button><a href="/match_results">Register Match</a></button>
                         {% endif %}
                     </div>
                     <div class="container">
