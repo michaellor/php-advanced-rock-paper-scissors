@@ -60,11 +60,11 @@
                         {% endif %}
 
 
-                        {% if player1['score'] == format %}
+                        {% if player1['score'] == match['match_type'] %}
                             <h3>{{player1['name']}} Wins  {{player1['score']}} - {{player2['score']}}</h3>
                             <button><a href="/match_results">Register Match</a></button>
                         {% endif %}
-                        {% if player2['score'] == format %}
+                        {% if player2['score'] == match['match_type'] %}
                             <h3>{{player2['name']}} Wins  {{player2['score']}} - {{player1['score']}}</h3>
                             <button><a href="/match_results">Register Match</a></button>
                         {% endif %}

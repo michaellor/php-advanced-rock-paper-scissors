@@ -15,9 +15,9 @@
         $_SESSION['player_two']= array("name"=>"", "id"=>"", "score"=>0);
     }
 
-    if(empty($_SESSION['match_type']))
+    if(empty($_SESSION['match']))
     {
-        $_SESSION['match_type']=array();
+        $_SESSION['match']=array("match_type"=>"", "id"=>"");
     }
 
     $app = new Silex\Application();
@@ -33,7 +33,7 @@
     $app->get("/", function() use ($app){
         $_SESSION['player_one']= array("name"=>"", "id"=>"", "score"=>0);
         $_SESSION['player_two']= array("name"=>"", "id"=>"", "score"=>0);
-        $_SESSION['match_type']=array();
+        $_SESSION['match']= array("match_type"=>"", "id"=>"");
         return $app['twig']->render('index.html.twig', array('players' => Player::getAll()));
     });
 
@@ -64,9 +64,12 @@
         $_SESSION['player_two']['name']= $player2->getName();
         $_SESSION['player_two']['id']= $player2->getId();
 
-        $_SESSION['match_type']= $_POST['format'];
+        $match = new Match ($player1->getId(), null, $player2->getId(), null, null, null);
+        $match->saveMatch();
+        $_SESSION['match']['id'] = $match->getId();
+        $_SESSION['match']['match_type']= $_POST['format'];
 
-        return $app['twig']->render('game.html.twig', array('player1' => $_SESSION['player_one'], 'player2' => $_SESSION['player_two'], 'format'=>$_SESSION['match_type']));
+        return $app['twig']->render('game.html.twig', array('player1' => $_SESSION['player_one'], 'player2' => $_SESSION['player_two'], 'match'=>$_SESSION['match']));
     });
 
     $app->get("/data", function() use ($app){
@@ -85,8 +88,11 @@
         $player_one_choice = $_POST['player_one_select'];
         $player_two_id = $_POST['player_two_id'];
         $player_two_choice = $_POST['player_two_select'];
+        $match_id = $_SESSION['match']['id'];
+        var_dump($match_id);
 
-        $new_game = new Game ($player_one_id, $player_one_choice, $player_two_id, $player_two_choice);
+        $new_game = new Game ($player_one_id, $player_one_choice, $player_two_id, $player_two_choice, null, null, $match_id);
+        var_dump($new_game);
 
         $result = $new_game->playGame();
         if ($new_game->getWinner() == $player_one_id)
@@ -100,7 +106,7 @@
             $null = null;
         }
 
-      return $app['twig']->render("game.html.twig", array('result'=> $result, 'player1'=>$_SESSION['player_one'], 'player2'=>$_SESSION['player_two'], 'format'=>$_SESSION['match_type']));
+      return $app['twig']->render("game.html.twig", array('result'=> $result, 'player1'=>$_SESSION['player_one'], 'player2'=>$_SESSION['player_two'], 'match'=>$_SESSION['match']));
     });
     return $app;
  ?>

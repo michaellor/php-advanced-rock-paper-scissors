@@ -114,6 +114,9 @@
         function update($new_p1_score, $new_p2_score, $new_winner)
         {
             $GLOBALS['DB']->exec("UPDATE matches SET player_one_score = {$new_p1_score}, player_two_score = {$new_p2_score}, winner_id = {$new_winner} WHERE id = {$this->getId()};");
+            $this->setPlayerOneScore($new_p1_score);
+            $this->setPlayerTwoScore($new_p2_score);
+            $this->setWinner($new_winner);
         }
     }
 ?>
