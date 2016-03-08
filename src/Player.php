@@ -46,11 +46,12 @@
 
 			function getTotalGames()
 			{
-				$query = $GLOBALS['DB']->query("SELECT * FROM rounds WHERE player_one_id = {$this->getId()};");
+				$query = $GLOBALS['DB']->query("SELECT *
+						FROM rounds
+						WHERE player_one_id = {$this->getId()}
+						OR player_two_id = {$this->getId()};");
 				$rounds = $query->fetchAll(PDO::FETCH_ASSOC);
-				$query = $GLOBALS['DB']->query("SELECT * FROM rounds WHERE player_two_id = {$this->getId()};");
-				$rounds2 = $query->fetchAll(PDO::FETCH_ASSOC);
-				return count($rounds) + count($rounds2);
+				return count($rounds);
 			}
 
 			function getTotalWins()
@@ -63,6 +64,73 @@
 			function getTotalLosses()
 			{
 				return $this->getTotalGames() - $this->getTotalWins();
+			}
+
+			// $types comes in as an array of the potential hand types i.e. ['rock','paper','scissors']
+			// getHands($types) will return an associative array with data for given player, i.e. ['rock' => 1, 'paper' => 8, 'scissors' => 5]
+			// default array is set to the whole range of options, currently 7 different types
+			function getTotalHands($types = ['rock', 'paper', 'scissors', 'fire', 'air', 'water', 'sponge'])
+			{
+				$query = $GLOBALS['DB']->query("SELECT *
+						FROM rounds
+						WHERE player_one_id = {$this->getId()}
+						OR player_two_id = {$this->getId()};");
+				$player_rounds = $query->fetchAll(PDO::FETCH_ASSOC);
+				$results = array();
+				foreach ($types as $type) {
+					$count = 0;
+					foreach ($player_rounds as $player_round) {
+						if ($player_round['player_one_id'] == $this->getId() && $player_round['player_one_choice'] == $type) {
+							$count++;
+						}
+						if ($player_round['player_two_id'] == $this->getId() && $player_round['player_two_choice'] == $type) {
+							$count++;
+						}
+					}
+					$results[$type] = $count;
+				}
+				return $results;
+			}
+
+			function getWinningHands($types = ['rock', 'paper', 'scissors', 'fire', 'air', 'water', 'sponge'])
+			{
+				$query = $GLOBALS['DB']->query("SELECT *
+						FROM rounds
+						WHERE player_one_id = {$this->getId()}
+						OR player_two_id = {$this->getId()};");
+				$player_rounds = $query->fetchAll(PDO::FETCH_ASSOC);
+				$results = array();
+				foreach($types as $type) {
+					$count = 0;
+					foreach($player_rounds as $player_round) {
+						if ($player_round['player_one_id'] == $this->getId() && $player_round['player_one_choice'] == $type && $player_round['winner_id'] == $this->getId()) {
+							$count++;
+						}
+						if ($player_round['player_two_id'] == $this->getId() && $player_round['player_two_choice'] == $type && $player_round['winner_id'] == $this->getId()) {
+							$count++;
+						}
+					}
+					$results[$type] = $count;
+				}
+				var_dump($results);
+				return $results;
+			}
+
+			function barGraphData($hand_data)
+			{
+					$result = '';
+					foreach ($hand_data as $key => $value) {
+						$result .= '{"c":[{"v":"' . $key . '","f":null},{"v":' . $value . ',"f":null}]},';
+					}
+					$data_string_mid = '{
+								"cols": [
+									{"id":"","label":"","pattern":"","type":"string"},
+									{"id":"","label":"Framework","pattern":"","type":"number"}
+								],
+								"rows": [' . $result;
+					$data_string_mid_trimmed = rtrim($data_string_mid, ',');
+					$data_string_mid_trimmed .= ']}';
+					return $data_string_mid_trimmed;
 			}
 
 			static function getAll()
@@ -108,6 +176,11 @@
 			static function deleteAll()
 	        {
 	            $GLOBALS['DB']->exec('DELETE FROM players;');
+	        }
+
+			static function deleteAllRounds()
+	        {
+	            $GLOBALS['DB']->exec('DELETE FROM rounds;');
 	        }
 
 	}

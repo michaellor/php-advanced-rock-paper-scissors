@@ -49,8 +49,8 @@
         $player1_id = $_POST['selected_player_one'];
         $player2_id = $_POST['selected_player_two'];
         $player1 = Player::findById($player1_id);
-        $_SESSION['player_one']['name']= $player1->getName();
-        $_SESSION['player_one']['id']= $player1->getId();
+        $_SESSION['player_one']['name'] = $player1->getName();
+        $_SESSION['player_one']['id' ]= $player1->getId();
         if($player2_id == -1)
         {
             $computer = "Computer (HAL)";
@@ -67,6 +67,17 @@
         $_SESSION['match_type']= $_POST['format'];
 
         return $app['twig']->render('game.html.twig', array('player1' => $_SESSION['player_one'], 'player2' => $_SESSION['player_two'], 'format'=>$_SESSION['match_type']));
+    });
+
+    $app->get("/data", function() use ($app){
+      $player1 = Player::findById($_SESSION['player_one']['id']);
+      $player1_data = $player1->getTotalHands();
+      var_dump($_SESSION);
+      return $player1_data;
+    });
+
+    $app->get("/showdata", function() use ($app){
+      return $app['twig']->render('stats.html.twig', array());
     });
 
     $app->post("/play", function() use ($app){
