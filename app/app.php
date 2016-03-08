@@ -5,19 +5,19 @@
     require_once __DIR__."/../src/Match.php";
 
     session_start();
-    if(empty($_SESSION['player_one']))
+    if(!empty($_SESSION['player_one']))
     {
-        $_SESSION['player_one']= array("name"=>"", "id"=>"", "score"=>0);
+        $_SESSION['player_one']= array("name"=>null, "id"=>null, "score"=>0);
     }
 
-    if(empty($_SESSION['player_two']))
+    if(!empty($_SESSION['player_two']))
     {
-        $_SESSION['player_two']= array("name"=>"", "id"=>"", "score"=>0);
+        $_SESSION['player_two']= array("name"=>null, "id"=>null, "score"=>0);
     }
 
-    if(empty($_SESSION['match']))
+    if(!empty($_SESSION['match']))
     {
-        $_SESSION['match']=array("match_type"=>"", "id"=>"");
+        $_SESSION['match']=array("match_type"=> null, "id"=>null);
     }
 
     $app = new Silex\Application();
@@ -26,7 +26,7 @@
     $username = 'root';
     $password = 'root';
     $DB = new PDO($server, $username, $password);
-
+    // $app['debug'] = true;
 
     $app->register(new Silex\Provider\TwigServiceProvider(), array('twig.path'=>__DIR__."/../views"
     ));
@@ -34,8 +34,8 @@
           Request::enableHttpMethodParameterOverride();
 
     $app->get("/", function() use ($app){
-        $_SESSION['player_one']= array("name"=>"", "id"=>"", "score"=>0);
-        $_SESSION['player_two']= array("name"=>"", "id"=>"", "score"=>0);
+        $_SESSION['player_one']= array("name"=>null, "id"=>null, "score"=>0);
+        $_SESSION['player_two']= array("name"=>null, "id"=>null, "score"=>0);
         $_SESSION['match']= array("match_type"=>null, "id"=>null);
         return $app['twig']->render('index.html.twig', array('players' => Player::getAll()));
     });
@@ -54,6 +54,8 @@
         $player1 = Player::findById($player1_id);
         $_SESSION['player_one']['name'] = $player1->getName();
         $_SESSION['player_one']['id' ]= $player1->getId();
+        $_SESSION['match']['match_type']= $_POST['format'];
+
         if($player2_id == -1)
         {
             $computer = "Computer (HAL)";
@@ -67,20 +69,25 @@
         $_SESSION['player_two']['name']= $player2->getName();
         $_SESSION['player_two']['id']= $player2->getId();
 
-        if($_SESSION['match']['match_type'] != null)
+        if($_SESSION['match']['match_type'] !== -1)
         {
             $match = new Match ($player1->getId(), null, $player2->getId(), null, null, null);
             $match->saveMatch();
             $_SESSION['match']['id'] = $match->getId();
-            $_SESSION['match']['match_type']= $_POST['format'];
+
         }
-        return $app['twig']->render('game.html.twig', array('player1' => $_SESSION['player_one'], 'player2' => $_SESSION['player_two'], 'match'=>$_SESSION['match']));
+
+        return $app['twig']->render('game.html.twig', array(
+                'player1' => $_SESSION['player_one'],
+                'player2' => $_SESSION['player_two'],
+                'match'=> $_SESSION['match']
+        ));
     });
 
     $app->get("/data", function() use ($app){
       $player1 = Player::findById($_SESSION['player_one']['id']);
       $player1_data = $player1->getTotalHands();
-      var_dump($_SESSION);
+
       return $player1_data;
     });
 
@@ -107,9 +114,7 @@
         elseif ($new_game->getWinner() == $player_two_id) {
         $_SESSION['player_two']['score'] = $_SESSION['player_two']['score'] + 1;
         }
-        else {
-            $null = null;
-        }
+
         if($_SESSION['match']['match_type'] != null)
         {
             if ($_SESSION['player_one']['score'] == $_SESSION['match']['match_type'])
@@ -119,6 +124,7 @@
                 $winner = $_SESSION['player_one']['id'];
                 $match = Match::findById($_SESSION['match']['id']);
                 $match->update($p1_score, $p2_score, $winner);
+
             }
             elseif ($_SESSION['player_two']['score'] == $_SESSION['match']['match_type'])
             {
@@ -127,9 +133,11 @@
                 $winner = $_SESSION['player_two']['id'];
                 $match = Match::findById($_SESSION['match']['id']);
                 $match->update($p1_score, $p2_score, $winner);
+
             }
-        }    
-      return $app['twig']->render("game.html.twig", array('result'=> $result, 'player1'=>$_SESSION['player_one'], 'player2'=>$_SESSION['player_two'], 'match'=>$_SESSION['match']));
+        }
+
+      return $app['twig']->render("game.html.twig", array('result'=> $result, 'player1'=>$_SESSION['player_one'], 'player2'=>$_SESSION['player_two'], 'match'=>$_SESSION['match'] ));
     });
 
     $app->patch("/match_results", function() use ($app){
