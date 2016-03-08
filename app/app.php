@@ -15,6 +15,11 @@
         $_SESSION['player_two']= array("name"=>"", "id"=>"", "score"=>0);
     }
 
+    if(empty($_SESSION['match_type']))
+    {
+        $_SESSION['match_type']=array();
+    }
+
     $app = new Silex\Application();
 
     $server = 'mysql:host=localhost;dbname=rps';
@@ -26,6 +31,9 @@
     ));
 
     $app->get("/", function() use ($app){
+        $_SESSION['player_one']= array("name"=>"", "id"=>"", "score"=>0);
+        $_SESSION['player_two']= array("name"=>"", "id"=>"", "score"=>0);
+        $_SESSION['match_type']=array();
         return $app['twig']->render('index.html.twig', array('players' => Player::getAll()));
     });
 
@@ -56,7 +64,9 @@
         $_SESSION['player_two']['name']= $player2->getName();
         $_SESSION['player_two']['id']= $player2->getId();
 
-        return $app['twig']->render('game.html.twig', array('player1' => $_SESSION['player_one'], 'player2' => $_SESSION['player_two']));
+        $_SESSION['match_type']= $_POST['format'];
+
+        return $app['twig']->render('game.html.twig', array('player1' => $_SESSION['player_one'], 'player2' => $_SESSION['player_two'], 'format'=>$_SESSION['match_type']));
     });
 
     $app->post("/play", function() use ($app){
@@ -78,7 +88,8 @@
         else {
             $null = null;
         }
-      return $app['twig']->render("game.html.twig", array('result'=> $result, 'player1'=>$_SESSION['player_one'], 'player2'=>$_SESSION['player_two']));
+        
+      return $app['twig']->render("game.html.twig", array('result'=> $result, 'player1'=>$_SESSION['player_one'], 'player2'=>$_SESSION['player_two'], 'format'=>$_SESSION['match_type']));
     });
     return $app;
  ?>
