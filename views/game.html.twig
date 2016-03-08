@@ -12,7 +12,7 @@
             <h1>Game Round</h1>
             <div class="row">
                 <div class="col-sm-4">
-                    <h2>{{player1.getName}}</h2>
+                    <h2>{{player1['name']}}</h2>
                 </div>
 
                 <div class="col-sm-4">
@@ -28,8 +28,8 @@
                             <option value="air">Air</option>
                             <option value="water">Water</option>
                         </select>
-                        <input type="hidden" name="player_one_id" value="{{player1.getId}}">
-                        {% if player2.getId != -1 %}
+                        <input type="hidden" name="player_one_id" value="{{player1['id']}}">
+                        {% if player2['id'] != -1 %}
                             <h3>Player 2 Chooses:</h3>
                             <select name="player_two_select">
                                 <option value="rock">Rock</option>
@@ -43,7 +43,7 @@
                         {% else %}
                             <input type="hidden" name="player_two_select" value="">
                         {% endif %}
-                            <input type="hidden" name="player_two_id" value="{{player2.getId}}">
+                            <input type="hidden" name="player_two_id" value="{{player2['id']}}">
 
                         <button type="submit" class="btn btn-primary">Shoot!</button>
                     </form>
@@ -55,7 +55,7 @@
 
                 <div class="col-sm-4">
                     <h2>
-                    {{player2.getName}}
+                    {{player2['name']}}
                     </h2>
                 </div>
 

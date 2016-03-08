@@ -4,7 +4,16 @@
     require_once __DIR__."/../src/Computer.php";
     require_once __DIR__."/../src/Player.php";
 
-    // session_start();
+    session_start();
+    if(empty($_SESSION['player_one']))
+    {
+        $_SESSION['player_one']= array("name"=>"", "id"=>"", "score"=>"");
+    }
+
+    if(empty($_SESSION['player_two']))
+    {
+        $_SESSION['player_two']= array("name"=>"", "id"=>"", "score"=>"");
+    }
 
     $app = new Silex\Application();
 
@@ -32,6 +41,8 @@
         $player1_id = $_POST['selected_player_one'];
         $player2_id = $_POST['selected_player_two'];
         $player1 = Player::findById($player1_id);
+        $_SESSION['player_one']['name']= $player1->getName();
+        $_SESSION['player_one']['id']= $player1->getId();
         if($player2_id == -1)
         {
             $computer = "Computer (HAL)";
@@ -42,7 +53,10 @@
         {
             $player2 = Player::findById($player2_id);
         }
-        return $app['twig']->render('game.html.twig', array('player1' => $player1, 'player2' => $player2));
+        $_SESSION['player_two']['name']= $player2->getName();
+        $_SESSION['player_two']['id']= $player2->getId();
+
+        return $app['twig']->render('game.html.twig', array('player1' => $_SESSION['player_one'], 'player2' => $_SESSION['player_two']));
     });
 
     $app->post("/play", function() use ($app){
