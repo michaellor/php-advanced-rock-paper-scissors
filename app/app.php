@@ -72,8 +72,7 @@
     $app->get("/data", function() use ($app){
       $player1 = Player::findById($_SESSION['player_one']['id']);
       $player1_data = $player1->getTotalHands();
-      var_dump($_SESSION);
-      return $player1_data;
+      return $player1->barGraphData($player1_data);
     });
 
     $app->get("/showdata", function() use ($app){
@@ -99,7 +98,7 @@
         else {
             $null = null;
         }
-        
+
       return $app['twig']->render("game.html.twig", array('result'=> $result, 'player1'=>$_SESSION['player_one'], 'player2'=>$_SESSION['player_two'], 'format'=>$_SESSION['match_type']));
     });
     return $app;
