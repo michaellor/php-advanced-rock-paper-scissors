@@ -7,12 +7,12 @@
     session_start();
     if(empty($_SESSION['player_one']))
     {
-        $_SESSION['player_one']= array("name"=>"", "id"=>"", "score"=>"");
+        $_SESSION['player_one']= array("name"=>"", "id"=>"", "score"=>0);
     }
 
     if(empty($_SESSION['player_two']))
     {
-        $_SESSION['player_two']= array("name"=>"", "id"=>"", "score"=>"");
+        $_SESSION['player_two']= array("name"=>"", "id"=>"", "score"=>0);
     }
 
     $app = new Silex\Application();
@@ -68,8 +68,17 @@
         $new_game = new Game ($player_one_id, $player_one_choice, $player_two_id, $player_two_choice);
 
         $result = $new_game->playGame();
-
-      return $app['twig']->render("game.html.twig", array('result'=> $result));
+        if ($new_game->getWinner() == $player_one_id)
+        {
+            $_SESSION['player_one']['score'] = $_SESSION['player_one']['score'] + 1;
+        }
+        elseif ($new_game->getWinner() == $player_two_id) {
+        $_SESSION['player_two']['score'] = $_SESSION['player_two']['score'] + 1;
+        }
+        else {
+            $null = null;
+        }
+      return $app['twig']->render("game.html.twig", array('result'=> $result, 'player1'=>$_SESSION['player_one'], 'player2'=>$_SESSION['player_two']));
     });
     return $app;
  ?>
