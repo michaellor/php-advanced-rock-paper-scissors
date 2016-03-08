@@ -1,8 +1,8 @@
 <?php
     require_once __DIR__."/../vendor/autoload.php";
-    require_once __DIR__."/../src/Game.php";
-    require_once __DIR__."/../src/Computer.php";
-    require_once __DIR__."/../src/Player.php";
+    // require_once __DIR__."/../src/Game.php";
+    // require_once __DIR__."/../src/Computer.php";
+    // require_once __DIR__."/../src/Player.php";
 
     // session_start();
 
@@ -35,6 +35,29 @@
         $player1 = Player::findById($player1_id);
         $player2 = Player::findById($player2_id);
         return $app['twig']->render('game.html.twig', array('player1' => $player1, 'player2' => $player2));
+    });
+
+    $app->get("/data", function() use ($app){
+      $string = '{
+        "cols": [
+              {"id":"","label":"","pattern":"","type":"string"},
+              {"id":"","label":"Framework","pattern":"","type":"number"}
+            ],
+        "rows": [
+              {"c":[{"v":"Laravel","f":null},{"v":2112,"f":null}]},
+              {"c":[{"v":"Symfony2","f":null},{"v":1005,"f":null}]},
+              {"c":[{"v":"Nette","f":null},{"v":703,"f":null}]},
+              {"c":[{"v":"Yii 2","f":null},{"v":620,"f":null}]},
+              {"c":[{"v":"CodeIgniter","f":null},{"v":482,"f":null}]},
+              {"c":[{"v":"PHPixie","f":null},{"v":420,"f":null}]},
+              {"c":[{"v":"Zend 2","f":null},{"v":346,"f":null}]},
+              {"c":[{"v":"No Framework","f":null},{"v":306,"f":null}]},
+              {"c":[{"v":"Yii 1","f":null},{"v":293,"f":null}]},
+              {"c":[{"v":"Phalcon","f":null},{"v":231,"f":null}]}
+          ]
+      }';
+
+      return $string;
     });
 
     return $app;
