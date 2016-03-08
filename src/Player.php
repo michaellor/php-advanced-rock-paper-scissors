@@ -120,30 +120,17 @@
 			{
 					$result = '';
 					foreach ($hand_data as $key => $value) {
-						$result .= '{"c":[{"v":"'$key'","f":null},{"v":'$value',"f":null}]},';
-
+						$result .= '{"c":[{"v":"' . $key . '","f":null},{"v":' . $value . ',"f":null}]},';
 					}
 					$data_string_mid = '{
-						"cols": [
+								"cols": [
 									{"id":"","label":"","pattern":"","type":"string"},
 									{"id":"","label":"Framework","pattern":"","type":"number"}
 								],
-						"rows": [' . $result;
+								"rows": [' . $result;
 					$data_string_mid_trimmed = rtrim($data_string_mid, ',');
-				//
-				//
-				// 				{"c":[{"v":"Symfony2","f":null},{"v":1005,"f":null}]},
-				// 				{"c":[{"v":"Nette","f":null},{"v":703,"f":null}]},
-				// 				{"c":[{"v":"Yii 2","f":null},{"v":620,"f":null}]},
-				// 				{"c":[{"v":"CodeIgniter","f":null},{"v":482,"f":null}]},
-				// 				{"c":[{"v":"PHPixie","f":null},{"v":420,"f":null}]},
-				// 				{"c":[{"v":"Zend 2","f":null},{"v":346,"f":null}]},
-				// 				{"c":[{"v":"No Framework","f":null},{"v":306,"f":null}]},
-				// 				{"c":[{"v":"Yii 1","f":null},{"v":293,"f":null}]},
-				// 				{"c":[{"v":"Phalcon","f":null},{"v":231,"f":null}]}
-				// 		]
-				// }';
-				return $data_string_mid_trimmed;
+					$data_string_mid_trimmed .= ']}';
+					return $data_string_mid_trimmed;
 			}
 
 			static function getAll()
