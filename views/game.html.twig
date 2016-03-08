@@ -6,40 +6,26 @@
     <body>
         <div class="container">
             <h1>Game Round</h1>
+            <hr>
 
-            <a class="btn-floating btn-large waves-effect waves-light brown"><i class="material-icons">R</i></a>
             <a class="btn-floating btn-large waves-effect waves-light grey"><i class="material-icons">P</i></a>
             <a class="btn-floating btn-large waves-effect waves-light black"><i class="material-icons">S</i></a>
 
-            <div class="fixed-action-btn horizontal">
-                <a class="btn-floating btn-large red">
-                <i class="large material-icons">RPS</i>
-                </a>
-                <ul>
-                <li><a class="btn-floating red"><i class="material-icons">R</i></a></li>
-                <li><a class="btn-floating yellow darken-1"><i class="material-icons">P</i></a></li>
-                <li><a class="btn-floating green"><i class="material-icons">S</i></a></li>
-                <li><a class="btn-floating blue"><i class="material-icons">A</i></a></li>
-                </ul>
-            </div>
-
             <div class="row">
-                <div class="col-sm-4">
-                    <h2>{{player1['name']}}</h2>
-                    <h3>Score: {{player1['score']}}</h3>
+                <div class="col s4">
+                    <h4>{{player1['name']}}</h4>
+                    <h4>Score: {{player1['score']}}</h4>
                 </div>
 
-
-
-                <div class="col-sm-4">
+                <div class="col s4">
                     {% if result is not empty %}
-                    <h1>{{result}}</h1>
+                    <p>Round Winner:<h4>{{result}}</h4></p>
                     {% endif %}
 
-                    <form  action="/play" method="post">
-                        <h3>Player 1 Chooses:</h3>
+                    <form action="/play" method="post">
+                        <h5>Player 1 Chooses:</h5>
                         <select name="player_one_select">
-                            <option value="rock">Rock</option>
+                            <option value="rock" style="background-image:url(/img/Button.png)">Rock</option>
                             <option value="fire">Fire</option>
                             <option value="scissors">Scissors</option>
                             <option value="sponge">Sponge</option>
@@ -49,7 +35,7 @@
                         </select>
                         <input type="hidden" name="player_one_id" value="{{player1['id']}}">
                         {% if player2['id'] != -1 %}
-                            <h3>Player 2 Chooses:</h3>
+                            <h5>Player 2 Chooses:</h5>
                             <select name="player_two_select">
                                 <option value="rock">Rock</option>
                                 <option value="fire">Fire</option>
@@ -65,18 +51,12 @@
                             <input type="hidden" name="player_two_id" value="{{player2['id']}}">
 
                         <br><br><button type="submit" class="btn btn-primary">Shoot!</button>
-
                     </form>
                 </div>
-
-                <div class="col-sm-4">
-                    <h2>
-                    {{player2['name']}}
-                    </h2>
-                    <h3>Score: {{player2['score']}}</h3>
-
+                <div class="col s4">
+                    <h4>{{player2['name']}}</h4>
+                    <h4>Score: {{player2['score']}}</h4>
                 </div>
-
             </div>
         </div>
     </body>
