@@ -4,7 +4,16 @@
     // require_once __DIR__."/../src/Computer.php";
     // require_once __DIR__."/../src/Player.php";
 
-    // session_start();
+    session_start();
+    if(empty($_SESSION['player_one']))
+    {
+        $_SESSION['player_one']= array("name"=>"", "id"=>"", "score"=>0);
+    }
+
+    if(empty($_SESSION['player_two']))
+    {
+        $_SESSION['player_two']= array("name"=>"", "id"=>"", "score"=>0);
+    }
 
     $app = new Silex\Application();
 
@@ -32,8 +41,22 @@
         $player1_id = $_POST['selected_player_one'];
         $player2_id = $_POST['selected_player_two'];
         $player1 = Player::findById($player1_id);
-        $player2 = Player::findById($player2_id);
-        return $app['twig']->render('game.html.twig', array('player1' => $player1, 'player2' => $player2));
+        $_SESSION['player_one']['name']= $player1->getName();
+        $_SESSION['player_one']['id']= $player1->getId();
+        if($player2_id == -1)
+        {
+            $computer = "Computer (HAL)";
+            $password = null;
+            $player2 = new Player($computer, $password, $player2_id);
+        }
+        else
+        {
+            $player2 = Player::findById($player2_id);
+        }
+        $_SESSION['player_two']['name']= $player2->getName();
+        $_SESSION['player_two']['id']= $player2->getId();
+
+        return $app['twig']->render('game.html.twig', array('player1' => $_SESSION['player_one'], 'player2' => $_SESSION['player_two']));
     });
 
     $app->get("/data", function() use ($app){
@@ -43,5 +66,26 @@
       return json_encode($data);
     });
 
+    $app->post("/play", function() use ($app){
+        $player_one_id = $_POST['player_one_id'];
+        $player_one_choice = $_POST['player_one_select'];
+        $player_two_id = $_POST['player_two_id'];
+        $player_two_choice = $_POST['player_two_select'];
+
+        $new_game = new Game ($player_one_id, $player_one_choice, $player_two_id, $player_two_choice);
+
+        $result = $new_game->playGame();
+        if ($new_game->getWinner() == $player_one_id)
+        {
+            $_SESSION['player_one']['score'] = $_SESSION['player_one']['score'] + 1;
+        }
+        elseif ($new_game->getWinner() == $player_two_id) {
+        $_SESSION['player_two']['score'] = $_SESSION['player_two']['score'] + 1;
+        }
+        else {
+            $null = null;
+        }
+      return $app['twig']->render("game.html.twig", array('result'=> $result, 'player1'=>$_SESSION['player_one'], 'player2'=>$_SESSION['player_two']));
+    });
     return $app;
  ?>

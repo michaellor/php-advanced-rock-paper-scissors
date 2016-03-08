@@ -20,7 +20,7 @@
                     <label for="new_name">New Player Name</label>
                     <input name="new_name" type="text" required>
                     <label for="new_password">Password*</label>
-                    <input name="new_password" type="text">
+                    <input name="new_password" type="password">
                     <button type='submit' class="btn btn-info">Add Player</button>
                 </form>
                 <br>
@@ -35,9 +35,9 @@
                     </select>
                         <h3>Select Player 2</h3>
                     <select name="selected_player_two">
-                        <option value="-1" selected>Computer</option>
+                        <option value=-1 selected>Computer</option>
                         {% for player in players %}
-                            <option value="100000">Bill</option>
+                            <option value="{{player.getId}}">{{player.getName}}</option>
                         {% endfor %}
                     </select>
                     <button>Go Play</button>
