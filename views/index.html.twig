@@ -40,6 +40,15 @@
                             <option value="{{player.getId}}">{{player.getName}}</option>
                         {% endfor %}
                     </select>
+
+                    <h3>Choose your Format</h3>
+                    <select name="format" required>
+                        <option value=null selected> Free Play - non Match</option>
+                        <option value=1>Match: All or Nothing!</option>
+                        <option value=2>Match: Best of 3</option>
+                        <option value=3>Match: Best of 5</option>
+                        <option value=4>Match: Best of 7</option>
+                    </select>
                     <button>Go Play</button>
                 </form>
                 {% endif %}
