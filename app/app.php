@@ -87,8 +87,7 @@
     $app->get("/data", function() use ($app){
       $player1 = Player::findById($_SESSION['player_one']['id']);
       $player1_data = $player1->getTotalHands();
-
-      return $player1_data;
+      return $player1->barGraphData($player1_data);
     });
 
     $app->get("/showdata", function() use ($app){
@@ -136,13 +135,11 @@
 
             }
         }
-
       return $app['twig']->render("game.html.twig", array('result'=> $result, 'player1'=>$_SESSION['player_one'], 'player2'=>$_SESSION['player_two'], 'match'=>$_SESSION['match'] ));
     });
 
     $app->patch("/match_results", function() use ($app){
-
-
+      return $app['twig']->render("game.html.twig", array('result'=> $result, 'player1'=>$_SESSION['player_one'], 'player2'=>$_SESSION['player_two'], 'format'=>$_SESSION['match_type']));
     });
     return $app;
  ?>

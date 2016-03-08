@@ -1,0 +1,17 @@
+img {
+    height: 40px;
+    width: auto;
+}
+
+body {
+    text-align: center;
+}
+
+.container {
+    background-color: grey;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 60px;
+    padding-right: 60px;
+    border-radius: 15px;
+}

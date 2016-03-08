@@ -1,40 +1,7 @@
 <html>
   <head>
-    <!--Load the AJAX API-->
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script type="text/javascript">
-
-    // Load the Visualization API.
-    google.load('visualization', '1', {'packages':['corechart']});
-
-    // Set a callback to run when the Google Visualization API is loaded.
-    google.setOnLoadCallback(drawChart);
-
-    function drawChart() {
-      console.log(0);
-      $.ajax({
-        url: "/data",
-        dataType:"json"
-      }).done(function(response) {
-        console.log(1);
-        // console.log('request done', response);
-        // Create our data table out of JSON data loaded from server.
-        var data = new google.visualization.DataTable(response);
-        // Create selector to target chart location on page
-        var selector = document.getElementById('chart_div');
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.ColumnChart(selector);
-        chart.draw(data, {width: 800, height: 400});
-      });
-
-      console.log(2);
-
-    }
-
-    console.log(3);
-
-    </script>
+    {% include './includes/header.html.twig' %}
+    {% include './includes/googleChart.html.twig' %}
   </head>
 
   <body>
