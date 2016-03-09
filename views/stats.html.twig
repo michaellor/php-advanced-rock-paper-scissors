@@ -2,15 +2,33 @@
   <head>
     {% include './includes/header.html.twig' %}
     {% include './includes/googleChart.html.twig' %}
+    {% include './includes/js/stats.js.twig' %}
   </head>
 
   <body>
     {% include '/includes/navbar.html.twig' %}
-      <h1 class="center">{{ player1.name }}</h1>
-      <!--Div that will hold the column chart-->
-      <div id="chart_div"></div>
-      <h1 class="center">The Computer</h1>
-      <!--Div that will hold the column chart-->
-      <div id="chart_div2"></div>
+    <div class="row">
+
+      <div class="col s3 left">
+        <h3>Stats</h3>
+        <a class="waves-effect waves-teal btn-flat" id='player_stats'>Player Stats</a>
+        <a class="waves-effect waves-teal btn-flat" id='computer_stats'>Computer Stats</a>
+        <a class="waves-effect waves-teal btn-flat">Button</a>
+
+      </div>
+
+      <div class="col s9 right">
+        <div id="player">
+          <h1 class="center">{{ player1.name }}</h1>
+          <div id="chart_div_player"></div>
+        </div>
+        <div id="computer">
+          <h1 class="center">The Computer</h1>
+          <div id="chart_div_computer"></div>
+        </div>
+      </div>
+
+    </div>
+
   </body>
 </html>

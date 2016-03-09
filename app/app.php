@@ -265,11 +265,11 @@
         return $app['twig']->render('stats.html.twig', array(
                 'chart' => array(
                         'id' => $_SESSION['player_one']['id'],
-                        'target' => 'chart_div'
+                        'target' => 'chart_div_player'
                 ),
                 'chart2' => array(
                         'id' => $_SESSION['player_two']['id'],
-                        'target' => 'chart_div2'
+                        'target' => 'chart_div_computer'
                 ),
                 'player1' => $_SESSION['player_one'],
                 'navbar' => array(
