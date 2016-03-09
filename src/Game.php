@@ -82,7 +82,7 @@
                 return "Don't Play With Yourself";
             }
 
-            if ($this->getPlayerTwoId() == -1) {
+            if ($this->getPlayerTwoId() == 0) {
                 $choices = array("rock", "paper", "scissors", "fire","sponge", "water", "air");
                 $random_key = array_rand($choices);
                 $randomchoice = $choices[$random_key];
@@ -119,7 +119,7 @@
        			}
       			elseif ($this->getPlayerOneChoice() == $this->getPlayerTwoChoice())
       			{
-                      $this->setWinner(-1);
+                      $this->setWinner(0);
                       $this->saveRound();
                       return array(
                               'text' => 'Tie',
@@ -182,6 +182,7 @@
             }
             return $found_game;
         }
-        
+
+
     }
 ?>
