@@ -13,94 +13,31 @@
         <div class="container">
 
 
-            <h1>Game Round</h1>
-            <hr>
+          <h1>Game Round</h1>
+          <hr>
 
-            <a class="btn-floating btn-large waves-effect waves-light grey"><i class="material-icons">P</i></a>
-            <a class="btn-floating btn-large waves-effect waves-light black"><i class="material-icons">S</i></a>
+          <div class="row">
 
-            <div class="row">
-                <div class="col s4">
-                    <h4>{{player1['name']}}</h4>
-                    <h4>Score: {{player1['score']}}</h4>
-                </div>
-
-                <div class="col s4">
-                    {% if result is not empty %}
-                    <p>Round Winner:<h4>{{result}}</h4></p>
-                    {% endif %}
-
-                    <form action="/play" method="post">
-                        <h5>Player 1 Chooses:</h5>
-                        <select name="player_one_select">
-                            <option value="rock" style="background-image:url(/img/Button.png)">Rock</option>
-                            <option value="fire">Fire</option>
-                            <option value="scissors">Scissors</option>
-                            <option value="sponge">Sponge</option>
-                            <option value="paper">Paper</option>
-                            <option value="air">Air</option>
-                            <option value="water">Water</option>
-                        </select>
-                        <input type="hidden" name="player_one_id" value="{{player1['id']}}">
-                        {% if player2['id'] != -1 %}
-                            <h5>Player 2 Chooses:</h5>
-                            <select name="player_two_select">
-                                <option value="rock">Rock</option>
-                                <option value="fire">Fire</option>
-                                <option value="scissors">Scissors</option>
-                                <option value="sponge">Sponge</option>
-                                <option value="paper">Paper</option>
-                                <option value="air">Air</option>
-                                <option value="water">Water</option>
-                            </select>
-                            <input type="hidden" name="player_one_id" value="{{player1['id']}}">
-                            {% if player2['id'] != -1 %}
-                                <h3>Player 2 Chooses:</h3>
-                                <select name="player_two_select">
-                                    <option value="rock">Rock</option>
-                                    <option value="fire">Fire</option>
-                                    <option value="scissors">Scissors</option>
-                                    <option value="sponge">Sponge</option>
-                                    <option value="paper">Paper</option>
-                                    <option value="air">Air</option>
-                                    <option value="water">Water</option>
-                                </select>
-                            {% else %}
-                                <input type="hidden" name="player_two_select" value="">
-                            {% endif %}
-                                <input type="hidden" name="player_two_id" value="{{player2['id']}}">
-                                <br><br><button type="submit" class="btn btn-primary">Shoot!</button>
-                        </form>
-                    {% endif %}
-
-                    {% if matchEnded %}
-                        <div class="container">
-                            {% if player1['score'] == match['match_type'] %}
-
-                                <h3>{{player1['name']}} Wins  {{player1['score']}} - {{player2['score']}}</h3>
-                            {% elseif player2['score'] == match['match_type'] %}
-
-                                <h3>{{player2['name']}} Wins  {{player2['score']}} - {{player1['score']}}</h3>
-                            {% endif %}
-                        </div>
-                        <div class="container">
-                            <h4>This match has ended!</h4>
-                            <p>The match was registered, press the button below to go back to start.</p>
-                            <button><a href="/">Start Over</a></button>
-                        </div>
-                    {% else %}
-                            <div class="container">
-                                <h4>End this match and start a new one</h4>
-                                <p> The match will not be registered, but all rounds will be recorded</p>
-                                <button><a href="/">Start Over</a></button>
-                            </div>
-                    {% endif %}
-                </div>
-                <div class="col s4">
-                    <h4>{{player2['name']}}</h4>
-                    <h4>Score: {{player2['score']}}</h4>
-                </div>
+            <div class="col s5">
+              <h4>{{player1['name']}}</h4>
+              <h4>Score: {{player1['score']}}</h4>
             </div>
+
+            <div class="col s5 offset-s2">
+              <h4>{{player2['name']}}</h4>
+              <h4>Score: {{player2['score']}}</h4>
+            </div>
+
+          </div>
+
+          <a href="/play_pVc/rock" class="btn-floating btn-large waves-effect waves-light grey"><i class="material-icons">Ro</i>Rock</a>
+          <a href="/play_pVc/paper" class="btn-floating btn-large waves-effect waves-light black"><i class="material-icons">Pa</i>Paper</a>
+          <a href="/play_pVc/scissors" class="btn-floating btn-large waves-effect waves-light purple"><i class="material-icons">Sc</i>Scissors</a>
+          <a href="/play_pVc/air" class="btn-floating btn-large waves-effect waves-light blue lighten-2"><i class="material-icons">Ai</i>Air</a>
+          <a href="/play_pVc/fire" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">Fi</i>Fire</a>
+          <a href="/play_pVc/water" class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons">Wa</i>Water</a>
+          <a href="/play_pVc/sponge" class="btn-floating btn-large waves-effect waves-light yello"><i class="material-icons">Sp</i>Sponge</a>
+
         </div>
     </body>
 </html>

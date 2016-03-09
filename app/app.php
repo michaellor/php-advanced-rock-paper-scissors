@@ -140,6 +140,59 @@
         ));
     });
 
+    $app->get("/play_pVc/{choice}", function($choice) use ($app){
+        $player_one_id = $_SESSION['player_one']['id'];
+        $player_one_choice = $choice;
+        $player_two_id = -1;
+        $player_two_choice = '';
+        $match_id = $_SESSION['match']['id'];
+
+        $new_game = new Game ($player_one_id, $player_one_choice, $player_two_id, $player_two_choice, null, null, $match_id);
+        $result = $new_game->playGame();
+
+        if ($new_game->getWinner() == $player_one_id)
+        {
+            $_SESSION['player_one']['score'] = $_SESSION['player_one']['score'] + 1;
+        }
+        elseif ($new_game->getWinner() == $player_two_id) {
+        $_SESSION['player_two']['score'] = $_SESSION['player_two']['score'] + 1;
+        }
+
+        // if($_SESSION['match']['match_type'] != null)
+        // {
+        //     if ($_SESSION['player_one']['score'] == $_SESSION['match']['match_type'])
+        //     {
+        //         $p1_score = $_SESSION['player_one']['score'];
+        //         $p2_score=$_SESSION['player_two']['score'];
+        //         $winner = $_SESSION['player_one']['id'];
+        //         $match = Match::findById($_SESSION['match']['id']);
+        //         $match->update($p1_score, $p2_score, $winner);
+        //
+        //     }
+        //     elseif ($_SESSION['player_two']['score'] == $_SESSION['match']['match_type'])
+        //     {
+        //         $p1_score = $_SESSION['player_one']['score'];
+        //         $p2_score=$_SESSION['player_two']['score'];
+        //         $winner = $_SESSION['player_two']['id'];
+        //         $match = Match::findById($_SESSION['match']['id']);
+        //         $match->update($p1_score, $p2_score, $winner);
+        //
+        //     }
+        // }
+
+      return $app['twig']->render('game.html.twig', array(
+              'result'=> $result,
+              'navbar' => array(
+                      'userId' => $_SESSION['player_one']['id'],
+                      'userName' => $_SESSION['player_one']['name']
+              ),
+              'player1' => $_SESSION['player_one'],
+              'player2' => $_SESSION['player_two'],
+              'match'=> $_SESSION['match']
+      ));
+    });
+
+
     // $app->post("/start_game", function() use ($app){
     //
     //     $player1_id = $_POST['selected_player_one'];
@@ -191,49 +244,49 @@
       return $app['twig']->render('stats.html.twig', array());
     });
 
-    $app->post("/play", function() use ($app){
-        $player_one_id = $_POST['player_one_id'];
-        $player_one_choice = $_POST['player_one_select'];
-        $player_two_id = $_POST['player_two_id'];
-        $player_two_choice = $_POST['player_two_select'];
-        $match_id = $_SESSION['match']['id'];
-
-
-        $new_game = new Game ($player_one_id, $player_one_choice, $player_two_id, $player_two_choice, null, null, $match_id);
-
-
-        $result = $new_game->playGame();
-        if ($new_game->getWinner() == $player_one_id)
-        {
-            $_SESSION['player_one']['score'] = $_SESSION['player_one']['score'] + 1;
-        }
-        elseif ($new_game->getWinner() == $player_two_id) {
-        $_SESSION['player_two']['score'] = $_SESSION['player_two']['score'] + 1;
-        }
-
-        if($_SESSION['match']['match_type'] != null)
-        {
-            if ($_SESSION['player_one']['score'] == $_SESSION['match']['match_type'])
-            {
-                $p1_score = $_SESSION['player_one']['score'];
-                $p2_score=$_SESSION['player_two']['score'];
-                $winner = $_SESSION['player_one']['id'];
-                $match = Match::findById($_SESSION['match']['id']);
-                $match->update($p1_score, $p2_score, $winner);
-
-            }
-            elseif ($_SESSION['player_two']['score'] == $_SESSION['match']['match_type'])
-            {
-                $p1_score = $_SESSION['player_one']['score'];
-                $p2_score=$_SESSION['player_two']['score'];
-                $winner = $_SESSION['player_two']['id'];
-                $match = Match::findById($_SESSION['match']['id']);
-                $match->update($p1_score, $p2_score, $winner);
-
-            }
-        }
-      return $app['twig']->render("game.html.twig", array('result'=> $result, 'player1'=>$_SESSION['player_one'], 'player2'=>$_SESSION['player_two'], 'match'=>$_SESSION['match'] ));
-    });
+    // $app->post("/play", function() use ($app){
+    //     $player_one_id = $_POST['player_one_id'];
+    //     $player_one_choice = $_POST['player_one_select'];
+    //     $player_two_id = $_POST['player_two_id'];
+    //     $player_two_choice = $_POST['player_two_select'];
+    //     $match_id = $_SESSION['match']['id'];
+    //
+    //
+    //     $new_game = new Game ($player_one_id, $player_one_choice, $player_two_id, $player_two_choice, null, null, $match_id);
+    //
+    //
+    //     $result = $new_game->playGame();
+    //     if ($new_game->getWinner() == $player_one_id)
+    //     {
+    //         $_SESSION['player_one']['score'] = $_SESSION['player_one']['score'] + 1;
+    //     }
+    //     elseif ($new_game->getWinner() == $player_two_id) {
+    //     $_SESSION['player_two']['score'] = $_SESSION['player_two']['score'] + 1;
+    //     }
+    //
+    //     if($_SESSION['match']['match_type'] != null)
+    //     {
+    //         if ($_SESSION['player_one']['score'] == $_SESSION['match']['match_type'])
+    //         {
+    //             $p1_score = $_SESSION['player_one']['score'];
+    //             $p2_score=$_SESSION['player_two']['score'];
+    //             $winner = $_SESSION['player_one']['id'];
+    //             $match = Match::findById($_SESSION['match']['id']);
+    //             $match->update($p1_score, $p2_score, $winner);
+    //
+    //         }
+    //         elseif ($_SESSION['player_two']['score'] == $_SESSION['match']['match_type'])
+    //         {
+    //             $p1_score = $_SESSION['player_one']['score'];
+    //             $p2_score=$_SESSION['player_two']['score'];
+    //             $winner = $_SESSION['player_two']['id'];
+    //             $match = Match::findById($_SESSION['match']['id']);
+    //             $match->update($p1_score, $p2_score, $winner);
+    //
+    //         }
+    //     }
+    //   return $app['twig']->render("game.html.twig", array('result'=> $result, 'player1'=>$_SESSION['player_one'], 'player2'=>$_SESSION['player_two'], 'match'=>$_SESSION['match'] ));
+    // });
 
     $app->patch("/match_results", function() use ($app){
       return $app['twig']->render("game.html.twig", array('result'=> $result, 'player1'=>$_SESSION['player_one'], 'player2'=>$_SESSION['player_two'], 'format'=>$_SESSION['match_type']));
