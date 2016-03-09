@@ -113,19 +113,28 @@
        			{
                       $this->setWinner($this->player_one_id);
                       $this->saveRound();
-                      return "Player 1";
+                      return array(
+                              'text' => $this->getPlayerOneChoice() . " beats " . $this->getPlayerTwoChoice(),
+                              'color' => 'green'
+                      );
        			}
       			elseif ($this->getPlayerOneChoice() == $this->getPlayerTwoChoice())
       			{
                       $this->setWinner(0);
                       $this->saveRound();
-                      return "Tie";
+                      return array(
+                              'text' => 'Tie',
+                              'color' => 'blue'
+                      );
       			}
       			else
       			{
                       $this->setWinner($this->player_two_id);
                       $this->saveRound();
-      				          return "Player 2";
+                      return array(
+                              'text' =>  $this->getPlayerOneChoice() . " destroyed by " . $this->getPlayerTwoChoice(),
+                              'color' => 'red'
+                      );
       			}
         }
 
