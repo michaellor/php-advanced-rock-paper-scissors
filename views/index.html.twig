@@ -11,16 +11,20 @@
       {% include '/includes/message.html.twig'%}
 
       {% if menu %}
-        <a href="/main_menu_select" class="btn btn-info center">Player Vs. Computer</a>
-        <br>
-        <br>
-        <a href="/main_menu" class="btn btn-info center">Player Vs. Player</a>
-        <br>
-        <br>
-        <a href="/showdata" class="btn btn-info center">{{ navbar.userName }} Stats</a>
-        <br>
-        <br>
-        <a href="/sign_out" class="btn btn-info center">Sign Out</a>
+          {% if navbar.userId %}
+              <a href="/main_menu_select" class="btn btn-info center">Player Vs. Computer</a>
+              <br>
+              <br>
+              <a href="/main_menu" class="btn btn-info center">Player Vs. Player</a>
+              <br>
+              <br>
+              <a href="/showdata" class="btn btn-info center">{{ navbar.userName }} Stats</a>
+              <br>
+              <br>
+              <a href="/sign_out" class="btn btn-info center">Sign Out</a>
+          {% else %}
+            <a href="/sign_in" class="btn btn-info center">Sign-In</a>
+          {% endif %}
       {% else %}
         <a href="/main_menu" class="btn btn-info center">Main Menu</a>
       {% endif %}

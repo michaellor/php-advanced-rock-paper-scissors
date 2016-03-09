@@ -158,7 +158,7 @@
 
 			static function getAllRealPlayers()
 			{
-				$returned_players = $GLOBALS['DB']->query("SELECT * FROM players WHERE players.id != 0;");
+				$returned_players = $GLOBALS['DB']->query("SELECT * FROM players WHERE players.id != 0 ORDER BY players.name ASC;");
 	            $players = array();
 	            foreach($returned_players as $player) {
 	                $name = $player['name'];
