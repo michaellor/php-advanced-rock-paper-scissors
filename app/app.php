@@ -104,14 +104,14 @@
                             ),
                     'message' => array(
                             'title' => 'Uh Oh! Login failed.',
-                            'text' => 'That password is incorrect. Try again or create a new user.',
+                            'text' => 'That password is incorrect. Try again or create a new player.',
                             'link1' => array(
                                 'link' => '/sign_in',
                                 'text' => 'Try Again'
                             ),
                             'link2' => array(
                                 'link' => '/sign_in',
-                                'text' => 'Create New User'
+                                'text' => 'Create New Player'
                             )
                     )
             ));
@@ -122,6 +122,25 @@
         // add if statement, check for name already existing, then skip creation, sign in, and message a fail statement
         $name = $_POST['new_name'];
         $password = $_POST['new_password'];
+        $all_players = Player::getAll();
+        foreach($all_players as $player) {
+            if ($name == $player->getName()) {
+                return $app['twig']->render('index.html.twig', array(
+                        'navbar' => array(
+                                'userId' => $_SESSION['player_one']['id'],
+                                'userName' => $_SESSION['player_one']['name']
+                                ),
+                        'message' => array(
+                                'title' => 'Player Creation Failed.',
+                                'text' => 'That player already exists. Please use a different player name besides ' . $name,
+                                'link1' => array(
+                                    'link' => '/sign_in',
+                                    'text' => 'Try Again'
+                                )
+                        )
+                ));
+            }
+        }
         $new_player = new Player($name, $password);
         $new_player->save();
 
