@@ -401,11 +401,16 @@
                 'losses' => $computer->getTotalLosses(),
                 'total' => $computer->getTotalGames()
         );
-
+        $computer_match = array(
+                'wins' => $computer->getMatchWins(),
+                'losses' => $computer->getMatchLosses(),
+                'total' => $computer->getTotalMatches()
+        );
         return $app['twig']->render('stats.html.twig', array(
                 'userStats' => $user_stats,
                 'userMatches'=> $user_matches,
                 'computerStats' => $computer_stats,
+                'computerMatches' => $computer_match,
                 'chart' => array(
                         'id' => $_SESSION['player_one']['id'],
                         'target' => 'chart_div_player'
