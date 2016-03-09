@@ -327,13 +327,23 @@
     });
 
     $app->get("/showdata", function() use ($app){
+
+        $user = Player::findById($_SESSION['player_one']['id']);
+        $user_stats = array(
+                'ties' => $user->getTotalGames() - $user->getTotalWins() - $user->getTotalLosses(),
+                'wins' => $user->getTotalWins(),
+                'losses' => $user->getTotalLosses(),
+                'total' => $user->getTotalGames()
+        );
+
         return $app['twig']->render('stats.html.twig', array(
+                'userStats' => $user_stats,
                 'chart' => array(
                         'id' => $_SESSION['player_one']['id'],
                         'target' => 'chart_div_player'
                 ),
                 'chart2' => array(
-                        'id' => $_SESSION['player_two']['id'],
+                        'id' => 0,
                         'target' => 'chart_div_computer'
                 ),
                 'player1' => $_SESSION['player_one'],

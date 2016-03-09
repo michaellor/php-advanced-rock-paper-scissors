@@ -56,14 +56,23 @@
 
 			function getTotalWins()
 			{
-				$query = $GLOBALS['DB']->query("SELECT * FROM rounds WHERE winner_id = {$this->getId()};");
+				$query = $GLOBALS['DB']->query("SELECT *
+						FROM rounds
+						WHERE winner_id = {$this->getId()};");
 				$wins = $query->fetchAll(PDO::FETCH_ASSOC);
 				return count($wins);
 			}
 
 			function getTotalLosses()
 			{
-				return $this->getTotalGames() - $this->getTotalWins();
+				$query = $GLOBALS['DB']->query("SELECT *
+						FROM rounds
+						WHERE (player_one_id = {$this->getId()}
+						OR player_two_id = {$this->getId()})
+						AND (winner_id != {$this->getId()}
+						AND winner_id != -1);");
+				$wins = $query->fetchAll(PDO::FETCH_ASSOC);
+				return count($wins);
 			}
 
 			// $types comes in as an array of the potential hand types i.e. ['rock','paper','scissors']
