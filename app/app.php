@@ -259,9 +259,7 @@
         ));
     });
 
-
-
-//MATCH PLAY VERSUS COMPUTER
+    //MATCH PLAY VERSUS COMPUTER
     $app->get("/match/play_pVc/{choice}", function($choice) use ($app){
         $player_one_id = $_SESSION['player_one']['id'];
         $player_one_choice = $choice;
@@ -281,11 +279,23 @@
 
                 if(($winner > 0) && ($_SESSION['player_one']['score'] == $winner))
                 {
-                    $result = "Player One Wins the Match";
                     $match = Match::findById($_SESSION['match']['id']);
                     $match->update($_SESSION['player_one']['score'], $_SESSION['player_two']['score'], $_SESSION['player_one']['id']);
-                    return $app['twig']->render('winner.html.twig', array(
+                    return $app['twig']->render('game.html.twig', array(
                             'message'=> $result,
+                            // 'matchOver' => $match_result,
+                            'matchOver' => array(
+                                    'color' => 'green',
+                                    'text' => $_SESSION['player_one']['name'] . ' Wins the Match',
+                                    'link1' => array(
+                                            'link' => '/pVc_match?win=' . $winner,
+                                            'text' => 'Play Again'
+                                          ),
+                                    'link2' => array(
+                                            'link' => '/main_menu',
+                                            'text' => 'Main Menu'
+                                          )
+                            ),
                             'navbar' => array(
                                     'userId' => $_SESSION['player_one']['id'],
                                     'userName' => $_SESSION['player_one']['name']
@@ -303,12 +313,24 @@
 
                 if(($winner > 0) && ($_SESSION['player_two']['score'] == $winner))
                     {
-                        $result = "Player two Wins the Match";
                         $match = Match::findById($_SESSION['match']['id']);
                         $match->update($_SESSION['player_one']['score'], $_SESSION['player_two']['score'], $_SESSION['player_two']['id']);
 
-                        return $app['twig']->render('winner.html.twig', array(
+                        return $app['twig']->render('game.html.twig', array(
                                 'message'=> $result,
+                                'matchOver' => array(
+                                        'color' => 'red',
+                                        'text' => $_SESSION['player_two']['name'] . ' Wins the Match',
+                                        'link1' => array(
+                                                'link' => '/pVc_match?win=' . $winner,
+                                                'text' => 'Play Again'
+                                              ),
+                                        'link2' => array(
+                                                'link' => '/main_menu',
+                                                'text' => 'Main Menu'
+                                              )
+                                ),
+                                // 'matchOver' => $match_result,
                                 'navbar' => array(
                                         'userId' => $_SESSION['player_one']['id'],
                                         'userName' => $_SESSION['player_one']['name']
@@ -334,9 +356,6 @@
 
 
     });
-
-
-
 
     $app->get("/pVc_match", function() use ($app){
 
@@ -367,7 +386,6 @@
                 'match'=> $_SESSION['match']
         ));
     });
-
 
     $app->get("/start_game_pVp", function() use ($app) {
         return $app['twig']->render("pvpgame.html.twig");
