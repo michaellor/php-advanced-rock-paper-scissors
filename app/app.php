@@ -120,7 +120,6 @@
     });
 
     $app->post("/new_player", function() use ($app){
-        // add if statement, check for name already existing, then skip creation, sign in, and message a fail statement
         $name = $_POST['new_name'];
         $password = $_POST['new_password'];
         $all_players = Player::getAll();
@@ -368,7 +367,7 @@
                 'match'=> $_SESSION['match']
         ));
     });
-    
+
 
     $app->get("/start_game_pVp", function() use ($app) {
         return $app['twig']->render("pvpgame.html.twig");
