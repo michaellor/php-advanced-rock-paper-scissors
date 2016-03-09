@@ -5,17 +5,17 @@
     require_once __DIR__."/../src/Match.php";
 
     session_start();
-    if(!empty($_SESSION['player_one']))
+    if(empty($_SESSION['player_one']))
     {
         $_SESSION['player_one']= array("name"=>null, "id"=>null, "score"=>0);
     }
 
-    if(!empty($_SESSION['player_two']))
+    if(empty($_SESSION['player_two']))
     {
         $_SESSION['player_two']= array("name"=>null, "id"=>null, "score"=>0);
     }
 
-    if(!empty($_SESSION['match']))
+    if(empty($_SESSION['match']))
     {
         $_SESSION['match']=array("match_type"=> null, "id"=>null);
     }
@@ -73,7 +73,7 @@
     });
 
     $app->post("/new_player", function() use ($app){
-// add if statement, check for name already existing, then skip creation, sign in, and message a fail statement
+        // add if statement, check for name already existing, then skip creation, sign in, and message a fail statement
         $name = $_POST['new_name'];
         $password = $_POST['new_password'];
         $new_player = new Player($name, $password);
@@ -91,12 +91,23 @@
                 'title' => 'New Player Created!',
                 'text' => $name . ' has been created and signed in. Enjoy the game, good luck, and check out the stats page after you play a few rounds.',
                 'link1' => array(
-                    'link' => '/start_game',
+                    'link' => '/main_menu',
                     'text' => 'Start'
                 )
             )
         ));
     });
+
+    $app->get("/main_menu", function() use ($app){
+      return $app['twig']->render('index.html.twig', array(
+              'navbar' => array(
+                      'userId' => $_SESSION['player_one']['id'],
+                      'userName' => $_SESSION['player_one']['name']
+              ),
+              'menu' => true
+      ));
+    });
+
 
     $app->post("/start_game", function() use ($app){
 
@@ -193,5 +204,6 @@
     $app->patch("/match_results", function() use ($app){
       return $app['twig']->render("game.html.twig", array('result'=> $result, 'player1'=>$_SESSION['player_one'], 'player2'=>$_SESSION['player_two'], 'format'=>$_SESSION['match_type']));
     });
+
     return $app;
  ?>

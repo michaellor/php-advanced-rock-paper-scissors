@@ -7,39 +7,23 @@
     {% include '/includes/navbar.html.twig' %}
     <div class="container">
       <h1 class='center'>Advanced RPS-7</h1>
+
+      {% include '/includes/message.html.twig'%}
+
+      {% if menu %}
+        <a href="/main_menu" class="btn btn-info center">Player Vs. Computer</a>
+        <br>
+        <br>
+        <a href="/main_menu" class="btn btn-info center">Player Vs. Player</a>
+        <br>
+        <br>
+        <a href="/main_menu" class="btn btn-info center">{{ navbar.userName }} Stats</a>
+        <br>
+        <br>
+        <a href="/sign_out" class="btn btn-info center">Sign Out</a>
+      {% else %}
+        <a href="/main_menu" class="btn btn-info center">Main Menu</a>
+      {% endif %}
     </div>
-      <div class="container">
-        {% include '/includes/message.html.twig'%}
-          {% if players is not empty %}
-          <div class="input-field col s12">
-              <form action="/start_game" method="post">
-                  <h3>Select Player 1</h3>
-                  <select name="selected_player_one">
-                      {% for player in players %}
-                          <option value="{{player.getId}}">{{player.getName}}</option>
-                      {% endfor %}
-                  </select>
-                      <h3>Select Player 2</h3>
-                  <select name="selected_player_two">
-                      <option value=-1 selected>Computer</option>
-                      {% for player in players %}
-                          <option value="{{player.getId}}">{{player.getName}}</option>
-                      {% endfor %}
-                  </select>
-                  <h3>Choose your Format</h3>
-                  <div class="input-field col s12">
-                      <select name='format'>
-                          <option value=null> Free Play - non Match</option>
-                          <option value=1>Match: All or Nothing!</option>
-                          <option value=2>Match: Best of 3</option>
-                          <option value=3>Match: Best of 5</option>
-                          <option value=4>Match: Best of 7</option>
-                      </select>
-                  <button type="submit">Go Play</button>
-                  </div>
-              </form>
-          </div>
-          {% endif %}
-      </div>
-    </body>
+  </body>
 </html>
