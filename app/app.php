@@ -217,7 +217,8 @@
                 if(($winner > 0) && ($_SESSION['player_one']['score'] == $winner))
                 {
                     $result = "Player One Wins the Match";
-
+                    $match = Match::findById($_SESSION['match']['id']);
+                    $match->update($_SESSION['player_one']['score'], $_SESSION['player_two']['score'], $_SESSION['player_one']['id']);
                     return $app['twig']->render('winner.html.twig', array(
                             'message'=> $result,
                             'navbar' => array(
@@ -238,6 +239,8 @@
                 if(($winner > 0) && ($_SESSION['player_two']['score'] == $winner))
                     {
                         $result = "Player two Wins the Match";
+                        $match = Match::findById($_SESSION['match']['id']);
+                        $match->update($_SESSION['player_one']['score'], $_SESSION['player_two']['score'], $_SESSION['player_two']['id']);
 
                         return $app['twig']->render('winner.html.twig', array(
                                 'message'=> $result,
@@ -280,6 +283,10 @@
         $_SESSION['player_two']['score' ]= 0;
 
         $_SESSION['match']['win_number'] = $_GET['win'];
+
+        $match = new Match ($_SESSION['player_one']['id' ], null, $_SESSION['player_two']['id' ], null, null, null);
+        $match->saveMatch();
+        $_SESSION['match']['id'] = $match->getId();
 
         return $app['twig']->render('game.html.twig', array(
                 'message' => array(
