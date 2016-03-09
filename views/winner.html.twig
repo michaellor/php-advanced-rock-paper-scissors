@@ -5,6 +5,10 @@
     </head>
     <body>
         {% include '/includes/navbar.html.twig' %}
-<h1>{{message}}</h1>
+{% if message == 1 %}
+<h1> {{player1['name']}} wins the Match</h1>
+{% elseif message == 2 %}
+<h1> {{player2['name']}} wins the Match</h1>
+{% endif %}
     </body>
 </html>
