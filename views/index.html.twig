@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        {% include './includes/header.html.twig' %}
-    </head>
-    <body>
-        <div class="container">
-            <h1>Advanced RPS-7</h1>
-        </div>
+  <head>
+    {% include './includes/header.html.twig' %}
+  </head>
+  <body>
+    {% include '/includes/navbar.html.twig' %}
+    <div class="container">
+      <h1 class='center'>Advanced RPS-7</h1>
+    </div>
 
             <div class="container">
                 <form action="/new_player" method="post">
@@ -36,7 +37,7 @@
                         </select>
                         <h3>Choose your Format</h3>
                         <div class="input-field col s12">
-                            <select>
+                            <select name='format'>
                                 <option value=null> Free Play - non Match</option>
                                 <option value=1>Match: All or Nothing!</option>
                                 <option value=2>Match: Best of 3</option>

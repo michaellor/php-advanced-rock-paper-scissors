@@ -37,7 +37,13 @@
         $_SESSION['player_one']= array("name"=>null, "id"=>null, "score"=>0);
         $_SESSION['player_two']= array("name"=>null, "id"=>null, "score"=>0);
         $_SESSION['match']= array("match_type"=>null, "id"=>null);
-        return $app['twig']->render('index.html.twig', array('players' => Player::getAll()));
+        return $app['twig']->render('index.html.twig', array(
+                'players' => Player::getAll(),
+                'navbar' => array(
+                        'userId' => $_SESSION['player_one']['id'],
+                        'userName' => $_SESSION['player_one']['name']
+                )
+        ));
     });
 
     $app->post("/new_player", function() use ($app){

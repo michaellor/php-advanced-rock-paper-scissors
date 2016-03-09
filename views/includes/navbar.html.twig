@@ -1,0 +1,17 @@
+{% if navbar %}
+  <nav>
+    <div class="nav-wrapper blue darken-2 z-depth-4">
+      <a href="/" class="brand-logo center">Advance RPS-7!</a>
+      <ul id="nav-mobile">
+        <li class="left"><a href="/mainMenu">Main Menu</a></li>
+
+        {% if navbar.userId %}
+          <li class="right"><a href="/playerPage/{{ navbar.userId }}">{{ navbar.userName }}</a></li>
+        {% else %}
+          <li class="right"><a href="/playerSignIn">Sign-In</a></li>
+        {% endif %}
+
+      </ul>
+    </div>
+  </nav>
+{% endif %}
