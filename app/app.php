@@ -150,6 +150,7 @@
         $_SESSION['player_two']['score' ]= 0;
 
         $_SESSION['match']['win_number'] = -1;
+        $_SESSION['match']['id']= null;
 
         return $app['twig']->render('game.html.twig', array(
                 'message' => array(
@@ -284,7 +285,7 @@
 
         $_SESSION['match']['win_number'] = $_GET['win'];
 
-        $match = new Match ($_SESSION['player_one']['id' ], null, $_SESSION['player_two']['id' ], null, null, null);
+        $match = new Match ($_SESSION['player_one']['id' ], null, $_SESSION['player_two']['id'], null, null, null);
         $match->saveMatch();
         $_SESSION['match']['id'] = $match->getId();
 
