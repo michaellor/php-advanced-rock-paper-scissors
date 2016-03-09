@@ -11,16 +11,16 @@
       {% include '/includes/message.html.twig'%}
 
       {% if menu %}
-        <a href="/main_menu_select" class="btn btn-info center">Player Vs. Computer</a>
+        <a href="/pVc_free_play" class="btn btn-info center">Free Play</a>
         <br>
         <br>
-        <a href="/main_menu" class="btn btn-info center">Player Vs. Player</a>
+        <a href="/pVc_match?win=2 " class="btn btn-info center">Best of 3</a>
         <br>
         <br>
-        <a href="/showdata" class="btn btn-info center">{{ navbar.userName }} Stats</a>
+        <a href="/pVc_match?win=3 " class="btn btn-info center">Best of 5</a>
         <br>
         <br>
-        <a href="/sign_out" class="btn btn-info center">Sign Out</a>
+        <a href="/pVc_match?win=4 " class="btn btn-info center">Best of 7</a>
       {% else %}
         <a href="/main_menu" class="btn btn-info center">Main Menu</a>
       {% endif %}
