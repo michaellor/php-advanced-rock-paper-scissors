@@ -287,7 +287,7 @@
                             // 'matchOver' => $match_result,
                             'matchOver' => array(
                                     'color' => 'green',
-                                    'text' => 'Player One Wins the Match',
+                                    'text' => $_SESSION['player_one']['name'] . ' Wins the Match',
                                     'link1' => array(
                                             'link' => '/pVc_match?win=' . $winner,
                                             'text' => 'Play Again'
@@ -321,7 +321,7 @@
                                 'message'=> $result,
                                 'matchOver' => array(
                                         'color' => 'red',
-                                        'text' => 'Player two Wins the Match',
+                                        'text' => $_SESSION['player_two']['name'] . ' Wins the Match',
                                         'link1' => array(
                                                 'link' => '/pVc_match?win=' . $winner,
                                                 'text' => 'Play Again'
