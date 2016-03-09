@@ -114,7 +114,7 @@
         $player1 = Player::findById($_SESSION['player_one']['id' ]);
 
         $_SESSION['player_two']['name'] = 'HAL (The Computer)';
-        $_SESSION['player_two']['id' ]= -1;
+        $_SESSION['player_two']['id' ]= 0;
         $_SESSION['player_one']['score' ]= 0;
         $_SESSION['player_two']['score' ]= 0;
 
@@ -138,7 +138,7 @@
     $app->get("/play_pVc/{choice}", function($choice) use ($app){
         $player_one_id = $_SESSION['player_one']['id'];
         $player_one_choice = $choice;
-        $player_two_id = -1;
+        $player_two_id = $_SESSION['player_two']['id'];
         $player_two_choice = '';
         $match_id = $_SESSION['match']['id'];
 
@@ -207,26 +207,6 @@
     //     ));
     // });
 
-    $app->get("/data/{id}", function($id) use ($app){
-        $player1 = Player::findById($id);
-        $player1_data = $player1->getTotalHands();
-        return $player1->barGraphData($player1_data);
-    });
-
-    $app->get("/showdata", function() use ($app){
-        return $app['twig']->render('stats.html.twig', array(
-                'chart' => array(
-                        'id' => $_SESSION['player_one']['id'],
-                        'target' => 'chart_div'
-                ),
-                'player1' => $_SESSION['player_one'],
-                'navbar' => array(
-                        'userId' => $_SESSION['player_one']['id'],
-                        'userName' => $_SESSION['player_one']['name']
-                )
-        ));
-    });
-
     // $app->post("/play", function() use ($app){
     //     $player_one_id = $_POST['player_one_id'];
     //     $player_one_choice = $_POST['player_one_select'];
@@ -273,6 +253,26 @@
 
     $app->patch("/match_results", function() use ($app){
       return $app['twig']->render("game.html.twig", array('result'=> $result, 'player1'=>$_SESSION['player_one'], 'player2'=>$_SESSION['player_two'], 'format'=>$_SESSION['match_type']));
+    });
+
+    $app->get("/data/{id}", function($id) use ($app){
+        $player1 = Player::findById($id);
+        $player1_data = $player1->getTotalHands();
+        return $player1->barGraphData($player1_data);
+    });
+
+    $app->get("/showdata", function() use ($app){
+        return $app['twig']->render('stats.html.twig', array(
+                'chart' => array(
+                        'id' => $_SESSION['player_one']['id'],
+                        'target' => 'chart_div'
+                ),
+                'player1' => $_SESSION['player_one'],
+                'navbar' => array(
+                        'userId' => $_SESSION['player_one']['id'],
+                        'userName' => $_SESSION['player_one']['name']
+                )
+        ));
     });
 
     return $app;
