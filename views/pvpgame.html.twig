@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% include './includes/header.html.twig' %}
+    </head>
+    <body>
+        {% if player1['score'] >= match['match_type'] or player2['score'] >= match['match_type'] %}
+            {% set matchEnded = true %}
+        {% endif %}
+
+        {% include '/includes/navbar.html.twig' %}
+
+        <div class="container">
+          <h1>Game Round</h1>
+          <hr>
+          <div class="row">
+
+            <div class="col s5">
+              <h4>{{player1['name']}}</h4>
+              <h4>Score: {{player1['score']}}</h4>
+            </div>
+
+            <div class="col s5 offset-s2">
+              <h4>{{player2['name']}}</h4>
+              <h4>Score: {{player2['score']}}</h4>
+            </div>
+
+          </div>
+
+          <br>
+          {% include '/includes/winner_message.html.twig'%}
+          <br>
+            <div class="player_one_options">
+                <a href="/play_pVp_p1/rock" class="btn-floating btn-large waves-effect waves-light grey"><i class="material-icons">Ro</i>Rock</a>
+                <a href="/play_pVp_p1/paper" class="btn-floating btn-large waves-effect waves-light black"><i class="material-icons">Pa</i>Paper</a>
+                <a href="/play_pVp_p1/scissors" class="btn-floating btn-large waves-effect waves-light purple"><i class="material-icons">Sc</i>Scissors</a>
+                <a href="/play_pVp_p1/air" class="btn-floating btn-large waves-effect waves-light blue lighten-2"><i class="material-icons">Ai</i>Air</a>
+                <a href="/play_pVp_p1/fire" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">Fi</i>Fire</a>
+                <a href="/play_pVp_p1/water" class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons">Wa</i>Water</a>
+                <a href="/play_pVp_p1/sponge" class="btn-floating btn-large waves-effect waves-light yello"><i class="material-icons">Sp</i>Sponge</a>
+            </div>
+
+            <div class="player_two_options">
+                <a href="/play_pVp_p2/rock" class="btn-floating btn-large waves-effect waves-light grey"><i class="material-icons">Ro</i>Rock</a>
+                <a href="/play_pVp_p2/paper" class="btn-floating btn-large waves-effect waves-light black"><i class="material-icons">Pa</i>Paper</a>
+                <a href="/play_pVp_p2/scissors" class="btn-floating btn-large waves-effect waves-light purple"><i class="material-icons">Sc</i>Scissors</a>
+                <a href="/play_pVp_p2/air" class="btn-floating btn-large waves-effect waves-light blue lighten-2"><i class="material-icons">Ai</i>Air</a>
+                <a href="/play_pVp_p2/fire" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">Fi</i>Fire</a>
+                <a href="/play_pVp_p2/water" class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons">Wa</i>Water</a>
+                <a href="/play_pVp_p2/sponge" class="btn-floating btn-large waves-effect waves-light yello"><i class="material-icons">Sp</i>Sponge</a>
+            </div>
+        </div>
+    </body>
+</html>
