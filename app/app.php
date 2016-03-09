@@ -38,6 +38,15 @@
         $_SESSION['player_two']= array("name"=>null, "id"=>null, "score"=>0);
         $_SESSION['match']= array("match_type"=>null, "id"=>null);
         return $app['twig']->render('index.html.twig', array(
+                'navbar' => array(
+                        'userId' => $_SESSION['player_one']['id'],
+                        'userName' => $_SESSION['player_one']['name']
+                )
+        ));
+    });
+
+    $app->get('/playerSignIn', function() use ($app) {
+        return $app['twig']->render('sign_in.html.twig', array(
                 'players' => Player::getAll(),
                 'navbar' => array(
                         'userId' => $_SESSION['player_one']['id'],

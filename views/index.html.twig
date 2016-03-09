@@ -10,15 +10,6 @@
     </div>
 
             <div class="container">
-                <form action="/new_player" method="post">
-                    <label for="new_name">New Player Name</label>
-                    <input name="new_name" type="text" required>
-                    <label for="new_password">Password*</label>
-                    <input name="new_password" type="password">
-                    <button type='submit' class="btn btn-info">Add Player</button>
-                </form>
-                <br>
-                <br>
                 {% if players is not empty %}
                 <div class="input-field col s12">
                     <form action="/start_game" method="post">
