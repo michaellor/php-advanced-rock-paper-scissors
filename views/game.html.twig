@@ -34,7 +34,9 @@
 
           {% include '/includes/winner_message.html.twig'%}
           <br>
+          
           {% if matchOver %}
+
             <div class="row">
               <div class="col s6 offset-s3">
                 <div class="card {{ matchOver.color }} darken-1">
@@ -50,7 +52,9 @@
                 </div>
               </div>
             </div>
+
           {% else %}
+
             {% if match['win_number'] == -1 %}
               <a href="/play_pVc/rock" class="btn-floating btn-large waves-effect waves-light grey"><i class="material-icons">Ro</i>Rock</a>
               <a href="/play_pVc/paper" class="btn-floating btn-large waves-effect waves-light black"><i class="material-icons">Pa</i>Paper</a>
@@ -68,6 +72,7 @@
               <a href="/match/play_pVc/water" class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons">Wa</i>Water</a>
               <a href="/match/play_pVc/sponge" class="btn-floating btn-large waves-effect waves-light yello"><i class="material-icons">Sp</i>Sponge</a>
             {% endif %}
+
           {% endif %}
         </div>
     </body>
