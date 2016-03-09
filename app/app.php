@@ -65,7 +65,7 @@
 
     $app->get('/sign_in', function() use ($app) {
         return $app['twig']->render('sign_in.html.twig', array(
-                'players' => Player::getAll(),
+                'players' => Player::getAllRealPlayers(),
                 'navbar' => array(
                         'userId' => $_SESSION['player_one']['id'],
                         'userName' => $_SESSION['player_one']['name']
@@ -422,10 +422,6 @@
                 'losses' => $computer->getTotalLosses(),
                 'total' => $computer->getTotalGames()
         );
-        var_dump($computer->getTotalGames());
-        var_dump($computer->getTotalWins());
-        var_dump($computer->getTotalLosses());
-        var_dump($computer_stats['ties']);
 
         return $app['twig']->render('stats.html.twig', array(
                 'userStats' => $user_stats,

@@ -156,6 +156,20 @@
 	            return $players;
 			}
 
+			static function getAllRealPlayers()
+			{
+				$returned_players = $GLOBALS['DB']->query("SELECT * FROM players WHERE players.id != 0;");
+	            $players = array();
+	            foreach($returned_players as $player) {
+	                $name = $player['name'];
+	                $password = $player['password'];
+	                $id = $player['id'];
+	                $new_player = new Player($name, $password, $id);
+	                array_push($players, $new_player);
+	            }
+	            return $players;
+			}
+
 			static function findById($search_id)
 			{
 				$found_player = null;
