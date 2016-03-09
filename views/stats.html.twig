@@ -18,6 +18,7 @@
       </div>
 
       <div class="col s9 right">
+
         <div id="player">
           <h1 class="center">Player: {{ player1.name }}</h1>
           <h3 class="center">Total Hands: {{ userStats.total }}</h3>
@@ -34,21 +35,24 @@
           </div>
           <div id="chart_div_player"></div>
         </div>
+
         <div id="computer">
           <h1 class="center">HAL (The Computer)</h1>
+          <h3 class="center">Total Hands: {{ computerStats.total }}</h3>
           <div class="row">
             <div class="col s4">
-              <h3>Wins:  </h3>
+              <h3>Wins:  {{ computerStats.wins }}</h3>
             </div>
             <div class="col s4">
-              <h3>Losses:  </h3>
+              <h3>Losses: {{ computerStats.losses }}</h3>
             </div>
             <div class="col s4">
-              <h3>Ties:  </h3>
+              <h3>Ties:  {{ computerStats.ties }}</h3>
             </div>
           </div>
           <div id="chart_div_computer"></div>
         </div>
+
       </div>
 
     </div>
