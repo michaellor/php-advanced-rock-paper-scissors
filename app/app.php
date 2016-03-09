@@ -387,14 +387,6 @@
         ));
     });
 
-    $app->get("/start_game_pVp", function() use ($app) {
-        return $app['twig']->render("pvpgame.html.twig");
-    });
-
-    // $app->post("/play_pVc", function() use ($app) {
-    //
-    // });
-
     $app->patch("/match_results", function() use ($app){
       return $app['twig']->render("game.html.twig", array('result'=> $result, 'player1'=>$_SESSION['player_one'], 'player2'=>$_SESSION['player_two'], 'format'=>$_SESSION['win_number']));
     });
@@ -414,7 +406,11 @@
                 'losses' => $user->getTotalLosses(),
                 'total' => $user->getTotalGames()
         );
-
+        $user_matches = array(
+                'wins' => $user->getMatchWins(),
+                'losses' => $user->getMatchLosses(),
+                'total' => $user->getTotalMatches()
+        );
         $computer = Player::findById(0);
         $computer_stats = array(
                 'ties' => $computer->getTotalGames() - $computer->getTotalWins() - $computer->getTotalLosses(),
@@ -422,10 +418,16 @@
                 'losses' => $computer->getTotalLosses(),
                 'total' => $computer->getTotalGames()
         );
-
+        $computer_match = array(
+                'wins' => $computer->getMatchWins(),
+                'losses' => $computer->getMatchLosses(),
+                'total' => $computer->getTotalMatches()
+        );
         return $app['twig']->render('stats.html.twig', array(
                 'userStats' => $user_stats,
+                'userMatches'=> $user_matches,
                 'computerStats' => $computer_stats,
+                'computerMatches' => $computer_match,
                 'chart' => array(
                         'id' => $_SESSION['player_one']['id'],
                         'target' => 'chart_div_player'

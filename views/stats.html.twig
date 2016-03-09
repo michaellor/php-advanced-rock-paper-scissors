@@ -31,6 +31,17 @@
               <h3>Ties:  {{ userStats.ties }}</h3>
             </div>
           </div>
+          <div class="row">
+            <div class="col s4">
+              <h4>Match Wins:  {{ userMatches.wins }}</h4>
+            </div>
+            <div class="col s4">
+              <h4>Match Losses: {{ userMatches.losses }}</h4>
+            </div>
+            <div class="col s4">
+              <h4>Matches Played:  {{ userMatches.total }}</h4>
+            </div>
+          </div>
           <div id="chart_div_player"></div>
         </div>
 
@@ -46,6 +57,17 @@
             </div>
             <div class="col s4">
               <h3>Ties:  {{ computerStats.ties }}</h3>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s4">
+              <h4>Match Wins:  {{ computerMatches.wins }}</h4>
+            </div>
+            <div class="col s4">
+              <h4>Match Losses: {{ computerMatches.losses }}</h4>
+            </div>
+            <div class="col s4">
+              <h4>Matches Played:  {{ computerMatches.total }}</h4>
             </div>
           </div>
           <div id="chart_div_computer"></div>

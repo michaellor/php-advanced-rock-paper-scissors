@@ -75,6 +75,34 @@
 				return count($wins);
 			}
 
+			function getTotalMatches()
+			{
+				$query = $GLOBALS['DB']->query("SELECT *
+						FROM matches
+						WHERE player_one_id = {$this->getId()}
+						OR player_two_id = {$this->getId()};");
+				$matches = $query->fetchAll(PDO::FETCH_ASSOC);
+				return count($matches);
+			}
+			function getMatchWins()
+			{
+				$query = $GLOBALS['DB']->query("SELECT *
+						FROM matches
+						WHERE winner_id = {$this->getId()};");
+				$wins = $query->fetchAll(PDO::FETCH_ASSOC);
+				return count($wins);
+			}
+			function getMatchLosses()
+			{
+				$query = $GLOBALS['DB']->query("SELECT *
+						FROM matches
+						WHERE (player_one_id = {$this->getId()}
+						OR player_two_id = {$this->getId()})
+						AND (winner_id != {$this->getId()}
+						AND winner_id != -1);");
+				$losses = $query->fetchAll(PDO::FETCH_ASSOC);
+				return count($losses);
+			}
 			// $types comes in as an array of the potential hand types i.e. ['rock','paper','scissors']
 			// getHands($types) will return an associative array with data for given player, i.e. ['rock' => 1, 'paper' => 8, 'scissors' => 5]
 			// default array is set to the whole range of options, currently 7 different types
@@ -121,7 +149,7 @@
 					}
 					$results[$type] = $count;
 				}
-				var_dump($results);
+				// var_dump($results);
 				return $results;
 			}
 
