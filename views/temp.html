@@ -79,10 +79,10 @@
 
 {% if matchEnded %}
     <div class="container">
-        {% if player1['score'] == match['match_type'] %}
+        {% if player1['score'] == match['win_number'] %}
 
             <h3>{{player1['name']}} Wins  {{player1['score']}} - {{player2['score']}}</h3>
-        {% elseif player2['score'] == match['match_type'] %}
+        {% elseif player2['score'] == match['win_number'] %}
 
             <h3>{{player2['name']}} Wins  {{player2['score']}} - {{player1['score']}}</h3>
         {% endif %}
