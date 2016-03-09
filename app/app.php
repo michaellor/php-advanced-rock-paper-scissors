@@ -109,29 +109,18 @@
     });
 
 
-    $app->post("/start_game", function() use ($app){
+    $app->get("/start_game_pVc", function() use ($app){
 
-        $player1_id = $_POST['selected_player_one'];
-        $player2_id = $_POST['selected_player_two'];
-        $player1 = Player::findById($player1_id);
+        $player1 = Player::findById($_SESSION['player_one']['id' ]);
 
-        $_SESSION['player_one']['name'] = $player1->getName();
-        $_SESSION['player_one']['id' ]= $player1->getId();
-        $_SESSION['match']['match_type']= $_POST['format'];
+        $_SESSION['player_two']['name'] = 'HAL (The Computer)';
+        $_SESSION['player_two']['id' ]= -1;
+        $_SESSION['player_one']['score' ]= 0;
+        $_SESSION['player_two']['score' ]= 0;
 
-        if($player2_id == -1)
-        {
-            $computer = "Computer (HAL)";
-            $password = null;
-            $player2 = new Player($computer, $password, $player2_id);
-        }
-        else
-        {
-            $player2 = Player::findById($player2_id);
-        }
-        $_SESSION['player_two']['name']= $player2->getName();
-        $_SESSION['player_two']['id']= $player2->getId();
+        $_SESSION['match']['match_type'] = -1;
 
+        // not sure if this still makes sense after code refactor
         if($_SESSION['match']['match_type'] !== -1)
         {
             $match = new Match ($player1->getId(), null, $player2->getId(), null, null, null);
@@ -141,11 +130,56 @@
         }
 
         return $app['twig']->render('game.html.twig', array(
+                'navbar' => array(
+                        'userId' => $_SESSION['player_one']['id'],
+                        'userName' => $_SESSION['player_one']['name']
+                ),
                 'player1' => $_SESSION['player_one'],
                 'player2' => $_SESSION['player_two'],
                 'match'=> $_SESSION['match']
         ));
     });
+
+    // $app->post("/start_game", function() use ($app){
+    //
+    //     $player1_id = $_POST['selected_player_one'];
+    //     $player2_id = $_POST['selected_player_two'];
+    //     $player1 = Player::findById($player1_id);
+    //
+    //     $_SESSION['player_one']['name'] = $player1->getName();
+    //     $_SESSION['player_one']['id' ]= $player1->getId();
+    //
+    //     defaulting to best of 5
+    //     $_SESSION['match']['match_type'] = -1;
+    //     $_SESSION['match']['match_type'] = $_POST['format'];
+    //
+    //     if($player2_id == -1)
+    //     {
+    //         $computer = "Computer (HAL)";
+    //         $password = null;
+    //         $player2 = new Player($computer, $password, $player2_id);
+    //     }
+    //     else
+    //     {
+    //         $player2 = Player::findById($player2_id);
+    //     }
+    //     $_SESSION['player_two']['name']= $player2->getName();
+    //     $_SESSION['player_two']['id']= $player2->getId();
+    //
+    //     if($_SESSION['match']['match_type'] !== -1)
+    //     {
+    //         $match = new Match ($player1->getId(), null, $player2->getId(), null, null, null);
+    //         $match->saveMatch();
+    //         $_SESSION['match']['id'] = $match->getId();
+    //
+    //     }
+    //
+    //     return $app['twig']->render('game.html.twig', array(
+    //             'player1' => $_SESSION['player_one'],
+    //             'player2' => $_SESSION['player_two'],
+    //             'match'=> $_SESSION['match']
+    //     ));
+    // });
 
     $app->get("/data", function() use ($app){
       $player1 = Player::findById($_SESSION['player_one']['id']);
