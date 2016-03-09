@@ -6,7 +6,7 @@
         <li class="left"><a href="/main_menu">Main Menu</a></li>
 
         {% if navbar.userId %}
-          <li class="right"><a href="/playerPage/{{ navbar.userId }}">{{ navbar.userName }}</a></li>
+          <li class="right"><a href="/showdata">{{ navbar.userName }}</a></li>
           <li class="right"><a href="/sign_out">Sign Out</a></li>
         {% else %}
           <li class="right"><a href="/playerSignIn">Sign-In</a></li>

@@ -207,14 +207,24 @@
     //     ));
     // });
 
-    $app->get("/data", function() use ($app){
-      $player1 = Player::findById($_SESSION['player_one']['id']);
-      $player1_data = $player1->getTotalHands();
-      return $player1->barGraphData($player1_data);
+    $app->get("/data/{id}", function($id) use ($app){
+        $player1 = Player::findById($id);
+        $player1_data = $player1->getTotalHands();
+        return $player1->barGraphData($player1_data);
     });
 
     $app->get("/showdata", function() use ($app){
-      return $app['twig']->render('stats.html.twig', array());
+        return $app['twig']->render('stats.html.twig', array(
+                'chart' => array(
+                        'id' => $_SESSION['player_one']['id'],
+                        'target' => 'chart_div'
+                ),
+                'player1' => $_SESSION['player_one'],
+                'navbar' => array(
+                        'userId' => $_SESSION['player_one']['id'],
+                        'userName' => $_SESSION['player_one']['name']
+                )
+        ));
     });
 
     // $app->post("/play", function() use ($app){
