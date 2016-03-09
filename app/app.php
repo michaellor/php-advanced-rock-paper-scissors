@@ -389,7 +389,11 @@
                 'losses' => $user->getTotalLosses(),
                 'total' => $user->getTotalGames()
         );
-
+        $user_matches = array(
+                'wins' => $user->getMatchWins(),
+                'losses' => $user->getMatchLosses(),
+                'total' => $user->getTotalMatches()
+        );
         $computer = Player::findById(0);
         $computer_stats = array(
                 'ties' => $computer->getTotalGames() - $computer->getTotalWins() - $computer->getTotalLosses(),
@@ -400,6 +404,7 @@
 
         return $app['twig']->render('stats.html.twig', array(
                 'userStats' => $user_stats,
+                'userMatches'=> $user_matches,
                 'computerStats' => $computer_stats,
                 'chart' => array(
                         'id' => $_SESSION['player_one']['id'],
