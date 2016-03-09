@@ -289,12 +289,12 @@
                                     'color' => 'green',
                                     'text' => 'Player One Wins the Match',
                                     'link1' => array(
-                                            'link' => '/sign_in',
+                                            'link' => '/pVc_match?win=' . $winner,
                                             'text' => 'Play Again'
                                           ),
                                     'link2' => array(
-                                            'link' => '/sign_in',
-                                            'text' => 'Start'
+                                            'link' => '/main_menu',
+                                            'text' => 'Main Menu'
                                           )
                             ),
                             'navbar' => array(
@@ -323,12 +323,12 @@
                                         'color' => 'red',
                                         'text' => 'Player two Wins the Match',
                                         'link1' => array(
-                                                'link' => '/sign_in',
+                                                'link' => '/pVc_match?win=' . $winner,
                                                 'text' => 'Play Again'
                                               ),
                                         'link2' => array(
-                                                'link' => '/sign_in',
-                                                'text' => 'Start'
+                                                'link' => '/main_menu',
+                                                'text' => 'Main Menu'
                                               )
                                 ),
                                 // 'matchOver' => $match_result,

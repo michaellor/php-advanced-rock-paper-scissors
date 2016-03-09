@@ -34,7 +34,7 @@
 
           {% include '/includes/winner_message.html.twig'%}
           <br>
-          
+
           {% if matchOver %}
 
             <div class="row">
@@ -42,12 +42,14 @@
                 <div class="card {{ matchOver.color }} darken-1">
                   <div class="card-content white-text">
                     <span class="card-title center">{{ matchOver.text }}</span>
-                    {% if message.link1 %}
-                      <a href="{{ message.link1.link }}">{{ message.link1.text }}</a>
-                    {% endif %}
-                    {% if message.link2 %}
-                      <a href="{{ message.link2.link }}">{{ message.link2.text }}</a>
-                    {% endif %}
+                    <div class="card-action">
+                      {% if matchOver.link1 %}
+                        <a class='left' href="{{ matchOver.link1.link }}">{{ matchOver.link1.text }}</a>
+                      {% endif %}
+                      {% if matchOver.link2 %}
+                        <a class='right' href="{{ matchOver.link2.link }}">{{ matchOver.link2.text }}</a>
+                      {% endif %}
+                    </div>
                   </div>
                 </div>
               </div>
