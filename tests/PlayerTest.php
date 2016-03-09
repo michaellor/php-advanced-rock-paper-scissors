@@ -247,6 +247,97 @@
             $this->assertEquals(2, $result2);
         }
 
+        function test_getTotalMatches()
+        {
+            //Arrange
+            $test_name = "Aundra";
+            $test_password = '1234';
+            $test_player = new Player($test_name, $test_password);
+            $test_player->save();
+            $test_player_id = $test_player->getId();
+
+            $test_name2 = "Joseph";
+            $test_password2 = '1234';
+            $test_player2 = new Player($test_name2, $test_password2);
+            $test_player2->save();
+            $test_player_id2 = $test_player2->getId();
+
+
+
+            $GLOBALS['DB']->exec("INSERT INTO matches (player_one_id, player_one_score, player_two_id, player_two_score, winner_id) VALUES (-10, '3', {$test_player_id2}, '3', -10);");
+
+            $GLOBALS['DB']->exec("INSERT INTO matches (player_one_id, player_one_score, player_two_id, player_two_score, winner_id) VALUES ({$test_player_id}, '3', {$test_player_id2}, '3', {$test_player_id});");
+
+            $GLOBALS['DB']->exec("INSERT INTO matches (player_one_id, player_one_score, player_two_id, player_two_score, winner_id) VALUES ({$test_player_id}, '3', {$test_player_id2}, '3', {$test_player_id});");
+            //Act
+            $result = $test_player->getTotalMatches();
+            $result2 = $test_player2->getTotalMatches();
+
+            //Assert
+            $this->assertEquals(2, $result);
+            $this->assertEquals(3, $result2);
+        }
+        function test_getMatchWins()
+        {
+            //Arrange
+            $test_name = "Aundra";
+            $test_password = '1234';
+            $test_player = new Player($test_name, $test_password);
+            $test_player->save();
+            $test_player_id = $test_player->getId();
+
+            $test_name2 = "Joseph";
+            $test_password2 = '1234';
+            $test_player2 = new Player($test_name2, $test_password2);
+            $test_player2->save();
+            $test_player_id2 = $test_player2->getId();
+
+
+
+            $GLOBALS['DB']->exec("INSERT INTO matches (player_one_id, player_one_score, player_two_id, player_two_score, winner_id) VALUES ({$test_player_id2}, '3', {$test_player_id2}, '2', {$test_player_id2});");
+
+            $GLOBALS['DB']->exec("INSERT INTO matches (player_one_id, player_one_score, player_two_id, player_two_score, winner_id) VALUES ({$test_player_id}, '3', {$test_player_id2}, '2', {$test_player_id});");
+
+            $GLOBALS['DB']->exec("INSERT INTO matches (player_one_id, player_one_score, player_two_id, player_two_score, winner_id) VALUES ({$test_player_id}, '2', {$test_player_id2}, '3', {$test_player_id2});");
+            //Act
+            $result = $test_player->getMatchWins();
+            $result2 = $test_player2->getMatchWins();
+
+            //Assert
+            $this->assertEquals(1, $result);
+            $this->assertEquals(2, $result2);
+        }
+
+        function test_getMatchLosses()
+        {
+            //Arrange
+            $test_name = "Aundra";
+            $test_password = '1234';
+            $test_player = new Player($test_name, $test_password);
+            $test_player->save();
+            $test_player_id = $test_player->getId();
+
+            $test_name2 = "Joseph";
+            $test_password2 = '1234';
+            $test_player2 = new Player($test_name2, $test_password2);
+            $test_player2->save();
+            $test_player_id2 = $test_player2->getId();
+
+
+
+            $GLOBALS['DB']->exec("INSERT INTO matches (player_one_id, player_one_score, player_two_id, player_two_score, winner_id) VALUES ({$test_player_id}, '3', {$test_player_id2}, '2', {$test_player_id2});");
+
+            $GLOBALS['DB']->exec("INSERT INTO matches (player_one_id, player_one_score, player_two_id, player_two_score, winner_id) VALUES ({$test_player_id}, '3', {$test_player_id2}, '2', {$test_player_id});");
+
+            $GLOBALS['DB']->exec("INSERT INTO matches (player_one_id, player_one_score, player_two_id, player_two_score, winner_id) VALUES ({$test_player_id}, '2', {$test_player_id2}, '3', {$test_player_id2});");
+            //Act
+            $result = $test_player->getMatchLosses();
+            $result2 = $test_player2->getMatchLosses();
+
+            //Assert
+            $this->assertEquals(2, $result);
+            $this->assertEquals(1, $result2);
+        }
         function test_getTotalHands()
         {
             //Arrange

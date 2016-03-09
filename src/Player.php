@@ -84,7 +84,7 @@
 				$matches = $query->fetchAll(PDO::FETCH_ASSOC);
 				return count($matches);
 			}
-			function getTotalMatchWins()
+			function getMatchWins()
 			{
 				$query = $GLOBALS['DB']->query("SELECT *
 						FROM matches
@@ -92,7 +92,7 @@
 				$wins = $query->fetchAll(PDO::FETCH_ASSOC);
 				return count($wins);
 			}
-			function getTotalMatchLosses()
+			function getMatchLosses()
 			{
 				$query = $GLOBALS['DB']->query("SELECT *
 						FROM matches
@@ -149,7 +149,7 @@
 					}
 					$results[$type] = $count;
 				}
-				var_dump($results);
+				// var_dump($results);
 				return $results;
 			}
 
