@@ -119,7 +119,7 @@
        			}
       			elseif ($this->getPlayerOneChoice() == $this->getPlayerTwoChoice())
       			{
-                      $this->setWinner(0);
+                      $this->setWinner(-1);
                       $this->saveRound();
                       return array(
                               'text' => 'Tie',

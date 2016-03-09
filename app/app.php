@@ -422,6 +422,10 @@
                 'losses' => $computer->getTotalLosses(),
                 'total' => $computer->getTotalGames()
         );
+        var_dump($computer->getTotalGames());
+        var_dump($computer->getTotalWins());
+        var_dump($computer->getTotalLosses());
+        var_dump($computer_stats['ties']);
 
         return $app['twig']->render('stats.html.twig', array(
                 'userStats' => $user_stats,
