@@ -34,6 +34,15 @@
           Request::enableHttpMethodParameterOverride();
 
     $app->get("/", function() use ($app){
+        return $app['twig']->render('index.html.twig', array(
+                'navbar' => array(
+                        'userId' => $_SESSION['player_one']['id'],
+                        'userName' => $_SESSION['player_one']['name']
+                )
+        ));
+    });
+
+    $app->get("/sign_out", function() use ($app){
         $_SESSION['player_one']= array("name"=>null, "id"=>null, "score"=>0);
         $_SESSION['player_two']= array("name"=>null, "id"=>null, "score"=>0);
         $_SESSION['match']= array("match_type"=>null, "id"=>null);
@@ -41,7 +50,15 @@
                 'navbar' => array(
                         'userId' => $_SESSION['player_one']['id'],
                         'userName' => $_SESSION['player_one']['name']
-                )
+                        ),
+                'message' => array(
+                        'title' => 'Player Signed Out!',
+                        'text' => 'You have been signed out. Sign in or create a new account to play.',
+                        'link1' => array(
+                                'link' => '/playerSignIn',
+                                'text' => 'Start'
+                                )
+                        )
         ));
     });
 
@@ -56,17 +73,37 @@
     });
 
     $app->post("/new_player", function() use ($app){
+// add if statement, check for name already existing, then skip creation, sign in, and message a fail statement
         $name = $_POST['new_name'];
         $password = $_POST['new_password'];
         $new_player = new Player($name, $password);
         $new_player->save();
-      return $app['twig']->render('index.html.twig', array('players'=>Player::getAll()));
+
+        $_SESSION['player_one']['name'] = $new_player->getName();
+        $_SESSION['player_one']['id' ]= $new_player->getId();
+
+        return $app['twig']->render('index.html.twig', array(
+                'navbar' => array(
+                        'userId' => $new_player->getId(),
+                        'userName' => $new_player->getName()
+                ),
+                'message' => array(
+                'title' => 'New Player Created!',
+                'text' => $name . ' has been created and signed in. Enjoy the game, good luck, and check out the stats page after you play a few rounds.',
+                'link1' => array(
+                    'link' => '/start_game',
+                    'text' => 'Start'
+                )
+            )
+        ));
     });
 
     $app->post("/start_game", function() use ($app){
+
         $player1_id = $_POST['selected_player_one'];
         $player2_id = $_POST['selected_player_two'];
         $player1 = Player::findById($player1_id);
+
         $_SESSION['player_one']['name'] = $player1->getName();
         $_SESSION['player_one']['id' ]= $player1->getId();
         $_SESSION['match']['match_type']= $_POST['format'];
