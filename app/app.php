@@ -267,6 +267,10 @@
                         'id' => $_SESSION['player_one']['id'],
                         'target' => 'chart_div'
                 ),
+                'chart2' => array(
+                        'id' => $_SESSION['player_two']['id'],
+                        'target' => 'chart_div2'
+                ),
                 'player1' => $_SESSION['player_one'],
                 'navbar' => array(
                         'userId' => $_SESSION['player_one']['id'],

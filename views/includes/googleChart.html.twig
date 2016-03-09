@@ -10,12 +10,10 @@
   google.setOnLoadCallback(drawChart);
 
   function drawChart() {
-    console.log(0);
     $.ajax({
       url: "/data/{{ chart.id }}",
       dataType:"json"
     }).done(function(response) {
-      console.log(1);
       // console.log('request done', response);
       // Create our data table out of JSON data loaded from server.
       var data = new google.visualization.DataTable(response);
@@ -25,12 +23,25 @@
       var chart = new google.visualization.PieChart(selector);
       chart.draw(data, {width: 800, height: 400, is3D: true});
     });
-
-    console.log(2);
-
   }
 
-  console.log(3);
+  google.setOnLoadCallback(drawChart2);
+
+  function drawChart2() {
+    $.ajax({
+      url: "/data/{{ chart2.id }}",
+      dataType:"json"
+    }).done(function(response) {
+      // console.log('request done', response);
+      // Create our data table out of JSON data loaded from server.
+      var data = new google.visualization.DataTable(response);
+      // Create selector to target chart location on page
+      var selector = document.getElementById('{{ chart2.target }}');
+      // Instantiate and draw our chart, passing in some options.
+      var chart = new google.visualization.PieChart(selector);
+      chart.draw(data, {width: 800, height: 400, is3D: true});
+    });
+  }
 
   </script>
 {% endif %}
