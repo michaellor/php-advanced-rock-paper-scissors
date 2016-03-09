@@ -316,6 +316,14 @@
     //   return $app['twig']->render("game.html.twig", array('result'=> $result, 'player1'=>$_SESSION['player_one'], 'player2'=>$_SESSION['player_two'], 'match'=>$_SESSION['match'] ));
     // });
 
+    $app->get("/start_game_pVp", function() use ($app) {
+        return $app['twig']->render("pvpgame.html.twig");
+    });
+
+    // $app->post("/play_pVc", function() use ($app) {
+    //
+    // });
+
     $app->patch("/match_results", function() use ($app){
       return $app['twig']->render("game.html.twig", array('result'=> $result, 'player1'=>$_SESSION['player_one'], 'player2'=>$_SESSION['player_two'], 'format'=>$_SESSION['match_type']));
     });
