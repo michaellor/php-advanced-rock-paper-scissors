@@ -82,9 +82,8 @@
                 return "Don't Play With Yourself";
             }
 
-            if ($this->getPlayerTwoId() == 0) {
+            if ($this->getPlayerTwoId() == -1) {
                 $choices = array("rock", "paper", "scissors", "fire","sponge", "water", "air");
-                // $choices = array("rock", "paper");
                 $random_key = array_rand($choices);
                 $randomchoice = $choices[$random_key];
                 $this->setPlayerTwoChoice($randomchoice);
@@ -183,5 +182,6 @@
             }
             return $found_game;
         }
+        
     }
 ?>

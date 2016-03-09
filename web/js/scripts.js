@@ -15,4 +15,8 @@ $(document).ready(function() {
     $('#computer').show();
   });
 
+  // on button click
+  $('#p1FireButtonId').click(function(){
+     $('#formHiddenInputForP1Choice').attr('value',"fire"); 
+  });
 });
