@@ -36,12 +36,9 @@
                   <span class="card-title">Sign In</span>
                       {% if players is not empty %}
                         <form action="/player_sign_in" method="post">
-                          <label for="selected_player_one">Player Name</label>
-                          <select name="selected_player_one">
-                              {% for player in players %}
-                                  <option value="{{player.getId}}">{{player.getName}}</option>
-                              {% endfor %}
-                          </select>
+                          <label for="player_name">Player Name</label>
+                          <input type="text" name="player_name">
+                          <br>
                           <br>
                           <label for="password">Password</label>
                           <input name="password" type="password" maxlength="255">

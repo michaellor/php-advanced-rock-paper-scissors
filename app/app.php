@@ -75,48 +75,49 @@
 
     $app->post("/player_sign_in", function() use ($app) {
 
-        $player_id = $_POST['selected_player_one'];
+        $player_name = $_POST['player_name'];
         $password = $_POST['password'];
-        $player = Player::findbyId($player_id);
-        if ($password == $player->getPassword()) {
-            $_SESSION['player_one']['name'] = $player->getName();
-            $_SESSION['player_one']['id'] = $player->getId();
+        $all_players = Player::getAllRealPlayers();
+        foreach ($all_players as $player) {
+            if ($player_name == $player->getName() && $password == $player->getPassword()) {
+                $_SESSION['player_one']['name'] = $player->getName();
+                $_SESSION['player_one']['id'] = $player->getId();
 
-            return $app['twig']->render('index.html.twig', array(
-                    'navbar' => array(
-                            'userId' => $_SESSION['player_one']['id'],
-                            'userName' => $_SESSION['player_one']['name']
-                    ),
-                    'message' => array(
-                            'title' => 'Welcome, ' . $player->getName() . '!',
-                            'text' => 'You are now signed in. Enjoy the game, good luck, and check out the stats page after you play a few rounds.',
-                            'link1' => array(
-                                'link' => '/main_menu',
-                                'text' => 'Start'
-                            )
-                    )
-            ));
-
-        } else {
-            return $app['twig']->render('index.html.twig', array(
-                    'navbar' => array(
-                            'userId' => $_SESSION['player_one']['id'],
-                            'userName' => $_SESSION['player_one']['name']
-                            ),
-                    'message' => array(
-                            'title' => 'Uh Oh! Login failed.',
-                            'text' => 'That password is incorrect. Try again or create a new player.',
-                            'link1' => array(
-                                'link' => '/sign_in',
-                                'text' => 'Try Again'
-                            ),
-                            'link2' => array(
-                                'link' => '/sign_in',
-                                'text' => 'Create New Player'
-                            )
-                    )
-            ));
+                return $app['twig']->render('index.html.twig', array(
+                        'navbar' => array(
+                                'userId' => $_SESSION['player_one']['id'],
+                                'userName' => $_SESSION['player_one']['name']
+                        ),
+                        'message' => array(
+                                'title' => 'Welcome, ' . $player->getName() . '!',
+                                'text' => 'You are now signed in. Enjoy the game, good luck, and check out the stats page after you play a few rounds.',
+                                'link1' => array(
+                                    'link' => '/main_menu',
+                                    'text' => 'Start'
+                                )
+                        )
+                ));
+            }
         }
+
+        return $app['twig']->render('index.html.twig', array(
+                'navbar' => array(
+                        'userId' => $_SESSION['player_one']['id'],
+                        'userName' => $_SESSION['player_one']['name']
+                        ),
+                'message' => array(
+                        'title' => 'Uh Oh! Login failed.',
+                        'text' => 'That password is incorrect. Try again or create a new player.',
+                        'link1' => array(
+                            'link' => '/sign_in',
+                            'text' => 'Try Again'
+                        ),
+                        'link2' => array(
+                            'link' => '/sign_in',
+                            'text' => 'Create New Player'
+                        )
+                )
+        ));
     });
 
     $app->post("/new_player", function() use ($app){
