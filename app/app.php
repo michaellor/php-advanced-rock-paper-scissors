@@ -36,22 +36,27 @@
 
     $app->get("/", function() use ($app){
         return $app['twig']->render('index.html.twig', array(
-                'navbar' => array(
-                        'userId' => $_SESSION['player_one']['id'],
-                        'userName' => $_SESSION['player_one']['name']
-                )
+                'navbar' => returnNavbar()
         ));
     });
 
-    $app->get("/sign_out", function() use ($app){
+    // needed functions
+    function clearSession(){
         $_SESSION['player_one']= array("name"=>null, "id"=>null, "score"=>0);
         $_SESSION['player_two']= array("name"=>null, "id"=>null, "score"=>0);
         $_SESSION['match']= array("win_number"=>null, "id"=>null);
+    }
+
+    function returnNavbar(){
+        return array(
+                'userId' => $_SESSION['player_one']['id'],
+                'userName' => $_SESSION['player_one']['name']);
+    }
+
+    $app->get("/sign_out", function() use ($app){
+        clearSession();
         return $app['twig']->render('index.html.twig', array(
-                'navbar' => array(
-                        'userId' => $_SESSION['player_one']['id'],
-                        'userName' => $_SESSION['player_one']['name']
-                        ),
+                'navbar' => returnNavbar(),
                 'message' => array(
                         'title' => 'Player Signed Out!',
                         'text' => 'You have been signed out. Sign in or create a new account to play.',
@@ -66,10 +71,7 @@
     $app->get('/sign_in', function() use ($app) {
         return $app['twig']->render('sign_in.html.twig', array(
                 'players' => Player::getAllRealPlayers(),
-                'navbar' => array(
-                        'userId' => $_SESSION['player_one']['id'],
-                        'userName' => $_SESSION['player_one']['name']
-                )
+                'navbar' => returnNavbar(),
         ));
     });
 
@@ -177,33 +179,6 @@
     $app->get("/main_menu_select", function() use ($app){
       return $app['twig']->render('game_select.html.twig', array('navbar' => array('userId' => $_SESSION['player_one']['id'],'userName' => $_SESSION['player_one']['name']),'menu' => true  ));
     });
-
-
-    // $app->get("/start_game_pVc", function() use ($app){
-    //
-    //     $player1 = Player::findById($_SESSION['player_one']['id' ]);
-    //
-    //     $_SESSION['player_two']['name'] = 'HAL (The Computer)';
-    //     $_SESSION['player_two']['id' ]= -1;
-    //     $_SESSION['player_one']['score' ]= 0;
-    //     $_SESSION['player_two']['score' ]= 0;
-    //
-    //     $_SESSION['match']['win_number'] = -1;
-    //
-    //     return $app['twig']->render('game.html.twig', array(
-    //             'message' => array(
-    //                     'text' => 'Choose your hand!',
-    //                     'color' => 'blue-grey'
-    //             ),
-    //             'navbar' => array(
-    //                     'userId' => $_SESSION['player_one']['id'],
-    //                     'userName' => $_SESSION['player_one']['name']
-    //             ),
-    //             'player1' => $_SESSION['player_one'],
-    //             'player2' => $_SESSION['player_two'],
-    //             'match'=> $_SESSION['match']
-    //     ));
-    // });
 
     $app->get("/pVc_free_play", function() use ($app){
 
