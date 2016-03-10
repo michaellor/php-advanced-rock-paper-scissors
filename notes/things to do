@@ -1,0 +1,20 @@
+# Things left to do
+
+* [ ] About the developers page (including link on navbar)
+* [ ] Game rules page (also link on navbar)
+* [ ] Stats Page Layout Revamp
+* [ ] Css Design
+  * [ ] Pull in fancy buttons
+  * [ ] Hover effects?
+  * [ ] Pull in logo
+  * [ ] Change Background and Color pallette
+  * [ ] Polishing
+* [ ] Login switch dropdown to input form
+* [ ] Clean up code/ refactor
+* [ ] Clean database (w/ computer player) in final master
+* [ ] Clean up readme.md
+
+## Potential Things to do
+* [ ] Better AI Player
+* [ ] Leader Board
+* [ ] Avatars
