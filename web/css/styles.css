@@ -5,13 +5,25 @@ img {
 
 body {
     text-align: center;
+    background-image: url(/img/background.jpg);
 }
 
 .container {
-    background-color: grey;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    padding-left: 60px;
-    padding-right: 60px;
-    border-radius: 15px;
+    background-color: #dfbf9f;
+    border: 50px solid transparent;
+    padding: 35px;
+    border-image-source: url(/img/test.svg);
+    border-image-repeat: repeat;
+    border-image-slice: 70;
+}
+
+.button_img {
+    width: 100px;
+    height: auto;
+
+}
+
+#home_image {
+    width: 600px;
+    height: auto;
 }
