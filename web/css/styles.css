@@ -17,13 +17,119 @@ body {
     border-image-slice: 70;
 }
 
+div.inline {
+    float:left;
+}
+
 .button_img {
     width: 100px;
     height: auto;
-
+}
+.rock_img {
+    width: 120px;
+    height: 120px;
+    background-image:url(/img/button_rock.png);
+}
+.rock_img:hover {
+    background-image:url(/img/button_rock_hand.png);
+}
+.paper_img {
+    width: 120px;
+    height: 120px;
+    background-image:url(/img/button_paper.png);
+}
+.paper_img:hover {
+    background-image:url(/img/button_paper_hand.png);
+}
+.scissors_img {
+    width: 120px;
+    height: 120px;
+    background-image:url(/img/button_scissors.png);
+}
+.scissors_img:hover {
+    background-image:url(/img/button_scissors_hand.png);
+}
+.fire_img {
+    width: 120px;
+    height: 120px;
+    background-image:url(/img/button_fire.png);
+}
+.fire_img:hover {
+    background-image:url(/img/button_fire_hand.png);
+}
+.water_img {
+    width: 120px;
+    height: 120px;
+    background-image:url(/img/button_water.png);
+}
+.water_img:hover {
+    background-image:url(/img/button_water_hand.png);
+}
+.air_img {
+    width: 120px;
+    height: 120px;
+    background-image:url(/img/button_air.png);
+}
+.air_img:hover {
+    background-image:url(/img/button_air_hand.png);
+}
+.sponge_img {
+    width: 120px;
+    height: 120px;
+    background-image:url(/img/button_sponge.png);
+}
+.sponge_img:hover {
+    background-image:url(/img/button_sponge_hand.png);
 }
 
 #home_image {
     width: 600px;
     height: auto;
+}
+
+
+[data-tooltip] {
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+}
+
+/* Hide the tooltip content by default */
+[data-tooltip]:before,
+[data-tooltip]:after {
+  visibility: hidden;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Position tooltip above the element */
+[data-tooltip]:before {
+  position: absolute;
+  bottom: 150%;
+  left: -500px;
+  margin-bottom: 5px;
+  margin-left: 200px;
+  padding: 7px;
+  width: 160px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #000;
+  background-color: hsla(0, 0%, 20%, 0.9);
+  color: #fff;
+  content: attr(data-tooltip);
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+/* Show tooltip content on hover */
+[data-tooltip]:hover:before,
+[data-tooltip]:hover:after {
+  visibility: visible;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
 }
