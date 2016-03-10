@@ -13,7 +13,7 @@
         <div class="container">
 
 
-          <h1>Game Round</h1>
+          <h1>{{ game }}</h1>
           <hr>
 
           <div class="row">
@@ -68,7 +68,7 @@
             <div style="clear:both"></div>
               <br>
               <br>
-              <a href="/main_menu" class="btn btn-info center">QUIT</a>
+              <a href="/main_menu" class="btn grey center">QUIT</a>
             {% else %}
             <a href="/match/play_pVc/rock" data-tooltip="Rock"><div class="rock_img inline"></div></a>
             <a href="/match/play_pVc/paper" data-tooltip="Paper"><div class="paper_img inline"></div></a>
@@ -78,6 +78,9 @@
             <a href="/match/play_pVc/water" data-tooltip="Water"><div class="water_img inline"></div></a>
             <a href="/match/play_pVc/sponge" data-tooltip="Sponge"><div class="sponge_img inline"></div></a>
             <div style="clear:both"></div>
+              <br>
+              <br>
+              <a href="/main_menu" class="btn grey center">QUIT</a>
             {% endif %}
 
           {% endif %}

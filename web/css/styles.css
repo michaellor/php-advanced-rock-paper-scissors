@@ -87,7 +87,6 @@ div.inline {
     height: auto;
 }
 
-
 [data-tooltip] {
   position: relative;
   z-index: 2;
@@ -132,4 +131,15 @@ div.inline {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
   filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity: 1;
+     /*Navbar Styling*/
+nav {
+  height: 50px;
+}
+
+#nav_image {
+}
+
+     /*Menu Styling*/
+.menu_btn {
+  margin: 10px 10px;
 }
