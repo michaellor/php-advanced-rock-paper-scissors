@@ -5,16 +5,15 @@
 * [x] Change 'game round' on play page to ex. 'best of 3' Joe
 * [x] Menu back buttons Aundra
 * [ ] Stats Page Layout Revamp Michael (Joe on google Charts)
-* [ ] Stats Page add Win/Lose/Tie piechart (potentially Joe)
 * [ ] Css Design Michael
-  * [ ] Pull in fancy buttons
-  * [ ] Hover effects?
+  * [x] Pull in fancy buttons
+  * [x] Hover effects?
   * [x] Pull in logo
   * [x] Change Background and Color pallette
   * [ ] Polishing
 * [x] Login switch dropdown to input form
 * [ ] Refactor of twig pages
-* [ ] Make sure all tests still pass Aundra
+* [x] Make sure all tests still pass Aundra
 * [ ] Clean up code/ refactor
 * [ ] Clean database (w/ computer player) in final master
 * [ ] Clean up readme.md Nic
@@ -23,6 +22,7 @@
 * [ ] fonts
 
 ## Potential Things to do
+* [ ] Stats Page add Win/Lose/Tie piechart (potentially Joe)
 * [ ] Better AI Player
 * [ ] Leader Board
 * [ ] Avatars
