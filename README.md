@@ -1,42 +1,48 @@
-# _Rock Paper Scissors Advanced_
+# _Rock Paper Scissors: Advanced_
 
-#### _Advanced version of Paper Rock Scissors , {Date of current version}_
+#### _Advanced version of Paper Rock Scissors , 2016-03-10_
 
-#### By _** **_
+#### By _**Joe Karask, Michael Lor, Aundra Miller, Nic Netzel **_
 
 ## Description
 
-_{This is a detailed description of your application. Its purpose and usage.  Give as much detail as needed to explain what the application does, and any other information you want users or other developers to have. }_
+_This application allows users to play a 7-option version of Rock Paper Scissors versus a Computer Opponent either in an unlimited 'free-play' mode or in a 'best of _ ' match mode. Users can create a login and have access to their cumulative statistics for both rounds and matches, as well as a breakdown of the frequency of their choices_
 
 ## Setup/Installation Requirements
 
 * _Clone the Repository_
-* _in your terminal, run  "composer install"   to get silex and twig_
-* _start your php sever in the "web" folder_
-* _x _
-* _x _
+* _in your terminal, run "composer install"   to get silex and twig_
+* _start your php server in the "web" folder_
+* _unzip and install the database contained in 'rps.zip'_
+* _once the database is installed check to make sure the 'players' table contains a record with id = 0, and name = 'Computer'. This is necessary in order to collect statistics for the computer opponent_
 
-_{Leave nothing to chance! You want it to be easy for potential users, employers and collaborators to run your app. Do I need to run a server? How should I set up my databases? Is there other code this app depends on?}_
+
 
 ## Known Bugs
 
-_{Are there issues that have not yet been resolved that you want to let users know you know?  Outline any issues that would impact use of your application.  Share any workarounds that are in place. }
+
     *_An entry for the 'computer' must be added to the database column players with an id equal to 0_
+    *_Multi-player Mode is not currently Supported_
+    *_Match Mode statistics treat an unfinished/early exited game as a loss for the player_
 
-## Support and contact details
 
-_{Let people know what to do if they run into any issues or have questions, ideas or concerns.  Encourage them to contact you or make a contribution to the code.}_
 
 ## Technologies Used
 
-_
+
 * _Composer_
 * _Twig_
 * _Silex_
 * _PHP_
+*_PHPUnit_
+
 
 ### License
 
-*{Determine the license under which this application can be used.  See below for more details on licensing.}*
+*{an MIT licesnse (unless someone has a better option)}*
 
-Copyright (c) 2015 **_{List of contributors or company name}_**
+Copyright (c) 2016 **_Joe Karasek, Michael Lor, Aundra Miller, Nic Netzel_**
+
+Graphics Copyright (c) 2016 **_Michael Lor_**
+
+Original Idea for RPS-7 (c) 2003 **_David C. Lovelace_** [http://www.umop.com/rps7.htm]
