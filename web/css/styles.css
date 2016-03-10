@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'yoshisst';
+    src: url('/fonts/yoshisst.ttf');
+}
+
 img {
     height: 40px;
     width: auto;
@@ -6,6 +11,7 @@ img {
 body {
     text-align: center;
     background-image: url(/img/background.jpg);
+    font-family: 'yoshisst';
 }
 
 .container {
