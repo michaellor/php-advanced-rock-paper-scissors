@@ -13,24 +13,21 @@
 
       {% if menu %}
           {% if navbar.userId %}
-              <a href="/main_menu_select" class="menu_btn btn grey btn-info center">Player Vs. Computer</a>
+              <a href="/main_menu_select" class="menu_btn btn center">Game Modes</a>
               <br>
-              <a href="/main_menu" class="menu_btn btn grey btn-info center disabled">Player Vs. Player</a>
+              <a href="/showdata" class="menu_btn btn center">Player Stats</a>
               <br>
-              <a href="/showdata" class="menu_btn btn grey btn-info center">Player Stats</a>
+              <a href="/rules" class="menu_btn btn center">Rules</a>
               <br>
-              <a href="/rules" class="menu_btn btn grey btn-info center">Rules</a>
+              <a href="/about" class="menu_btn btn center">About</a>
               <br>
-              <a href="/about" class="menu_btn btn grey btn-info center">About</a>
+              <a href="/sign_out" class="menu_btn btn center">Sign Out</a>
               <br>
-              <a href="/sign_out" class="menu_btn btn grey btn-info center">Sign Out</a>
-              <br>
-              <a href="/" class="menu_btn btn btn-warning center">Back</a>
           {% else %}
-            <a href="/sign_in" class="menu_btn btn btn-info center">Sign-In</a>
+            <a href="/sign_in" class="menu_btn btn center">Sign-In</a>
           {% endif %}
       {% else %}
-        <a href="/main_menu" class="menu_btn btn btn-info grey center">Main Menu</a>
+        <a href="/main_menu" class="menu_btn btn center">Main Menu</a>
       {% endif %}
     </div>
   </body>

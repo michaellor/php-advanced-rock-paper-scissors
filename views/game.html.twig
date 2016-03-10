@@ -16,14 +16,96 @@
           <h1>{{ game }}</h1>
           <hr>
 
+          {% include '/includes/winner_message.html.twig'%}
+          <br>
           <div class="row">
 
-            <div class="col s5">
+            <div class="col s2">
               <h4>{{player1['name']}}</h4>
               <h4>Score: {{player1['score']}}</h4>
             </div>
 
-            <div class="col s5 offset-s2">
+            <div class="col s8">
+              {% if match['win_number'] == -1 %}
+                <div id="container">
+                  <div class="field" style="left: 380px; top: 195px;">
+                    <a href="/play_pVc/rock">
+                        <div class="rock_img inline tooltipped" data-position="bottom" data-tooltip="Rock"></div>
+                    </a>
+                  </div>
+                  <div class="field" style="left: 305px; top: 351px;">
+                    <a href="/play_pVc/paper">
+                        <div class="paper_img inline tooltipped" data-position="bottom" data-tooltip="Paper"></div>
+                    </a>
+                  </div>
+                  <div class="field" style="left: 135px; top: 390px;">
+                    <a href="/play_pVc/scissors">
+                        <div class="scissors_img inline tooltipped" data-position="bottom" data-tooltip="Scissors"></div>
+                    </a>
+                  </div>
+                  <div class="field" style="left: 0px; top: 282px;">
+                    <a href="/play_pVc/fire">
+                        <div class="fire_img inline tooltipped" data-position="bottom" data-tooltip="Fire"></div>
+                    </a>
+                  </div>
+                  <div class="field" style="left: 0px; top: 108px;">
+                    <a href="/play_pVc/air">
+                        <div class="air_img inline tooltipped" data-position="bottom" data-tooltip="Air"></div>
+                    </a>
+                  </div>
+                  <div class="field" style="left: 135px; top: 0px;">
+                    <a href="/play_pVc/water">
+                        <div class="water_img inline tooltipped" data-position="bottom" data-tooltip="Water"></div>
+                    </a>
+                  </div>
+                  <div class="field" style="left: 305px; top: 39px;">
+                    <a href="/play_pVc/sponge">
+                        <div class="sponge_img inline tooltipped" data-position="bottom" data-tooltip="Sponge"></div>
+                    </a>
+                  </div>
+                </div>
+              {% else %}
+              <div id="container">
+                <div class="field" style="left: 380px; top: 195px;">
+                  <a href="/match/play_pVc/rock">
+                      <div class="rock_img inline tooltipped" data-position="bottom" data-tooltip="Rock"></div>
+                  </a>
+                </div>
+                <div class="field" style="left: 305px; top: 351px;">
+                  <a href="/match/play_pVc/paper">
+                      <div class="paper_img inline tooltipped" data-position="bottom" data-tooltip="Paper"></div>
+                  </a>
+                </div>
+                <div class="field" style="left: 135px; top: 390px;">
+                  <a href="/match/play_pVc/scissors">
+                      <div class="scissors_img inline tooltipped" data-position="bottom" data-tooltip="Scissors"></div>
+                  </a>
+                </div>
+                <div class="field" style="left: 0px; top: 282px;">
+                  <a href="/match/play_pVc/fire">
+                      <div class="fire_img inline tooltipped" data-position="bottom" data-tooltip="Fire"></div>
+                  </a>
+                </div>
+                <div class="field" style="left: 0px; top: 108px;">
+                  <a href="/match/play_pVc/air">
+                      <div class="air_img inline tooltipped" data-position="bottom" data-tooltip="Air"></div>
+                  </a>
+                </div>
+                <div class="field" style="left: 135px; top: 0px;">
+                  <a href="/match/play_pVc/water">
+                      <div class="water_img inline tooltipped" data-position="bottom" data-tooltip="Water"></div>
+                  </a>
+                </div>
+                <div class="field" style="left: 305px; top: 39px;">
+                  <a href="/match/play_pVc/sponge">
+                      <div class="sponge_img inline tooltipped" data-position="bottom" data-tooltip="Sponge"></div>
+                  </a>
+                </div>
+              </div>
+              {% endif %}
+            </div>
+
+            <div class="col s2">
               <h4>{{player2['name']}}</h4>
               <h4>Score: {{player2['score']}}</h4>
             </div>
@@ -32,14 +114,12 @@
 
           <br>
 
-          {% include '/includes/winner_message.html.twig'%}
-          <br>
 
           {% if matchOver %}
 
             <div class="row">
               <div class="col s6 offset-s3">
-                <div class="card {{ matchOver.color }} darken-1">
+                <div class="card-panel {{ matchOver.color }} darken-1">
                   <div class="card-content white-text">
                     <span class="card-title center">{{ matchOver.text }}</span>
                     <div class="card-action">
@@ -56,74 +136,10 @@
             </div>
 
           {% else %}
-
-            {% if match['win_number'] == -1 %}
-            <a href="/play_pVc/rock">
-                <div class="rock_img inline tooltipped" data-position="bottom" data-tooltip="Rock"></div>
-            </a>
-
-            <a href="/play_pVc/paper">
-                <div class="paper_img inline tooltipped" data-position="bottom" data-tooltip="Paper"></div>
-            </a>
-
-            <a href="/play_pVc/scissors">
-                <div class="scissors_img inline tooltipped" data-position="bottom" data-tooltip="Scissors"></div>
-            </a>
-
-            <a href="/play_pVc/fire">
-                <div class="fire_img inline tooltipped" data-position="bottom" data-tooltip="Fire"></div>
-            </a>
-
-            <a href="/play_pVc/air">
-                <div class="air_img inline tooltipped" data-position="bottom" data-tooltip="Air"></div>
-            </a>
-
-            <a href="/play_pVc/water">
-                <div class="water_img inline tooltipped" data-position="bottom" data-tooltip="Water"></div>
-            </a>
-
-            <a href="/play_pVc/sponge">
-                <div class="sponge_img inline tooltipped" data-position="bottom" data-tooltip="Sponge"></div>
-            </a>
-
             <div style="clear:both"></div>
-              <br>
-              <br>
-              <a href="/main_menu" class="btn grey center">QUIT</a>
-
-            {% else %}
-            <a href="/match/play_pVc/rock">
-                <div class="rock_img inline tooltipped" data-position="bottom" data-tooltip="Rock"></div>
-            </a>
-
-            <a href="/match/play_pVc/paper">
-                <div class="paper_img inline tooltipped" data-position="bottom" data-tooltip="Paper"></div>
-            </a>
-
-            <a href="/match/play_pVc/scissors">
-                <div class="scissors_img inline tooltipped" data-position="bottom" data-tooltip="Scissors"></div>
-            </a>
-
-            <a href="/match/play_pVc/fire">
-                <div class="fire_img inline tooltipped" data-position="bottom" data-tooltip="Fire"></div>
-            </a>
-
-            <a href="/match/play_pVc/air">
-                <div class="air_img inline tooltipped" data-position="bottom" data-tooltip="Air"></div>
-            </a>
-
-            <a href="/match/play_pVc/water">
-                <div class="water_img inline tooltipped" data-position="bottom" data-tooltip="Water"></div>
-            </a>
-
-            <a href="/match/play_pVc/sponge">
-                <div class="sponge_img inline tooltipped" data-position="bottom" data-tooltip="Sponge"></div>
-            </a>
-            <div style="clear:both"></div>
-              <br>
-              <br>
-              <a href="/main_menu" class="btn grey center">QUIT</a>
-            {% endif %}
+            <br>
+            <br>
+            <a href="/main_menu" class="btn grey center">QUIT</a>
 
           {% endif %}
         </div>

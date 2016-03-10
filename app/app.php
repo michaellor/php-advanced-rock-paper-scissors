@@ -70,11 +70,7 @@
                         'userName' => $_SESSION['player_one']['name']),
                 'message' => array(
                         'title' => 'Player Signed Out!',
-                        'text' => 'You have been signed out. Sign in or create a new account to play.',
-                        'link1' => array(
-                                'link' => '/sign_in',
-                                'text' => 'Start'
-                                )
+                        'text' => 'You have been signed out. Sign in or create a new account to play.'
                         )
         ));
     });
@@ -105,11 +101,7 @@
                         ),
                         'message' => array(
                                 'title' => 'Welcome, ' . $player->getName() . '!',
-                                'text' => 'You are now signed in. Enjoy the game, good luck, and check out the stats page after you play a few rounds.',
-                                'link1' => array(
-                                    'link' => '/main_menu',
-                                    'text' => 'Start'
-                                )
+                                'text' => 'You are now signed in. Enjoy the game, good luck, and check out the stats page after you play a few rounds.'
                         )
                 ));
             }
@@ -292,7 +284,8 @@
                 ),
                 'player1' => $_SESSION['player_one'],
                 'player2' => $_SESSION['player_two'],
-                'match'=> $_SESSION['match']
+                'match'=> $_SESSION['match'],
+                'matchType' => 'match/'
         ));
     });
 
@@ -461,7 +454,14 @@
         $game_percent = Player::getTop10Percentage();
         $match_percent = Player::getTop10MatchPercentage();
 
-        return $app['twig']->render('leaderboard.html.twig', array('allplayers'=> $all_players, 'top10'=>$top_ten, 'top_match'=>$ten_matches, 'win_percent'=>$game_percent, 'match_percent'=>$match_percent));
+        return $app['twig']->render('leaderboard.html.twig', array(
+                'allplayers'=> $all_players,
+                'top10'=>$top_ten,
+                'top_match'=>$ten_matches,
+                'win_percent'=>$game_percent, 'match_percent'=>$match_percent,
+                'navbar' => array(
+                        'userId' => $_SESSION['player_one']['id'],
+                        'userName' => $_SESSION['player_one']['name'])));
     });
 
 

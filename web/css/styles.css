@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'ArmWrestler';
+    src: url('/fonts/ArmWrestler.ttf');
+}
+
 img {
     height: 40px;
     width: auto;
@@ -6,6 +11,8 @@ img {
 body {
     text-align: center;
     background-image: url(/img/background.jpg);
+    font-family: 'ArmWrestler';
+    font-size: 1.2em;
 }
 
 .container {
@@ -17,6 +24,15 @@ body {
     border-image-slice: 70;
 }
 
+.btn, .card_coloring {
+  background-color: #5D8050;
+}
+.btn:hover {
+  background-color: #62B646;
+}
+.card-action > a {
+  color: white !important;
+}
 .menu_btn {
   margin: 10px 10px;
 }
@@ -106,3 +122,31 @@ nav {
 .menu_btn {
   margin: 10px 10px;
 }
+
+#leaderboard {
+    padding-bottom: 45px;
+    border-bottom: 4px black solid;
+}
+
+.leaderboard-section {
+    padding: 1.5%;
+}
+
+div.leaderboard-section > ol > li {
+    text-align: left;
+    font-size: 1.2em;
+    padding: 5px;
+}
+
+#container {
+  width: 502px;
+  height: 512px;
+  position: relative;
+  margin: auto;
+ }
+ .container {
+   width: 90%;
+ }
+.field {
+   position: absolute;
+ }

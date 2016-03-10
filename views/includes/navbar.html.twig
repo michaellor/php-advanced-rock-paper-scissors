@@ -4,12 +4,14 @@
       <a href="/" class="brand-logo center"><img id="nav_image" src='/img/logo.png'></a>
       <ul id="nav-mobile">
         <li class="left"><a href="/main_menu">Main Menu</a></li>
-        <li class="left"><a href="/showdata">Stats</a></li>
+        {% if navbar.userId %}
+          <li class="left"><a href="/showdata">Stats</a></li>
+        {% endif %}
+        <li class="left"><a href="/leaderboard">Leaderboard</a></li>
         <li class="left"><a href="/rules">Rules</a></li>
         <li class="left"><a href="/about">About</a></li>
 
         {% if navbar.userId %}
-          <li class="right"><a href="/showdata">{{ navbar.userName }}</a></li>
           <li class="right"><a href="/sign_out">Sign Out</a></li>
         {% else %}
           <li class="right"><a href="/sign_in">Sign-In</a></li>
