@@ -20,6 +20,7 @@
 * [ ] Clean up readme.md Nic
 * [ ] Title attribute for hovering on elements
 * [ ] Switch create player and sign in left/right
+* [ ] fonts
 
 ## Potential Things to do
 * [ ] Better AI Player

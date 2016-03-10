@@ -268,7 +268,12 @@
 
         $_SESSION['match']['win_number'] = $_GET['win'];
         $game_number = $_GET['win'] + $_GET['win'] -1;
-        $game_title = 'Best of ' . $game_number;
+        if ($game_number == 1) {
+          $game_title = 'All or Nothing';
+        } else {
+          $game_title = 'Best of ' . $game_number;
+        }
+
         $_SESSION['match']['title'] = $game_title;
 
         $match = new Match ($_SESSION['player_one']['id' ], null, $_SESSION['player_two']['id'], null, null, null);

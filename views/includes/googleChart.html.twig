@@ -21,7 +21,12 @@
       var selector = document.getElementById('{{ chart.target }}');
       // Instantiate and draw our chart, passing in some options.
       var chart = new google.visualization.PieChart(selector);
-      chart.draw(data, {width: 400, height: 400, is3D: true});
+      chart.draw(data, {
+          backgroundColor: 'transparent',
+          width: 800,
+          height: 400,
+          is3D: true
+        });
     });
   }
 
@@ -39,7 +44,12 @@
       var selector = document.getElementById('{{ chart2.target }}');
       // Instantiate and draw our chart, passing in some options.
       var chart = new google.visualization.PieChart(selector);
-      chart.draw(data, {width: 800, height: 400, is3D: true});
+      chart.draw(data, {
+          backgroundColor: 'transparent',
+          width: 800,
+          height: 400,
+          is3D: true
+        });
     });
   }
 
