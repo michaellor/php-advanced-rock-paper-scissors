@@ -246,25 +246,28 @@
 			{
 				$all_players = Player::getAllRealPlayers();
 		        $player_records = array();
+				// function percentMatch($number)
+				// { return $number * 100 ;
+				// };
+				// function percentWin($number)
+				// { return $number * 100 ;
+				// };
+
 		        foreach($all_players as $player)
 		        {
 
 					if($player->getTotalGames() >15)
 					{
-						function percentWin($number)
-						{ return $number * 100 ;
-						}
-						$game_win_percent = percentWin ($this->getTotalWins()/$this->getTotalGames());
+
+						$game_win_percent = round(100 * ($player->getTotalWins()/$player->getTotalGames()));
 					}else {
 						$game_win_percent = 0;
 					}
 
 					if($player->getTotalMatches() >5)
 					{
-						function percentMatch($number)
-						{ return $number * 100 ;
-						}
-						$match_win_percent = percentMatch ($this->getMatchWins()/$this->getTotalMatches());
+
+						$match_win_percent = round(100 * ($player->getMatchWins()/$player->getTotalMatches()));
 					}else {
 						$match_win_percent = 0;
 					}
@@ -346,7 +349,7 @@
 
 				function cmp_function3($a, $b){
 					if ($a['game_percent'] == $b['game_percent']) return 0;
-					return($a['game_percent'] > $b['match_percent']) ? -1 :1;
+					return($a['game_percent'] > $b['game_percent']) ? -1 :1;
 				}
 				uasort($all_players, "cmp_function3");
 
@@ -364,6 +367,30 @@
 
 
 				return $top_10_game_percent;
+			}
+			static function getTop10MatchPercentage(){
+				$all_players = Player::getPlayerRecords();
+
+				function cmp_function4($a, $b){
+					if ($a['match_percent'] == $b['match_percent']) return 0;
+					return($a['match_percent'] > $b['match_percent']) ? -1 :1;
+				}
+				uasort($all_players, "cmp_function4");
+
+				$top_10_match_percent = array();
+				$i =0;
+
+				foreach($all_players as $player)
+				{
+					if( $i< 10 && ($player['match_percent'] > 0)){
+						$rank = $player['name'] . ": " . $player['match_percent'] . "%";
+						array_push($top_10_match_percent, $rank);
+						$i++;
+					}
+				}
+
+
+				return $top_10_match_percent;
 			}
 	}
  ?>

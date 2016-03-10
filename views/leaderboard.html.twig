@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
-        <title>Super Rock Paper Scissors Fight!</title>
+        {% include './includes/header.html.twig' %}
     </head>
     <body>
 <h1>TEST LOOK</h1>
@@ -23,6 +22,13 @@
 <h2> Top Ten Game Winners by percentage</h2>
 <ol>
     {% for rank in win_percent %}
+    <li>{{rank}}</li>
+    {% endfor %}
+</ol>
+
+<h2> Top Ten Match Winners by percentage</h2>
+<ol>
+    {% for rank in match_percent %}
     <li>{{rank}}</li>
     {% endfor %}
 </ol>
