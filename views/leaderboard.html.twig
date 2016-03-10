@@ -6,36 +6,36 @@
     <body>
         {% include '/includes/navbar.html.twig' %}
         <div class="container">
-<h1>TEST LOOK</h1>
-<h2> Top Ten Winners</h2>
-<ol>
-    {% for rank in top10 %}
-    <li>{{rank}}</li>
-    {% endfor %}
-</ol>
+            <h1>TEST LOOK</h1>
+            <h2> Top Ten Winners</h2>
+            <ol>
+                {% for rank in top10 %}
+                <li>{{rank}}</li>
+                {% endfor %}
+            </ol>
 
-<h2> Top Ten Match Winners</h2>
-<ol>
-    {% for rank in top_match %}
-    <li>{{rank}}</li>
-    {% endfor %}
-</ol>
+            <h2> Top Ten Match Winners</h2>
+            <ol>
+                {% for rank in top_match %}
+                <li>{{rank}}</li>
+                {% endfor %}
+            </ol>
 
-<h2> Top Ten Game Winners by percentage</h2>
-<h4> (minimum 15 rounds played)</h4>
-<ol>
-    {% for rank in win_percent %}
-    <li>{{rank}}</li>
-    {% endfor %}
-</ol>
+            <h2> Top Ten Game Winners by percentage</h2>
+            <h4> (minimum 15 rounds played)</h4>
+            <ol>
+                {% for rank in win_percent %}
+                <li>{{rank}}</li>
+                {% endfor %}
+            </ol>
 
-<h2> Top Ten Match Winners by percentage</h2>
-<h4> (minimum 3 rounds played)</h4>
-<ol>
-    {% for rank in match_percent %}
-    <li>{{rank}}</li>
-    {% endfor %}
-</ol>
+            <h2> Top Ten Match Winners by percentage</h2>
+            <h4> (minimum 3 matches played)</h4>
+            <ol>
+                {% for rank in match_percent %}
+                <li>{{rank}}</li>
+                {% endfor %}
+            </ol>
 </div>
     </body>
 </html>

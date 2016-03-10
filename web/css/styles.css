@@ -90,6 +90,10 @@ div.inline {
     width: 600px;
     height: auto;
 }
+#cycle_img {
+    width:500px;
+    height: auto;
+}
 
 nav {
   height: 50px;
