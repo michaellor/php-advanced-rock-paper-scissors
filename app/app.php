@@ -292,7 +292,8 @@
                 ),
                 'player1' => $_SESSION['player_one'],
                 'player2' => $_SESSION['player_two'],
-                'match'=> $_SESSION['match']
+                'match'=> $_SESSION['match'],
+                'matchType' => 'match/'
         ));
     });
 
@@ -461,7 +462,14 @@
         $game_percent = Player::getTop10Percentage();
         $match_percent = Player::getTop10MatchPercentage();
 
-        return $app['twig']->render('leaderboard.html.twig', array('allplayers'=> $all_players, 'top10'=>$top_ten, 'top_match'=>$ten_matches, 'win_percent'=>$game_percent, 'match_percent'=>$match_percent));
+        return $app['twig']->render('leaderboard.html.twig', array(
+                'allplayers'=> $all_players,
+                'top10'=>$top_ten,
+                'top_match'=>$ten_matches,
+                'win_percent'=>$game_percent, 'match_percent'=>$match_percent,
+                'navbar' => array(
+                        'userId' => $_SESSION['player_one']['id'],
+                        'userName' => $_SESSION['player_one']['name'])));
     });
 
 
