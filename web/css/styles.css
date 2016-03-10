@@ -154,3 +154,8 @@ div.leaderboard-section > ol > li {
  nav .nav-wrapper {
    height: 120%;
  }
+
+.faces {
+     width: 100px;
+     height: auto;
+ }
