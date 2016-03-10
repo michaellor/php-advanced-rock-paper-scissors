@@ -449,8 +449,9 @@
         $top_ten = Player::getTop10Wins();
         $all_players = Player::getPlayerRecords();
         $ten_matches = Player::getTop10Matches();
+        $game_percent = Player::getTop10Percentage();
 
-        return $app['twig']->render('TESTER.html.twig', array('allplayers'=> $all_players, 'top10'=>$top_ten, 'top_match'=>$ten_matches));
+        return $app['twig']->render('TESTER.html.twig', array('allplayers'=> $all_players, 'top10'=>$top_ten, 'top_match'=>$ten_matches, 'win_percent'=>$game_percent));
     });
 
 

@@ -248,7 +248,30 @@
 		        $player_records = array();
 		        foreach($all_players as $player)
 		        {
-		            $player_record = array(
+
+					if($player->getTotalGames() >15)
+					{
+						function percentWin($number)
+						{ return $number * 100 ;
+						}
+						$game_win_percent = percentWin ($this->getTotalWins()/$this->getTotalGames());
+					}else {
+						$game_win_percent = 0;
+					}
+
+					if($player->getTotalMatches() >5)
+					{
+						function percentMatch($number)
+						{ return $number * 100 ;
+						}
+						$match_win_percent = percentMatch ($this->getMatchWins()/$this->getTotalMatches());
+					}else {
+						$match_win_percent = 0;
+					}
+
+
+					$player_record = array(
+						'id'=>$player->getId(),
 						'name'=>$player->getName(),
 		                'games'=> $player->getTotalGames(),
 		                'match_wins'=>$player->getMatchWins(),
@@ -256,7 +279,9 @@
 		                'wins'=> $player->getTotalWins(),
 		                'losses'=> $player->getTotalLosses(),
 		                'ties'=>$player->getTotalTies(),
-		                'matches'=>$player->getTotalMatches()
+		                'matches'=>$player->getTotalMatches(),
+						'game_percent'=>$game_win_percent,
+						'match_percent'=>$match_win_percent
 
 		            );
 
@@ -314,6 +339,31 @@
 
 
 				return $top_10_match_wins;
+			}
+
+			static function getTop10Percentage(){
+				$all_players = Player::getPlayerRecords();
+
+				function cmp_function3($a, $b){
+					if ($a['game_percent'] == $b['game_percent']) return 0;
+					return($a['game_percent'] > $b['match_percent']) ? -1 :1;
+				}
+				uasort($all_players, "cmp_function3");
+
+				$top_10_game_percent = array();
+				$i =0;
+
+				foreach($all_players as $player)
+				{
+					if( $i< 10 && ($player['game_percent'] > 0)){
+						$rank = $player['name'] . ": " . $player['game_percent'] . "%";
+						array_push($top_10_game_percent, $rank);
+						$i++;
+					}
+				}
+
+
+				return $top_10_game_percent;
 			}
 	}
  ?>
