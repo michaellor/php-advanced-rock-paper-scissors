@@ -1,9 +1,12 @@
 {% if navbar %}
   <nav>
-    <div class="nav-wrapper blue darken-2 z-depth-4">
+    <div class="nav-wrapper grey darken-2 z-depth-4">
       <a href="/" class="brand-logo center">Advanced RPS-7</a>
       <ul id="nav-mobile">
         <li class="left"><a href="/main_menu">Main Menu</a></li>
+        <li class="left"><a href="/showdata">Stats</a></li>
+        <li class="left"><a href="/rules">Rules</a></li>
+        <li class="left"><a href="/about">About</a></li>
 
         {% if navbar.userId %}
           <li class="right"><a href="/showdata">{{ navbar.userName }}</a></li>

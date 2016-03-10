@@ -43,6 +43,24 @@
         ));
     });
 
+    $app->get("/about", function() use ($app){
+        return $app['twig']->render('about.html.twig', array(
+                'navbar' => array(
+                        'userId' => $_SESSION['player_one']['id'],
+                        'userName' => $_SESSION['player_one']['name']
+                )
+        ));
+    });
+
+    $app->get("/rules", function() use ($app){
+        return $app['twig']->render('rules.html.twig', array(
+                'navbar' => array(
+                        'userId' => $_SESSION['player_one']['id'],
+                        'userName' => $_SESSION['player_one']['name']
+                )
+        ));
+    });
+
     $app->get("/sign_out", function() use ($app){
         $_SESSION['player_one']= array("name"=>null, "id"=>null, "score"=>0);
         $_SESSION['player_two']= array("name"=>null, "id"=>null, "score"=>0);
@@ -177,33 +195,6 @@
     $app->get("/main_menu_select", function() use ($app){
       return $app['twig']->render('game_select.html.twig', array('navbar' => array('userId' => $_SESSION['player_one']['id'],'userName' => $_SESSION['player_one']['name']),'menu' => true  ));
     });
-
-
-    // $app->get("/start_game_pVc", function() use ($app){
-    //
-    //     $player1 = Player::findById($_SESSION['player_one']['id' ]);
-    //
-    //     $_SESSION['player_two']['name'] = 'HAL (The Computer)';
-    //     $_SESSION['player_two']['id' ]= -1;
-    //     $_SESSION['player_one']['score' ]= 0;
-    //     $_SESSION['player_two']['score' ]= 0;
-    //
-    //     $_SESSION['match']['win_number'] = -1;
-    //
-    //     return $app['twig']->render('game.html.twig', array(
-    //             'message' => array(
-    //                     'text' => 'Choose your hand!',
-    //                     'color' => 'blue-grey'
-    //             ),
-    //             'navbar' => array(
-    //                     'userId' => $_SESSION['player_one']['id'],
-    //                     'userName' => $_SESSION['player_one']['name']
-    //             ),
-    //             'player1' => $_SESSION['player_one'],
-    //             'player2' => $_SESSION['player_two'],
-    //             'match'=> $_SESSION['match']
-    //     ));
-    // });
 
     $app->get("/pVc_free_play", function() use ($app){
 
