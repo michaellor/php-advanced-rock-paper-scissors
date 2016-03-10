@@ -103,9 +103,7 @@
 				$losses = $query->fetchAll(PDO::FETCH_ASSOC);
 				return count($losses);
 			}
-			// $types comes in as an array of the potential hand types i.e. ['rock','paper','scissors']
-			// getHands($types) will return an associative array with data for given player, i.e. ['rock' => 1, 'paper' => 8, 'scissors' => 5]
-			// default array is set to the whole range of options, currently 7 different types
+
 			function getTotalHands($types = ['rock', 'paper', 'scissors', 'fire', 'air', 'water', 'sponge'])
 			{
 				$query = $GLOBALS['DB']->query("SELECT *
@@ -226,7 +224,7 @@
 
 			static function deleteAll()
 	        {
-	            $GLOBALS['DB']->exec('DELETE FROM players;');
+	            $GLOBALS['DB']->exec('DELETE FROM players WHERE id != 0;');
 	        }
 
 			static function deleteAllRounds()
