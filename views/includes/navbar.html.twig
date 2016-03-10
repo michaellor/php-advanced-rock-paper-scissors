@@ -7,13 +7,11 @@
         {% if navbar.userId %}
           <li class="left"><a href="/showdata">Stats</a></li>
         {% endif %}
-        <li class="left"><a href="/showdata">Stats</a></li>
         <li class="left"><a href="/leaderboard">Leaderboard</a></li>
         <li class="left"><a href="/rules">Rules</a></li>
         <li class="left"><a href="/about">About</a></li>
 
         {% if navbar.userId %}
-          <li class="right"><a href="/showdata">{{ navbar.userName }}</a></li>
           <li class="right"><a href="/sign_out">Sign Out</a></li>
         {% else %}
           <li class="right"><a href="/sign_in">Sign-In</a></li>
