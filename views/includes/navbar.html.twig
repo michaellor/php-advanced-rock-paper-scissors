@@ -4,7 +4,9 @@
       <a href="/" class="brand-logo center"><img id="nav_image" src='/img/logo.png'></a>
       <ul id="nav-mobile">
         <li class="left"><a href="/main_menu">Main Menu</a></li>
-        <li class="left"><a href="/showdata">Stats</a></li>
+        {% if navbar.userId %}
+          <li class="left"><a href="/showdata">Stats</a></li>
+        {% endif %}
         <li class="left"><a href="/rules">Rules</a></li>
         <li class="left"><a href="/about">About</a></li>
 

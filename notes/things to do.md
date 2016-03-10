@@ -4,7 +4,8 @@
 * [x] Game rules page (also link on navbar) Joe Nic on Copy
 * [x] Change 'game round' on play page to ex. 'best of 3' Joe
 * [x] Menu back buttons Aundra
-* [ ] Stats Page Layout Revamp Michael (Joe on google Charts)
+* [ ] Stats Page Layout Revamp Michael
+* [x] Joe on google Charts
 * [ ] Css Design Michael
   * [x] Pull in fancy buttons
   * [x] Hover effects?
