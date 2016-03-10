@@ -13,14 +13,14 @@ _This application allows users to play a 7-option version of Rock Paper Scissors
 * _Clone the Repository_
 * _in your terminal, run "composer install"   to get silex and twig_
 * _start your php server in the "web" folder_
-* _unzip and install the database contained in 'rps.zip' _
+* _unzip and install the database contained in 'rps.zip'_
 * _once the database is installed check to make sure the 'players' table contains a record with id = 0, and name = 'Computer'. This is necessary in order to collect statistics for the computer opponent_
 
 
 
 ## Known Bugs
 
-_
+
     *_An entry for the 'computer' must be added to the database column players with an id equal to 0_
     *_Multi-player Mode is not currently Supported_
     *_Match Mode statistics treat an unfinished/early exited game as a loss for the player_
@@ -42,5 +42,7 @@ _
 *{an MIT licesnse (unless someone has a better option)}*
 
 Copyright (c) 2016 **_Joe Karasek, Michael Lor, Aundra Miller, Nic Netzel_**
+
 Graphics Copyright (c) 2016 **_Michael Lor_**
+
 Original Idea for RPS-7 (c) 2003 **_David C. Lovelace_** [http://www.umop.com/rps7.htm]
