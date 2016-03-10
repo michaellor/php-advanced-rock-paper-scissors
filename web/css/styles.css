@@ -27,3 +27,12 @@ body {
     width: 600px;
     height: auto;
 }
+
+
+     /*Navbar Styling*/
+nav {
+  height: 50px;
+}
+
+#nav_image {
+}
