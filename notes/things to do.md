@@ -20,6 +20,7 @@
 * [ ] Title attribute for hovering on elements
 * [ ] Switch create player and sign in left/right
 * [ ] fonts
+* [ ] Breaks at no player signed in, remove to stats page from navbar when no one is signed in
 
 ## Potential Things to do
 * [ ] Stats Page add Win/Lose/Tie piechart (potentially Joe)

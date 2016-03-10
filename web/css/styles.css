@@ -108,3 +108,17 @@ nav {
 .menu_btn {
   margin: 10px 10px;
 }
+
+
+#container {
+  width: 502px;
+  height: 512px;
+  position: relative;
+  margin: auto;
+ }
+ .container {
+   width: 90%;
+ }
+.field {
+   position: absolute;
+ }

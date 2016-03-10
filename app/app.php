@@ -292,7 +292,8 @@
                 ),
                 'player1' => $_SESSION['player_one'],
                 'player2' => $_SESSION['player_two'],
-                'match'=> $_SESSION['match']
+                'match'=> $_SESSION['match'],
+                'matchType' => 'match/'
         ));
     });
 
