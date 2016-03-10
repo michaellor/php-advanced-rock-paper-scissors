@@ -38,8 +38,7 @@
         return $app['twig']->render('index.html.twig', array(
                 'navbar' => array(
                         'userId' => $_SESSION['player_one']['id'],
-                        'userName' => $_SESSION['player_one']['name']
-                )
+                        'userName' => $_SESSION['player_one']['name'])
         ));
     });
 
@@ -68,8 +67,7 @@
         return $app['twig']->render('index.html.twig', array(
                 'navbar' => array(
                         'userId' => $_SESSION['player_one']['id'],
-                        'userName' => $_SESSION['player_one']['name']
-                        ),
+                        'userName' => $_SESSION['player_one']['name']),
                 'message' => array(
                         'title' => 'Player Signed Out!',
                         'text' => 'You have been signed out. Sign in or create a new account to play.',
@@ -86,8 +84,7 @@
                 'players' => Player::getAllRealPlayers(),
                 'navbar' => array(
                         'userId' => $_SESSION['player_one']['id'],
-                        'userName' => $_SESSION['player_one']['name']
-                )
+                        'userName' => $_SESSION['player_one']['name'])
         ));
     });
 

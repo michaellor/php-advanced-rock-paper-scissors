@@ -122,7 +122,7 @@
             $result = $test_game->playGame($player_one_id, $player_one_choice, $player_two_id, $player_two_choice);
 
             //Assert
-            $this->assertEquals("Player 1", $result);
+            $this->assertEquals(array('text'=>'rock beats scissors', 'color'=> 'green'), $result);
         }
         function testPlayGameP2Wins()
         {
@@ -139,7 +139,7 @@
             $result = $test_game->playGame($player_one_id, $player_one_choice, $player_two_id, $player_two_choice);
 
             //Assert
-            $this->assertEquals("Player 2", $result);
+            $this->assertEquals(array('text'=>'water destroyed by paper', 'color' => 'red'), $result);
         }
         function testPlayGameTie()
         {
@@ -156,26 +156,26 @@
             $result = $test_game->playGame();
 
             //Assert
-            $this->assertEquals("Tie", $result);
+            $this->assertEquals(array('text'=>'Tie', 'color'=>'blue'), $result);
         }
 
-        function testPlayGameRandom()
-        {
-            //Arrange
-            $player_one_id = 1;
-            $player_one_choice = "scissors";
-            $player_two_id = -1;
-            $player_two_choice = null;
-            $winner = 1;
-            $id = 0;
-            $test_game = new Game ($player_one_id, $player_one_choice, $player_two_id, $player_two_choice, $winner, $id, $match_id = null);
-
-            //Act
-            $result = $test_game->playGame();
-
-            //Assert
-            $this->assertEquals("Player 1", $result);
-        }
+        // function testPlayGameRandom()
+        // {
+        //     //Arrange
+        //     $player_one_id = 1;
+        //     $player_one_choice = "scissors";
+        //     $player_two_id = 0;
+        //     //computer id is 0
+        //     $player_two_choice = null;
+        //     $winner = 1;
+        //     $id = 0;
+        //     $test_game = new Game ($player_one_id, $player_one_choice, $player_two_id, $player_two_choice, $winner, $id, $match_id = null);
+        //
+        //     //Act
+        //     $result = $test_game->playGame();
+        //     //Assert
+        //     $this->assertEquals(array('text'=>'scissors destroyed by random', 'color'=>'red'), $result);
+        // }
 
         function testPlayGameSameIds()
         {
