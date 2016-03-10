@@ -1,7 +1,7 @@
 # Things left to do
 
-* [ ] About the developers page (including link on navbar) Joe Nic on Copy
-* [ ] Game rules page (also link on navbar) Joe Nic on Copy
+* [x] About the developers page (including link on navbar) Joe Nic on Copy
+* [x] Game rules page (also link on navbar) Joe Nic on Copy
 * [ ] Change 'game round' on play page to ex. 'best of 3' Joe
 * [ ] Menu back buttons Aundra
 * [ ] Stats Page Layout Revamp Michael (Joe on google Charts)
@@ -18,6 +18,8 @@
 * [ ] Clean up code/ refactor
 * [ ] Clean database (w/ computer player) in final master
 * [ ] Clean up readme.md Nic
+* [ ] Title attribute for hovering on elements
+* [ ] Switch create player and sign in left/right
 
 ## Potential Things to do
 * [ ] Better AI Player

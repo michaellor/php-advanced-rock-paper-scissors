@@ -209,6 +209,7 @@
         $_SESSION['match']['id']= null;
 
         return $app['twig']->render('game.html.twig', array(
+                'game' => 'Free Play',
                 'message' => array(
                         'text' => 'Choose your hand!',
                         'color' => 'blue-grey'
@@ -223,27 +224,63 @@
         ));
     });
 
-    $app->get("/play_pVc/{choice}", function($choice) use ($app){
-        $player_one_id = $_SESSION['player_one']['id'];
-        $player_one_choice = $choice;
-        $player_two_id = $_SESSION['player_two']['id'];
-        $player_two_choice = '';
-        $match_id = $_SESSION['match']['id'];
-        $new_game = new Game ($player_one_id, $player_one_choice, $player_two_id, $player_two_choice, null, null, $match_id);
-        $result = $new_game->playGame();
+    // $app->get("/play_pVc/{choice}", function($choice) use ($app){
+    //     $player_one_id = $_SESSION['player_one']['id'];
+    //     $player_one_choice = $choice;
+    //     $player_two_id = $_SESSION['player_two']['id'];
+    //     $player_two_choice = '';
+    //     $match_id = $_SESSION['match']['id'];
+    //     $new_game = new Game ($player_one_id, $player_one_choice, $player_two_id, $player_two_choice, null, null, $match_id);
+    //     $result = $new_game->playGame();
+    //
+    //     if ($new_game->getWinner() == $player_one_id)
+    //     {
+    //         $_SESSION['player_one']['score'] = $_SESSION['player_one']['score'] + 1;
+    //     }
+    //     elseif ($new_game->getWinner() == $player_two_id) {
+    //         $_SESSION['player_two']['score'] = $_SESSION['player_two']['score'] + 1;
+    //     }
+    //     return $app['twig']->render('game.html.twig', array(
+    //             'game' => 'Free Play',
+    //             'message'=> $result,
+    //             'navbar' => array(
+    //                     'userId' => $_SESSION['player_one']['id'],
+    //                     'userName' => $_SESSION['player_one']['name']
+    //             ),
+    //             'player1' => $_SESSION['player_one'],
+    //             'player2' => $_SESSION['player_two'],
+    //             'match'=> $_SESSION['match']
+    //     ));
+    // });
 
-        if ($new_game->getWinner() == $player_one_id)
-        {
-            $_SESSION['player_one']['score'] = $_SESSION['player_one']['score'] + 1;
-        }
-        elseif ($new_game->getWinner() == $player_two_id) {
-            $_SESSION['player_two']['score'] = $_SESSION['player_two']['score'] + 1;
-        }
+    //MATCH PLAY VERSUS COMPUTER
+    $app->get("/pVc_match", function() use ($app){
+
+        $player1 = Player::findById($_SESSION['player_one']['id' ]);
+
+        $_SESSION['player_two']['name'] = 'HAL (The Computer)';
+        $_SESSION['player_two']['id' ]= 0;
+        $_SESSION['player_one']['score' ]= 0;
+        $_SESSION['player_two']['score' ]= 0;
+
+        $_SESSION['match']['win_number'] = $_GET['win'];
+        $game_number = $_GET['win'] + $_GET['win'] -1;
+        $game_title = 'Best of ' . $game_number;
+        $_SESSION['match']['title'] = $game_title;
+
+        $match = new Match ($_SESSION['player_one']['id' ], null, $_SESSION['player_two']['id'], null, null, null);
+        $match->saveMatch();
+        $_SESSION['match']['id'] = $match->getId();
+
         return $app['twig']->render('game.html.twig', array(
-                'message'=> $result,
+                'game' => $game_title,
+                'message' => array(
+                      'text' => 'Choose your hand!',
+                      'color' => 'blue-grey'
+                ),
                 'navbar' => array(
-                        'userId' => $_SESSION['player_one']['id'],
-                        'userName' => $_SESSION['player_one']['name']
+                      'userId' => $_SESSION['player_one']['id'],
+                      'userName' => $_SESSION['player_one']['name']
                 ),
                 'player1' => $_SESSION['player_one'],
                 'player2' => $_SESSION['player_two'],
@@ -251,7 +288,6 @@
         ));
     });
 
-    //MATCH PLAY VERSUS COMPUTER
     $app->get("/match/play_pVc/{choice}", function($choice) use ($app){
         $player_one_id = $_SESSION['player_one']['id'];
         $player_one_choice = $choice;
@@ -260,6 +296,7 @@
         $match_id = $_SESSION['match']['id'];
 
         $winner = $_SESSION['match']['win_number'];
+        $game_name = 'Best of ' . ($winner * 2 - 1);
 
         $new_game = new Game ($player_one_id, $player_one_choice, $player_two_id, $player_two_choice, null, null, $match_id);
         $result = $new_game->playGame();
@@ -274,6 +311,7 @@
                     $match = Match::findById($_SESSION['match']['id']);
                     $match->update($_SESSION['player_one']['score'], $_SESSION['player_two']['score'], $_SESSION['player_one']['id']);
                     return $app['twig']->render('game.html.twig', array(
+                            'game' => $_SESSION['match']['title'],
                             'message'=> $result,
                             // 'matchOver' => $match_result,
                             'matchOver' => array(
@@ -309,6 +347,7 @@
                         $match->update($_SESSION['player_one']['score'], $_SESSION['player_two']['score'], $_SESSION['player_two']['id']);
 
                         return $app['twig']->render('game.html.twig', array(
+                                'game' => $_SESSION['match']['title'],
                                 'message'=> $result,
                                 'matchOver' => array(
                                         'color' => 'red',
@@ -336,6 +375,7 @@
 
 
                 return $app['twig']->render('game.html.twig', array(
+                        'game' => $_SESSION['match']['title'],
                         'message'=> $result,
                         'navbar' => array(
                                 'userId' => $_SESSION['player_one']['id'],
@@ -347,36 +387,6 @@
                 ));
 
 
-    });
-
-    $app->get("/pVc_match", function() use ($app){
-
-        $player1 = Player::findById($_SESSION['player_one']['id' ]);
-
-        $_SESSION['player_two']['name'] = 'HAL (The Computer)';
-        $_SESSION['player_two']['id' ]= 0;
-        $_SESSION['player_one']['score' ]= 0;
-        $_SESSION['player_two']['score' ]= 0;
-
-        $_SESSION['match']['win_number'] = $_GET['win'];
-
-        $match = new Match ($_SESSION['player_one']['id' ], null, $_SESSION['player_two']['id'], null, null, null);
-        $match->saveMatch();
-        $_SESSION['match']['id'] = $match->getId();
-
-        return $app['twig']->render('game.html.twig', array(
-                'message' => array(
-                        'text' => 'Choose your hand!',
-                        'color' => 'blue-grey'
-                ),
-                'navbar' => array(
-                        'userId' => $_SESSION['player_one']['id'],
-                        'userName' => $_SESSION['player_one']['name']
-                ),
-                'player1' => $_SESSION['player_one'],
-                'player2' => $_SESSION['player_two'],
-                'match'=> $_SESSION['match']
-        ));
     });
 
     $app->patch("/match_results", function() use ($app){
