@@ -120,7 +120,7 @@ nav {
     padding: 1.5%;
 }
 
-body > div.container > div > ol > li {
+div.leaderboard-section > ol > li {
     text-align: left;
     font-size: 1.2em;
     padding: 5px;

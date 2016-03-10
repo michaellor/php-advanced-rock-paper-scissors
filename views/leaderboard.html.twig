@@ -7,76 +7,82 @@
         {% include '/includes/navbar.html.twig' %}
         <div class="container">
             <h1 id="leaderboard">RPS-7 Leaderboard</h1>
+            <div class="row">
+                <div class="col s12 m12 l6">
+                    <div class="leaderboard-section">
+                        <h2> Top 10 Winners</h2>
+                        <ol>
+                            {% for key, rank in top10 %}
+                                {% if key == 0 %}
+                                <li class="trophe"><img src="/img/trophy1.svg" alt="first place"/> {{rank}}</li>
+                                {% elseif key == 1 %}
+                                <li class="trophe"><img src="/img/trophy2.svg" alt="second place"/>{{rank}}</li>
+                                {% elseif key == 2 %}
+                                <li class="trophe"><img src="/img/trophy3.svg" alt="third place"/>{{rank}}</li>
+                                {% else %}
+                                <li>{{rank}}</li>
+                                {% endif %}
+                            {% endfor %}
+                        </ol>
+                    </div>
 
-            <div class="leaderboard-section">
-                <h2> Top 10 Winners</h2>
-                <ol>
-                    {% for key, rank in top10 %}
-                        {% if key == 0 %}
-                        <li class="trophe"><img src="/img/trophy1.svg" alt="first place"/> {{rank}}</li>
-                        {% elseif key == 1 %}
-                        <li class="trophe"><img src="/img/trophy2.svg" alt="second place"/>{{rank}}</li>
-                        {% elseif key == 2 %}
-                        <li class="trophe"><img src="/img/trophy3.svg" alt="third place"/>{{rank}}</li>
-                        {% else %}
-                        <li>{{rank}}</li>
-                        {% endif %}
-                    {% endfor %}
-                </ol>
-            </div>
+                    <div class="leaderboard-section">
+                        <h3> Top 10 Game Winners by percentage</h3>
+                        <h5> (minimum 15 rounds played)</h5>
+                        <ol>
+                            {% for key, rank in win_percent %}
+                                {% if key == 0 %}
+                                <li class="trophe"><img src="/img/trophy1.svg" alt="first place"/> {{rank}}</li>
+                                {% elseif key == 1 %}
+                                <li class="trophe"><img src="/img/trophy2.svg" alt="second place"/>{{rank}}</li>
+                                {% elseif key == 2 %}
+                                <li class="trophe"><img src="/img/trophy3.svg" alt="third place"/>{{rank}}</li>
+                                {% else %}
+                                <li>{{rank}}</li>
+                                {% endif %}
+                            {% endfor %}
+                        </ol>
+                    </div>
 
-            <div class="leaderboard-section">
-                <h2> Top 10 Match Winners</h2>
-                <ol>
-                    {% for key, rank in top_match %}
-                        {% if key == 0 %}
-                        <li class="trophe"><img src="/img/trophy1.svg" alt="first place"/> {{rank}}</li>
-                        {% elseif key == 1 %}
-                        <li class="trophe"><img src="/img/trophy2.svg" alt="second place"/>{{rank}}</li>
-                        {% elseif key == 2 %}
-                        <li class="trophe"><img src="/img/trophy3.svg" alt="third place"/>{{rank}}</li>
-                        {% else %}
-                        <li>{{rank}}</li>
-                        {% endif %}
-                    {% endfor %}
-                </ol>
-            </div>
+                </div>
 
-            <div class="leaderboard-section">
-                <h3> Top 10 Game Winners by percentage</h3>
-                <h5> (minimum 15 rounds played)</h5>
-                <ol>
-                    {% for key, rank in win_percent %}
-                        {% if key == 0 %}
-                        <li class="trophe"><img src="/img/trophy1.svg" alt="first place"/> {{rank}}</li>
-                        {% elseif key == 1 %}
-                        <li class="trophe"><img src="/img/trophy2.svg" alt="second place"/>{{rank}}</li>
-                        {% elseif key == 2 %}
-                        <li class="trophe"><img src="/img/trophy3.svg" alt="third place"/>{{rank}}</li>
-                        {% else %}
-                        <li>{{rank}}</li>
-                        {% endif %}
-                    {% endfor %}
-                </ol>
-            </div>
+                <div class="col s12 m12 l6">
+                    <div class="leaderboard-section">
+                        <h2> Top 10 Match Winners</h2>
+                        <ol>
+                            {% for key, rank in top_match %}
+                                {% if key == 0 %}
+                                <li class="trophe"><img src="/img/trophy1.svg" alt="first place"/> {{rank}}</li>
+                                {% elseif key == 1 %}
+                                <li class="trophe"><img src="/img/trophy2.svg" alt="second place"/>{{rank}}</li>
+                                {% elseif key == 2 %}
+                                <li class="trophe"><img src="/img/trophy3.svg" alt="third place"/>{{rank}}</li>
+                                {% else %}
+                                <li>{{rank}}</li>
+                                {% endif %}
+                            {% endfor %}
+                        </ol>
+                    </div>
 
-            <div class="leaderboard-section">
-                <h3> Top 10 Match Winners by percentage</h3>
-                <h5> (minimum 3 rounds played)</h5>
-                <ol>
-                    {% for key, rank in match_percent %}
-                        {% if key == 0 %}
-                        <li class="trophe"><img src="/img/trophy1.svg" alt="first place"/> {{rank}}</li>
-                        {% elseif key == 1 %}
-                        <li class="trophe"><img src="/img/trophy2.svg" alt="second place"/>{{rank}}</li>
-                        {% elseif key == 2 %}
-                        <li class="trophe"><img src="/img/trophy3.svg" alt="third place"/>{{rank}}</li>
-                        {% else %}
-                        <li>{{rank}}</li>
-                        {% endif %}
-                    {% endfor %}
-                </ol>
-            </div>
+                    <div class="leaderboard-section">
+                        <h3> Top 10 Match Winners by percentage</h3>
+                        <h5> (minimum 3 rounds played)</h5>
+                        <ol>
+                            {% for key, rank in match_percent %}
+                                {% if key == 0 %}
+                                <li class="trophe"><img src="/img/trophy1.svg" alt="first place"/> {{rank}}</li>
+                                {% elseif key == 1 %}
+                                <li class="trophe"><img src="/img/trophy2.svg" alt="second place"/>{{rank}}</li>
+                                {% elseif key == 2 %}
+                                <li class="trophe"><img src="/img/trophy3.svg" alt="third place"/>{{rank}}</li>
+                                {% else %}
+                                <li>{{rank}}</li>
+                                {% endif %}
+                            {% endfor %}
+                        </ol>
+                    </div>
+                </div>
+            </div>        
         </div>
     </body>
 </html>
