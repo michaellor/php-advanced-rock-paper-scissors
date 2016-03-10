@@ -125,3 +125,16 @@ div.leaderboard-section > ol > li {
     font-size: 1.2em;
     padding: 5px;
 }
+
+#container {
+  width: 502px;
+  height: 512px;
+  position: relative;
+  margin: auto;
+ }
+ .container {
+   width: 90%;
+ }
+.field {
+   position: absolute;
+ }
