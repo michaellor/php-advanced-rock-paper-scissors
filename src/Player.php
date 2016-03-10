@@ -74,6 +74,16 @@
 				$wins = $query->fetchAll(PDO::FETCH_ASSOC);
 				return count($wins);
 			}
+			function getTotalTies()
+			{
+				$query = $GLOBALS['DB']->query("SELECT *
+						FROM rounds
+						WHERE (player_one_id = {$this->getId()}
+						OR player_two_id = {$this->getId()})
+						AND winner_id = -1);");
+				$ties = $query->fetchAll(PDO::FETCH_ASSOC);
+				return count($ties);
+			}
 
 			function getTotalMatches()
 			{
