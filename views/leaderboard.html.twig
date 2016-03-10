@@ -20,7 +20,7 @@
                                 {% elseif key == 2 %}
                                 <li class="trophe"><img src="/img/trophy3.svg" alt="third place"/>{{rank}}</li>
                                 {% else %}
-                                <li>{{rank}}</li>
+                                <li><img src="/img/blue_ribbon.svg" alt="third place"/>{{rank}}</li>
                                 {% endif %}
                             {% endfor %}
                         </ol>
@@ -29,7 +29,7 @@
                 <div class="col s12 m12 l6">
                     <div class="leaderboard-section">
                         <h3> Top 10 Winners by percentage</h3>
-                        <h5> (minimum 15 rounds played)</h5>
+                        <h6> (minimum 15 rounds played)</h6>
                         <ol>
                             {% for key, rank in win_percent %}
                                 {% if key == 0 %}
@@ -39,7 +39,7 @@
                                 {% elseif key == 2 %}
                                 <li class="trophe"><img src="/img/trophy3.svg" alt="third place"/>{{rank}}</li>
                                 {% else %}
-                                <li>{{rank}}</li>
+                                <li><img src="/img/blue_ribbon.svg" alt="third place"/>{{rank}}</li>
                                 {% endif %}
                             {% endfor %}
                         </ol>
@@ -61,7 +61,7 @@
                                 {% elseif key == 2 %}
                                 <li class="trophe"><img src="/img/trophy3.svg" alt="third place"/>{{rank}}</li>
                                 {% else %}
-                                <li>{{rank}}</li>
+                                <li><img src="/img/blue_ribbon.svg" alt="third place"/>{{rank}}</li>
                                 {% endif %}
                             {% endfor %}
                         </ol>
@@ -71,7 +71,7 @@
 
                     <div class="leaderboard-section">
                         <h3> Top 10 Match Winners by percentage</h3>
-                        <h5> (minimum 3 rounds played)</h5>
+                        <h6> (minimum 3 rounds played)</h6>
                         <ol>
                             {% for key, rank in match_percent %}
                                 {% if key == 0 %}
@@ -81,7 +81,7 @@
                                 {% elseif key == 2 %}
                                 <li class="trophe"><img src="/img/trophy3.svg" alt="third place"/>{{rank}}</li>
                                 {% else %}
-                                <li>{{rank}}</li>
+                                <li><img src="/img/blue_ribbon.svg" alt="third place"/>{{rank}}</li>
                                 {% endif %}
                             {% endfor %}
                         </ol>
