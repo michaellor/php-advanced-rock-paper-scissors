@@ -264,7 +264,7 @@
 						$game_win_percent = 0;
 					}
 
-					if($player->getTotalMatches() >5)
+					if($player->getTotalMatches() >3)
 					{
 
 						$match_win_percent = round(100 * ($player->getMatchWins()/$player->getTotalMatches()));
