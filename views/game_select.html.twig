@@ -11,22 +11,19 @@
       {% include '/includes/message.html.twig'%}
 
       {% if menu %}
-        <a href="/pVc_free_play" class="btn btn-info center">Free Play</a>
+        <a href="/pVc_free_play" class="menu_btn btn btn-info center">Free Play</a>
         <br>
+        <a href="/pVc_match?win=1 " class="menu_btn btn btn-info center">All or Nothing</a>
         <br>
-        <a href="/pVc_match?win=1 " class="btn btn-info center">All or Nothing</a>
+        <a href="/pVc_match?win=2 " class="menu_btn btn btn-info center">Best of 3</a>
         <br>
+        <a href="/pVc_match?win=3" class="menu_btn btn btn-info center">Best of 5</a>
         <br>
-        <a href="/pVc_match?win=2 " class="btn btn-info center">Best of 3</a>
+        <a href="/pVc_match?win=4" class="menu_btn btn btn-info center">Best of 7</a>
         <br>
+        <a href="/pVc_match?win=37" class="menu_btn btn btn-warning center">IronPerson!</a>
         <br>
-        <a href="/pVc_match?win=3" class="btn btn-info center">Best of 5</a>
-        <br>
-        <br>
-        <a href="/pVc_match?win=4" class="btn btn-info center">Best of 7</a>
-        <br>
-        <br>
-        <a href="/pVc_match?win=37" class="btn btn-warning center">IronPerson!</a>
+        <a href="/main_menu" class="menu_btn btn btn-warning center">Back</a>
       {% else %}
         <a href="/main_menu" class="btn btn-info center">Main Menu</a>
       {% endif %}

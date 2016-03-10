@@ -2,8 +2,8 @@
 
 * [x] About the developers page (including link on navbar) Joe Nic on Copy
 * [x] Game rules page (also link on navbar) Joe Nic on Copy
-* [ ] Change 'game round' on play page to ex. 'best of 3' Joe
-* [ ] Menu back buttons Aundra
+* [x] Change 'game round' on play page to ex. 'best of 3' Joe
+* [x] Menu back buttons Aundra
 * [ ] Stats Page Layout Revamp Michael (Joe on google Charts)
 * [ ] Stats Page add Win/Lose/Tie piechart (potentially Joe)
 * [ ] Css Design Michael

@@ -193,7 +193,13 @@
     });
 
     $app->get("/main_menu_select", function() use ($app){
-      return $app['twig']->render('game_select.html.twig', array('navbar' => array('userId' => $_SESSION['player_one']['id'],'userName' => $_SESSION['player_one']['name']),'menu' => true  ));
+      return $app['twig']->render('game_select.html.twig', array(
+                'navbar' => array(
+                        'userId' => $_SESSION['player_one']['id'],
+                        'userName' => $_SESSION['player_one']['name']
+                      ),
+                'menu' => true
+              ));
     });
 
     $app->get("/pVc_free_play", function() use ($app){
