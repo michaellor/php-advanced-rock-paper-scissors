@@ -13,21 +13,22 @@
 
       {% if menu %}
           {% if navbar.userId %}
-              <a href="/main_menu_select" class="btn btn-info center">Player Vs. Computer</a>
+              <a href="/main_menu_select" class="menu_btn btn grey btn-info center">Player Vs. Computer</a>
               <br>
+              <a href="/main_menu" class="menu_btn btn grey btn-info center disabled">Player Vs. Player</a>
               <br>
-              <a href="/main_menu" class="btn btn-info center disabled">Player Vs. Player</a>
+              <a href="/showdata" class="menu_btn btn grey btn-info center">{{ navbar.userName }} Stats</a>
               <br>
+              <a href="/rules" class="menu_btn btn grey btn-info center">Rules</a>
               <br>
-              <a href="/showdata" class="btn btn-info center">{{ navbar.userName }} Stats</a>
+              <a href="/about" class="menu_btn btn grey btn-info center">About</a>
               <br>
-              <br>
-              <a href="/sign_out" class="btn btn-info center">Sign Out</a>
+              <a href="/sign_out" class="menu_btn btn grey btn-info center">Sign Out</a>
           {% else %}
-            <a href="/sign_in" class="btn btn-info center">Sign-In</a>
+            <a href="/sign_in" class="menu_btn btn btn-info center">Sign-In</a>
           {% endif %}
       {% else %}
-        <a href="/main_menu" class="btn btn-info center">Main Menu</a>
+        <a href="/main_menu" class="menu_btn btn btn-info grey center">Main Menu</a>
       {% endif %}
     </div>
   </body>
