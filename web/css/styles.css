@@ -24,6 +24,7 @@ body {
     border-image-slice: 70;
 }
 
+
 .menu_btn {
   margin: 10px 10px;
 }
@@ -108,4 +109,19 @@ nav {
      /*Menu Styling*/
 .menu_btn {
   margin: 10px 10px;
+}
+
+#leaderboard {
+    padding-bottom: 45px;
+    border-bottom: 4px black solid;
+}
+
+.leaderboard-section {
+    padding: 1.5%;
+}
+
+body > div.container > div > ol > li {
+    text-align: left;
+    font-size: 1.2em;
+    padding: 5px;
 }
