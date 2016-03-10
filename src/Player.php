@@ -80,7 +80,7 @@
 						FROM rounds
 						WHERE (player_one_id = {$this->getId()}
 						OR player_two_id = {$this->getId()})
-						AND winner_id = -1);");
+						AND winner_id = -1;");
 				$ties = $query->fetchAll(PDO::FETCH_ASSOC);
 				return count($ties);
 			}
@@ -242,5 +242,78 @@
 	            $GLOBALS['DB']->exec('DELETE FROM rounds;');
 	        }
 
+			static function getPlayerRecords ()
+			{
+				$all_players = Player::getAllRealPlayers();
+		        $player_records = array();
+		        foreach($all_players as $player)
+		        {
+		            $player_record = array(
+						'name'=>$player->getName(),
+		                'games'=> $player->getTotalGames(),
+		                'match_wins'=>$player->getMatchWins(),
+		                'match_losses'=>$player->getMatchLosses(),
+		                'wins'=> $player->getTotalWins(),
+		                'losses'=> $player->getTotalLosses(),
+		                'ties'=>$player->getTotalTies(),
+		                'matches'=>$player->getTotalMatches()
+
+		            );
+
+
+		            array_push($player_records, $player_record);
+		        }
+				return $player_records;
+			}
+
+			static function getTop10Wins(){
+				$all_players = Player::getPlayerRecords();
+
+				function cmp_function($a, $b){
+					if ($a['wins'] == $b['wins']) return 0;
+					return($a['wins'] > $b['wins']) ? -1 :1;
+				}
+				uasort($all_players, "cmp_function");
+
+				$top_10_wins = array();
+				$i =0;
+
+				foreach($all_players as $player)
+				{
+					if( $i< 10 && ($player['wins'] > 0)){
+						$rank = $player['name'] . ": " . $player['wins'];
+						array_push($top_10_wins, $rank);
+						$i++;
+					}
+				}
+
+
+				return $top_10_wins;
+			}
+
+			static function getTop10Matches(){
+				$all_players = Player::getPlayerRecords();
+
+				function cmp_function2($a, $b){
+					if ($a['match_wins'] == $b['match_wins']) return 0;
+					return($a['match_wins'] > $b['match_wins']) ? -1 :1;
+				}
+				uasort($all_players, "cmp_function2");
+
+				$top_10_match_wins = array();
+				$i =0;
+
+				foreach($all_players as $player)
+				{
+					if( $i< 10 && ($player['match_wins'] > 0)){
+						$rank = $player['name'] . ": " . $player['match_wins'];
+						array_push($top_10_match_wins, $rank);
+						$i++;
+					}
+				}
+
+
+				return $top_10_match_wins;
+			}
 	}
  ?>

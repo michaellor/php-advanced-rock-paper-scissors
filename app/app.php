@@ -442,8 +442,19 @@
                         'userId' => $_SESSION['player_one']['id'],
                         'userName' => $_SESSION['player_one']['name']
                 )
-        ));
+    ));
+});
+//leaderboard
+    $app->get("/leaderboard", function() use ($app){
+        $top_ten = Player::getTop10Wins();
+        $all_players = Player::getPlayerRecords();
+        $ten_matches = Player::getTop10Matches();
+
+        return $app['twig']->render('TESTER.html.twig', array('allplayers'=> $all_players, 'top10'=>$top_ten, 'top_match'=>$ten_matches));
     });
+
+
+
 
     return $app;
  ?>
