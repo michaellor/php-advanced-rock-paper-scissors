@@ -2,7 +2,9 @@
 
 * [ ] About the developers page (including link on navbar)
 * [ ] Game rules page (also link on navbar)
+* [ ] Change 'game round' on play page to ex. 'best of 3'
 * [ ] Stats Page Layout Revamp
+* [ ] Stats Page add Win/Lose/Tie piechart
 * [ ] Css Design
   * [ ] Pull in fancy buttons
   * [ ] Hover effects?
@@ -10,6 +12,7 @@
   * [ ] Change Background and Color pallette
   * [ ] Polishing
 * [ ] Login switch dropdown to input form
+* [ ] Make sure all tests still pass
 * [ ] Clean up code/ refactor
 * [ ] Clean database (w/ computer player) in final master
 * [ ] Clean up readme.md
