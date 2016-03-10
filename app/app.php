@@ -122,7 +122,7 @@
                         ),
                 'message' => array(
                         'title' => 'Uh Oh! Login failed.',
-                        'text' => 'That password is incorrect. Try again or create a new player.',
+                        'text' => 'Your username or password were incorrect. Try again or create a new player.',
                         'link1' => array(
                             'link' => '/sign_in',
                             'text' => 'Try Again'
