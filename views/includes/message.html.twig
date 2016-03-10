@@ -2,19 +2,21 @@
   <br>
   <div class="row">
     <div class="col l10 offset-l1">
-      <div class="card blue darken-4 z-depth-2">
+      <div class="card card_coloring z-depth-2">
         <div class="card-content white-text">
           <span class="card-title">{{ message.title }}</span>
           <p>{{ message.text }}</p>
         </div>
-        <div class="card-action">
-          {% if message.link1 %}
-            <a href="{{ message.link1.link }}">{{ message.link1.text }}</a>
-          {% endif %}
-          {% if message.link2 %}
-            <a href="{{ message.link2.link }}">{{ message.link2.text }}</a>
-          {% endif %}
-        </div>
+        {% if message.link1 %}
+          <div class="card-action">
+            {% if message.link1 %}
+              <a href="{{ message.link1.link }}">{{ message.link1.text }}</a>
+            {% endif %}
+            {% if message.link2 %}
+              <a href="{{ message.link2.link }}">{{ message.link2.text }}</a>
+            {% endif %}
+          </div>
+        {% endif %}
       </div>
     </div>
   </div>

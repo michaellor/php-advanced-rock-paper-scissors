@@ -10,7 +10,7 @@
       <br><br><br>
 
       {% include '/includes/message.html.twig'%}
-      <h1>This is the Rules Page !!!!!</h1>
+      <h1>Rules of the Game</h1>
       {% if menu %}
           {% if navbar.userId %}
               <a href="/main_menu_select" class="btn btn-info center">Player Vs. Computer</a>
@@ -29,6 +29,53 @@
       {% else %}
         <a href="/main_menu" class="btn btn-info center">Main Menu</a>
       {% endif %}
+    </div>
+    <div class="container">
+        <h4> Create an Account</h4>
+        <p>
+            To create an account: Enter your Player Name, and, optionally a Password.  Usernames must be unique. <em>(NOTE: Passwords are not secure, Do NOT use a real password).</em>
+        </p>
+        <p>Creating an account allows you to access your cumulative statistics.</p>
+        <p>Creating a Password gives you flimsy protection against someone pretending to be you and wrecking all your stats by throwing Sponge 50 times in a row.<p>
+        <h5> OR</h5>
+        <h4>Sign In</h4>
+        <p>
+            If you already have an account, log-in with your Player Name (and Password, if you created one).
+        </p>
+
+        <h4> RPS-7</h4>
+        <p>You've probably played <em>regular</em> <a href="https://en.wikipedia.org/wiki/Rock-paper-scissors">Rock, Paper, Scissors</a> before. RPS-7 was created by David C. Lovelace (creator of many new RPS variatons), to spice up the Game with new options.</p>
+        <ul>
+            <li>Rock: beats Fire, Scissors, and Sponge.</li>
+            <li>Fire: beats Scissors, Sponge, and Paper.</li>
+            <li>Scissors: beats Sponge, Paper, and Air.</li>
+            <li>Sponge: beats Paper, Air, and Water.</li>
+            <li>Paper: beats Air, Water, and Rock.</li>
+            <li>Air: beats Water, Rock, and Fire.</li>
+            <li>Water: beats Rock, Fire, and Scissors.</li>
+        </ul>
+        <img id="cycle_img" src="img/cycle.png" title="The Code Word is RoShamBo">
+        <h4>Gameplay Options</h4>
+        <h5> Free Play</h5>
+        <p>In Free Play Mode, you can play an unlimited number of rounds against a computer opponent. Each round is logged in your all-time statistics.
+        <h5>Match Play</h5>
+        <p>
+            In Match Play Mode, you play a set number of games against a computer opponent. Each round is logged in your all-time statistics. In addition the Winner of the Match is logged. If you exit a Match early, you will be disqualified and incur a loss.
+        <p>
+        <p>Match types include:</p>
+            <ul>
+                <li>Best of 3:  First one to win 2 rounds.</li>
+                <li>Best of 5:  First one to win 3 rounds.</li>
+                <li>Best of 3:  First one to win 4 rounds.</li>
+                <li>All or Nothing:  1 round, Winner takes the Match.</li>
+                <li>Iron Person: A Best of 73 Slug-fest - First one to win 37 rounds!</li>
+            </ul>
+
+            <h4>Statistics and Leaderboard</h4>
+            <p>
+                While you are logged in you can see your life-time Round statistics -- Wins, Losses, Ties -- as well as your life-time Match statistics.  In addition you can get a breakdown of the choices you've made.
+            </p>
+            <p>The Leaderboard shows the top 10 all-time Winners<p>
     </div>
   </body>
 </html>

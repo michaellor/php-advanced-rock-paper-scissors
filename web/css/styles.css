@@ -24,7 +24,15 @@ body {
     border-image-slice: 70;
 }
 
-
+.btn, .card_coloring {
+  background-color: #5D8050;
+}
+.btn:hover {
+  background-color: #62B646;
+}
+.card-action > a {
+  color: white !important;
+}
 .menu_btn {
   margin: 10px 10px;
 }
@@ -96,6 +104,10 @@ div.inline {
 
 #home_image {
     width: 600px;
+    height: auto;
+}
+#cycle_img {
+    width:500px;
     height: auto;
 }
 
