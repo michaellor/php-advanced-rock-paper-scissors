@@ -2,7 +2,7 @@
 
 #### _Advanced version of Paper Rock Scissors , 2016-03-10_
 
-#### By _**Joe Karask, Michael Lor, Aundra Miller, Nic Netzel **_
+#### By _**Joe Karasek, Michael Lor, Aundra Miller, Nic Netzel **_
 
 ## Description
 
@@ -24,7 +24,8 @@ _This application allows users to play a 7-option version of Rock Paper Scissors
 * _An entry for the 'computer' must be added to the database column players with an id equal to 0_
 * _Multi-player Mode is not currently Supported_
 * _Match Mode statistics treat an unfinished/early exited game as a loss for the player_
-* _Entries into database (player name, player password), are not sanitized for characters that break SQL such as apostrophes
+* _Entries into database (player name, player password), are not sanitized for characters that break SQL such as apostrophes_
+* _Session cookie is not destroyed_
 
 
 
