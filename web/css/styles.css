@@ -170,8 +170,41 @@ nav a {
      color: #4CAF50;
      font-size: 40px;
  }
-
+.warning{
+    color: red;
+}
 .computer {
    width: 100px;
    height: auto;
+ }
+
+
+ .rock-text{
+     color: #e60000;
+     font-weight: bolder;
+ }
+ .water-text{
+     color: #009933;
+     font-weight: bolder;
+ }
+
+ .scissors-text{
+     color: #996633;
+     font-weight: bolder;
+ }
+ .sponge-text{
+     color: #e6e600;
+     font-weight: bolder;
+ }
+ .paper-text{
+     color: #bf80ff;
+     font-weight: bolder;
+ }
+ .air-text{
+     color: #ff8c1a;
+     font-weight: bolder;
+ }
+ .fire-text{
+     color: #0080ff;
+     font-weight: bolder;
  }
