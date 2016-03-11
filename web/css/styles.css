@@ -116,6 +116,7 @@ nav {
 }
 
 #nav_image {
+  margin-top: 10px;
 }
 
      /*Menu Styling*/
@@ -151,9 +152,13 @@ div.leaderboard-section > ol > li {
    position: absolute;
  }
 
+nav a {
+  font-size: 1.2rem !important;
+}
  nav .nav-wrapper {
    height: 120%;
  }
+
 
 .faces {
      width: 100px;
