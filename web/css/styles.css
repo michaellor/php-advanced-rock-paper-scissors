@@ -170,3 +170,8 @@ nav a {
      color: #4CAF50;
      font-size: 40px;
  }
+
+.computer {
+   width: 100px;
+   height: auto;
+ }
