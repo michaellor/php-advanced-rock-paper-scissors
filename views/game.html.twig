@@ -15,10 +15,10 @@
 
           <h1>{{ game }}</h1>
           <hr>
-
-          {% include '/includes/winner_message.html.twig'%}
           <br>
           <div class="row">
+
+            {% include '/includes/winner_message.html.twig'%}
 
             <div class="col s2">
               <h4>{{player1['name']}}</h4>
@@ -143,12 +143,16 @@
             </div>
 
             <div class="col s2">
-              {% if message.color == 'red' %}
-                <img src='/img/computer_win.gif' class="computer">
+              {% if matchOver.color == 'red' %}
+                <img src='/img/computer_win.gif' class="computer animated tada infinite">
+              {% elseif matchOver.color == 'green' %}
+                <img src='/img/computer_lose.gif' class="computer animated hinge">
+              {% elseif message.color == 'red' %}
+                <img src='/img/computer_win.gif' class="computer animated bounce infinite">
               {% elseif message.color == 'grey' %}
-                <img src='/img/computer_tie.gif' class="computer">
+                <img src='/img/computer_tie.gif' class="computer animated pulse infinite">
               {% elseif message.color == 'green' %}
-                <img src='/img/computer_lose.gif' class="computer">
+                <img src='/img/computer_lose.gif' class="computer animated tada infinite">
               {% else %}
                 <img src='/img/computer_idle.gif' class="computer">
               {% endif %}

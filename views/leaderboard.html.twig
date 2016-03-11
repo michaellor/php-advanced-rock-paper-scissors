@@ -11,7 +11,9 @@
             <div class="row">
                 <div class="col s12 m12 l6">
                     <div class="leaderboard-section">
-                        <h2> Top 10 Winners</h2>
+                        <h3> Top 10 Winners</h3>
+                        <br>
+                        <br>
                         <ol>
                             {% for key, rank in top10 %}
                                 {% if key == 0 %}
@@ -29,7 +31,7 @@
                 </div>
                 <div class="col s12 m12 l6">
                     <div class="leaderboard-section">
-                        <h3> Top 10 Winners by percentage</h3>
+                        <h3> Top 10 Winners by Percentage</h3>
                         <h6> (minimum 15 rounds played)</h6>
                         <ol>
                             {% for key, rank in win_percent %}
@@ -52,7 +54,9 @@
             <div class="row">
                 <div class="col s12 m12 l6">
                     <div class="leaderboard-section">
-                        <h2> Top 10 Match Winners</h2>
+                        <h3> Top 10 Match Winners</h3>
+                        <br>
+                        <br>
                         <ol>
                             {% for key, rank in top_match %}
                                 {% if key == 0 %}
@@ -71,8 +75,13 @@
                 <div class="col s12 m12 l6">
 
                     <div class="leaderboard-section">
+<<<<<<< HEAD
                         <h3> Top 10 Match Winners by percentage</h3>
+                        <h6> (minimum 3 matches played)</h6>
+=======
+                        <h3> Top 10 Match Winners by Percentage</h3>
                         <h6> (minimum 3 rounds played)</h6>
+>>>>>>> 369d6185cf41114fd3e31ac51cdc7924bceeff21
                         <ol>
                             {% for key, rank in match_percent %}
                                 {% if key == 0 %}

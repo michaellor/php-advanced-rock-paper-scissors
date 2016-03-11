@@ -2,7 +2,7 @@
 
 #### _Advanced version of Paper Rock Scissors , 2016-03-10_
 
-#### By _** Joe Karasek, Michael Lor, Aundra Miller, Nic Netzel **_
+#### By _**Joe Karasek, Michael Lor, Aundra Miller, Nic Netzel **_
 
 ## Description
 
