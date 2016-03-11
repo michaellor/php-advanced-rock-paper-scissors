@@ -30,3 +30,4 @@
 * [ ] Better AI Player
 * [ ] Avatars
 * [ ] Comment Code
+* [ ] Have QUIT button disappear after a match has been finished
