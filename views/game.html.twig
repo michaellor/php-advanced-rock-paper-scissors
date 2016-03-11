@@ -143,7 +143,15 @@
             </div>
 
             <div class="col s2">
-              <img src='/img/computer_idle.gif' class="computer">
+              {% if message.color == 'red' %}
+                <img src='/img/computer_win.gif' class="computer">
+              {% elseif message.color == 'grey' %}
+                <img src='/img/computer_tie.gif' class="computer">
+              {% elseif message.color == 'green' %}
+                <img src='/img/computer_lose.gif' class="computer">
+              {% else %}
+                <img src='/img/computer_idle.gif' class="computer">
+              {% endif %}
               <h4>Score: {{player2['score']}}</h4>
             </div>
 

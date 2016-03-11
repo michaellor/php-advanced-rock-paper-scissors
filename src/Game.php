@@ -123,7 +123,7 @@
                       $this->saveRound();
                       return array(
                               'text' => 'Tie',
-                              'color' => 'blue'
+                              'color' => 'grey'
                       );
       			}
       			else
@@ -183,7 +183,7 @@
             return $found_game;
         }
 
-        
+
 
     }
 ?>
