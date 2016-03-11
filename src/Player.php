@@ -256,7 +256,7 @@
 		        foreach($all_players as $player)
 		        {
 
-					if($player->getTotalGames() >15)
+					if($player->getTotalGames() >= 15)
 					{
 
 						$game_win_percent = round(100 * ($player->getTotalWins()/$player->getTotalGames()));
@@ -264,7 +264,7 @@
 						$game_win_percent = 0;
 					}
 
-					if($player->getTotalMatches() >3)
+					if($player->getTotalMatches() >= 3)
 					{
 
 						$match_win_percent = round(100 * ($player->getMatchWins()/$player->getTotalMatches()));
