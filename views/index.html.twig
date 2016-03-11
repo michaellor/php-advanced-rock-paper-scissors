@@ -23,6 +23,8 @@
               <br>
               <a href="/sign_out" class="menu_btn btn center">Sign Out</a>
               <br>
+          {% else %}
+              <a href="/sign_in" class="menu_btn btn center">Sign-In</a>
           {% endif %}
       {% else %}
         {% if not navbar.userId %}
