@@ -164,3 +164,8 @@ nav a {
      width: 100px;
      height: auto;
  }
+
+ .letter{
+     color: #4CAF50;
+     font-size: 40px;
+ }
