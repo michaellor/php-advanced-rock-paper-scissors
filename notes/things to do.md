@@ -6,12 +6,12 @@
 * [x] Menu back buttons Aundra
 * [x] Stats Page Layout Revamp Michael
 * [x] Joe on google Charts
-* [ ] Css Design Michael
+* [x] Css Design Michael
   * [x] Pull in fancy buttons
   * [x] Hover effects?
   * [x] Pull in logo
   * [x] Change Background and Color pallette
-  * [ ] Polishing
+  * [x] Polishing
 * [x] Login switch dropdown to input form
 * [x] Make sure all tests still pass Aundra
 * [x] Fill in readme.md Nic
@@ -28,7 +28,6 @@
 * [ ] Clean up About page (person blurbs)
 * [ ] Add rules to bottom of play area
 * [ ] Leaderboard check 'rounds' and 'matches' used correctly (see subtitles)
-* [ ] Add stats to bottom of play area ??
 * [ ] Proof read about and rules page
 
 ## Potential Things to do

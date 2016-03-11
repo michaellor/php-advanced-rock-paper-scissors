@@ -13,6 +13,7 @@ body {
     background-image: url(/img/background.jpg);
     font-family: 'ArmWrestler';
     font-size: 1.2em;
+    background-color: #616161;
 }
 
 .container {
