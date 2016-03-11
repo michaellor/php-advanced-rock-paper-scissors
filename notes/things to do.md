@@ -22,13 +22,13 @@
 * [x] Leader Board Nic
 * [x] Stats Page add Win/Lose/Tie piechart
 * [x] Color of clicked buttons on stats page should not be teal
-* [ ] Computer Graphic on game page
-* [ ] Clean database (w/ computer player) in final master
-* [ ] Clean up readme.md Joe
-* [ ] Clean up About page (person blurbs)
-* [ ] Add rules to bottom of play area
-* [ ] Leaderboard check 'rounds' and 'matches' used correctly (see subtitles)
-* [ ] Proof read about and rules page
+* [x] Computer Graphic on game page
+* [x] Clean database (w/ computer player) in final master
+* [x] Clean up readme.md Joe
+* [x] Clean up About page (person blurbs)
+* [x] Add rules to bottom of play area
+* [x] Leaderboard check 'rounds' and 'matches' used correctly (see subtitles)
+* [x] Proof read about and rules page
 
 ## Potential Things to do
 * [ ] Clean up code/ refactor
