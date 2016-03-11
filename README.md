@@ -34,7 +34,7 @@ _This application allows users to play a 7-option version of Rock Paper Scissors
 * _Twig_
 * _Silex_
 * _PHP_
-*_PHPUnit_
+* _PHPUnit_
 
 
 ### License

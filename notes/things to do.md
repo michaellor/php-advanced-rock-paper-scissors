@@ -14,8 +14,7 @@
   * [ ] Polishing
 * [x] Login switch dropdown to input form
 * [x] Make sure all tests still pass Aundra
-* [ ] Clean database (w/ computer player) in final master
-* [ ] Clean up readme.md Nic
+* [x] Fill in readme.md Nic
 * [x] Title attribute for hovering on elements
 * [x] Switch create player and sign in left/right
 * [x] fonts
@@ -23,6 +22,9 @@
 * [x] Leader Board Nic
 * [x] Stats Page add Win/Lose/Tie piechart
 * [ ] Color of clicked buttons on stats page should not be teal
+* [ ] Computer Graphic
+* [ ] Clean database (w/ computer player) in final master
+* [ ] Clean up readme.md Joe
 
 ## Potential Things to do
 * [ ] Clean up code/ refactor
