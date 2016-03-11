@@ -21,11 +21,7 @@
             {% include '/includes/winner_message.html.twig'%}
 
             <div class="col s2">
-            {% if matchOver.color == 'red' %}
-                <h4 class='animated hinge'>{{player1['name']}}</h4>
-            {% else %}
-                <h4>{{player1['name']}}</h4>
-            {% endif %}
+              <h4>{{player1['name']}}</h4>
               <h4>Score: {{player1['score']}}</h4>
             </div>
 
