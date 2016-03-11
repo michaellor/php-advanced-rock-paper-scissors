@@ -21,10 +21,13 @@
 * [x] Breaks at no player signed in, remove to stats page from navbar when no one is signed in
 * [x] Leader Board Nic
 * [x] Stats Page add Win/Lose/Tie piechart
-* [ ] Color of clicked buttons on stats page should not be teal
+* [x] Color of clicked buttons on stats page should not be teal
 * [ ] Computer Graphic
 * [ ] Clean database (w/ computer player) in final master
 * [ ] Clean up readme.md Joe
+* [ ] Clean up About page (person blurbs)
+* [ ] Add rules to bottom of play area
+* [ ] Add stats to bottom of play area ??
 
 ## Potential Things to do
 * [ ] Clean up code/ refactor
