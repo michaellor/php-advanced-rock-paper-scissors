@@ -159,3 +159,8 @@ div.leaderboard-section > ol > li {
      width: 100px;
      height: auto;
  }
+
+ .letter{
+     color: #4CAF50;
+     font-size: 40px;
+ }
