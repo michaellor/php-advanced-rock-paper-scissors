@@ -378,9 +378,17 @@
     });
 
     $app->patch("/match_results", function() use ($app){
-      return $app['twig']->render("game.html.twig", array('result'=> $result, 'player1'=>$_SESSION['player_one'], 'player2'=>$_SESSION['player_two'], 'format'=>$_SESSION['win_number']));
+      return $app['twig']->render("game.html.twig", array(
+                  'result'=> $result,
+                  'player1'=>$_SESSION['player_one'],
+                  'player2'=>$_SESSION['player_two'],
+                  'format'=>$_SESSION['win_number']
+                  ));
     });
 
+    // Routes to stats page and data generation for pie Charts
+    require_once __DIR__."/../src/appComponents/stats.php";
+    
     // $app->get("/data/{id}", function($id) use ($app){
     //     $player1 = Player::findById($id);
     //     $player1_data = $player1->getTotalHands();
