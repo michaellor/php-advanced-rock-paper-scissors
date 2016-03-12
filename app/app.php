@@ -1,38 +1,27 @@
 <?php
+
+// ===============================================
+// Initiate App - Load dependencies, set up Silex,
+//   establish Session variable, and connect to db
+// ===============================================
+
+    // Load dependencies
     require_once __DIR__."/../vendor/autoload.php";
+
+    // Load classes
     require_once __DIR__."/../src/Game.php";
     require_once __DIR__."/../src/Player.php";
     require_once __DIR__."/../src/Match.php";
 
-    session_start();
-//add choice to session variable
-    if(empty($_SESSION['player_one']))
-    {
-        $_SESSION['player_one']= array("name"=>null, "id"=>null, "choice"=>null, "score"=>0);
-    }
+    // Setup $_SESSION if empty
+    require_once __DIR__."/../src/appComponents/sessionSetUp.php";
 
-    if(empty($_SESSION['player_two']))
-    {
-        $_SESSION['player_two']= array("name"=>null, "id"=>null, "choice"=>null, "score"=>0);
-    }
-//change win_number to 'win_number' for clarity
-    if(empty($_SESSION['match']))
-    {
-        $_SESSION['match']=array("win_number"=> null, "id"=>null);
-    }
+    // Connect to SQL database
+    require_once __DIR__."/../src/appComponents/databaseConnect.php";
 
-    $app = new Silex\Application();
+    // Initiate Silex with needed components
+    require_once __DIR__."/../src/appComponents/silex.php";
 
-    $server = 'mysql:host=localhost;dbname=rps';
-    $username = 'root';
-    $password = 'root';
-    $DB = new PDO($server, $username, $password);
-    // $app['debug'] = true;
-
-    $app->register(new Silex\Provider\TwigServiceProvider(), array('twig.path'=>__DIR__."/../views"
-    ));
-    use Symfony\Component\HttpFoundation\Request;
-          Request::enableHttpMethodParameterOverride();
 
     $app->get("/", function() use ($app){
         return $app['twig']->render('index.html.twig', array(
@@ -60,6 +49,9 @@
         ));
     });
 
+    // // Account managment including sign in, signout, and create new player
+    // require_once __DIR__."/../src/appComponents/accountManagement.php";
+
     $app->get("/sign_out", function() use ($app){
         $_SESSION['player_one']= array("name"=>null, "id"=>null, "score"=>0);
         $_SESSION['player_two']= array("name"=>null, "id"=>null, "score"=>0);
@@ -85,7 +77,6 @@
     });
 
     $app->post("/player_sign_in", function() use ($app) {
-
         $player_name = $_POST['player_name'];
         $password = $_POST['password'];
         $all_players = Player::getAllRealPlayers();
@@ -93,7 +84,6 @@
             if ($player_name == $player->getName() && $password == $player->getPassword()) {
                 $_SESSION['player_one']['name'] = $player->getName();
                 $_SESSION['player_one']['id'] = $player->getId();
-
                 return $app['twig']->render('index.html.twig', array(
                         'navbar' => array(
                                 'userId' => $_SESSION['player_one']['id'],
@@ -106,7 +96,6 @@
                 ));
             }
         }
-
         return $app['twig']->render('index.html.twig', array(
                 'navbar' => array(
                         'userId' => $_SESSION['player_one']['id'],
@@ -151,10 +140,8 @@
         }
         $new_player = new Player($name, $password);
         $new_player->save();
-
         $_SESSION['player_one']['name'] = $new_player->getName();
         $_SESSION['player_one']['id' ]= $new_player->getId();
-
         return $app['twig']->render('index.html.twig', array(
                 'navbar' => array(
                         'userId' => $new_player->getId(),
@@ -168,8 +155,8 @@
                             'text' => 'Start'
                         )
                 )
-        ));
-    });
+            ));
+        });
 
     $app->get("/main_menu", function() use ($app){
       return $app['twig']->render('index.html.twig', array(
@@ -394,59 +381,59 @@
       return $app['twig']->render("game.html.twig", array('result'=> $result, 'player1'=>$_SESSION['player_one'], 'player2'=>$_SESSION['player_two'], 'format'=>$_SESSION['win_number']));
     });
 
-    $app->get("/data/{id}", function($id) use ($app){
-        $player1 = Player::findById($id);
-        $player1_data = $player1->getTotalHands();
-        return $player1->barGraphData($player1_data);
-    });
+    // $app->get("/data/{id}", function($id) use ($app){
+    //     $player1 = Player::findById($id);
+    //     $player1_data = $player1->getTotalHands();
+    //     return $player1->barGraphData($player1_data);
+    // });
+    //
+    // $app->get("/showdata", function() use ($app){
+    //
+    //     $user = Player::findById($_SESSION['player_one']['id']);
+    //     $user_stats = array(
+    //             'ties' => $user->getTotalGames() - $user->getTotalWins() - $user->getTotalLosses(),
+    //             'wins' => $user->getTotalWins(),
+    //             'losses' => $user->getTotalLosses(),
+    //             'total' => $user->getTotalGames()
+    //     );
+    //     $user_matches = array(
+    //             'wins' => $user->getMatchWins(),
+    //             'losses' => $user->getMatchLosses(),
+    //             'total' => $user->getTotalMatches()
+    //     );
+    //     $computer = Player::findById(0);
+    //     $computer_stats = array(
+    //             'ties' => $computer->getTotalGames() - $computer->getTotalWins() - $computer->getTotalLosses(),
+    //             'wins' => $computer->getTotalWins(),
+    //             'losses' => $computer->getTotalLosses(),
+    //             'total' => $computer->getTotalGames()
+    //     );
+    //     $computer_match = array(
+    //             'wins' => $computer->getMatchWins(),
+    //             'losses' => $computer->getMatchLosses(),
+    //             'total' => $computer->getTotalMatches()
+    //     );
+    //     return $app['twig']->render('stats.html.twig', array(
+    //             'userStats' => $user_stats,
+    //             'userMatches'=> $user_matches,
+    //             'computerStats' => $computer_stats,
+    //             'computerMatches' => $computer_match,
+    //             'chart' => array(
+    //                     'id' => $_SESSION['player_one']['id'],
+    //                     'target' => 'chart_div_player'
+    //             ),
+    //             'chart2' => array(
+    //                     'id' => 0,
+    //                     'target' => 'chart_div_computer'
+    //             ),
+    //             'player1' => $_SESSION['player_one'],
+    //             'navbar' => array(
+    //                     'userId' => $_SESSION['player_one']['id'],
+    //                     'userName' => $_SESSION['player_one']['name']
+    //             )
+    //     ));
+    // });
 
-    $app->get("/showdata", function() use ($app){
-
-        $user = Player::findById($_SESSION['player_one']['id']);
-        $user_stats = array(
-                'ties' => $user->getTotalGames() - $user->getTotalWins() - $user->getTotalLosses(),
-                'wins' => $user->getTotalWins(),
-                'losses' => $user->getTotalLosses(),
-                'total' => $user->getTotalGames()
-        );
-        $user_matches = array(
-                'wins' => $user->getMatchWins(),
-                'losses' => $user->getMatchLosses(),
-                'total' => $user->getTotalMatches()
-        );
-        $computer = Player::findById(0);
-        $computer_stats = array(
-                'ties' => $computer->getTotalGames() - $computer->getTotalWins() - $computer->getTotalLosses(),
-                'wins' => $computer->getTotalWins(),
-                'losses' => $computer->getTotalLosses(),
-                'total' => $computer->getTotalGames()
-        );
-        $computer_match = array(
-                'wins' => $computer->getMatchWins(),
-                'losses' => $computer->getMatchLosses(),
-                'total' => $computer->getTotalMatches()
-        );
-        return $app['twig']->render('stats.html.twig', array(
-                'userStats' => $user_stats,
-                'userMatches'=> $user_matches,
-                'computerStats' => $computer_stats,
-                'computerMatches' => $computer_match,
-                'chart' => array(
-                        'id' => $_SESSION['player_one']['id'],
-                        'target' => 'chart_div_player'
-                ),
-                'chart2' => array(
-                        'id' => 0,
-                        'target' => 'chart_div_computer'
-                ),
-                'player1' => $_SESSION['player_one'],
-                'navbar' => array(
-                        'userId' => $_SESSION['player_one']['id'],
-                        'userName' => $_SESSION['player_one']['name']
-                )
-    ));
-});
-//leaderboard
     $app->get("/leaderboard", function() use ($app){
         $top_ten = Player::getTop10Wins();
         $all_players = Player::getPlayerRecords();
@@ -463,9 +450,6 @@
                         'userId' => $_SESSION['player_one']['id'],
                         'userName' => $_SESSION['player_one']['name'])));
     });
-
-
-
 
     return $app;
  ?>
