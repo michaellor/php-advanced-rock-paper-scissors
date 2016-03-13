@@ -35,5 +35,5 @@
 * [ ] Refactor of twig pages
 * [ ] Better AI Player
 * [ ] Avatars
-* [ ] Comment Code
+* [x] Comment Code
 * [ ] Have QUIT button disappear after a match has been finished

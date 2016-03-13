@@ -27,7 +27,7 @@
 //       Routes
 // ===============================================
 
-    // Routes to main static pages
+    // Routes to main static pages (home, rules, about, leaderboard, etc.)
     require_once __DIR__."/../src/appComponents/mainPages.php";
 
     // Account managment including sign in, signout, and create new player
