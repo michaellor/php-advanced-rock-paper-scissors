@@ -27,13 +27,14 @@
     });
 
     $app->get("/main_menu", function() use ($app){
-        return $app['twig']->render('index.html.twig', array(
-            'navbar' => array(
-                    'userId' => $_SESSION['player_one']['id'],
-                    'userName' => $_SESSION['player_one']['name']
-            ),
-            'menu' => true
-    ));
+      return $app['twig']->render('index.html.twig', array(
+              'navbar' => array(
+                      'userId' => $_SESSION['player_one']['id'],
+                      'userName' => $_SESSION['player_one']['name']
+              ),
+              'menu' => true
+      ));
+    });
 
     $app->get("/main_menu_select", function() use ($app){
       return $app['twig']->render('game_select.html.twig', array(
@@ -61,5 +62,3 @@
                         'userId' => $_SESSION['player_one']['id'],
                         'userName' => $_SESSION['player_one']['name'])));
     });
-
-?>
